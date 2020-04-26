@@ -84,10 +84,6 @@
         </plugins>
     </build>
 
-    <modules>
-        <module>TestPlugin</module>
-    </modules>
-
     <dependencies>
         <dependency>
             <groupId>org.pf4j</groupId>

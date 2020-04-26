@@ -1,12 +1,12 @@
 # 🔌'in creation manual
 
-Duplicate `TestPlugin` provided under `plugins`directory to start creating your plugin from a template.
+Duplicate `TemplatePlugin` provided under `plugins`directory to start creating your plugin from a template.
 
 ## 📝 Config
 
 1. Change `artifactId`, `version`, `name` and `plugin properties` from `pom`file.
 1. Update `plugin.properties` file from `src.main.java.resources`directory.
-1. Rename `TestPlugin`, as well as its references, and write your plugin.
+1. Rename `TemplatePlugin`, as well as its references and write your plugin.
 
 ## 👷‍ Build
 
