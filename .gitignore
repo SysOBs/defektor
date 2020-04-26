@@ -517,3 +517,5 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
+# target folders
+target
