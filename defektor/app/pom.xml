@@ -15,6 +15,8 @@
     <name>defektor-app</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <javadoc.disabled>true</javadoc.disabled>
         <deploy.disabled>true</deploy.disabled>
         <source.disabled>true</source.disabled>
@@ -53,13 +55,11 @@
             <version>${pf4j.version}</version>
         </dependency>
 
-        <!--
         <dependency>
             <groupId>pt.uc.sob</groupId>
             <artifactId>defektor-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-        -->
 
         <!-- Logging -->
         <dependency>

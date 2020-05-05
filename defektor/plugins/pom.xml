@@ -13,7 +13,7 @@
     <artifactId>defektor-plugins</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>defektor Plugins parent</name>
+    <name>defektor Plugins</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,6 +83,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+        <module>TemplateExtensionPlugin</module>
+        <module>HoleyBoat</module>
+    </modules>
 
     <dependencies>
         <dependency>

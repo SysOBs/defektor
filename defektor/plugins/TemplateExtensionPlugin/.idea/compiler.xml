@@ -6,15 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="HoleyBoat" />
-        <module name="api" />
-        <module name="app" />
-        <module name="TemplateExtensionPlugin" />
-        <module name="TemplatePlugin" />
+        <module name="TestPlugin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TestPlugin" target="13" />
+      <module name="TestPlugin" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>
