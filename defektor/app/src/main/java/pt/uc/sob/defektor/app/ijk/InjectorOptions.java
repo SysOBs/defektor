@@ -1,6 +1,4 @@
-package pt.uc.sob.defektor.ijk;
-
-import java.util.List;
+package pt.uc.sob.defektor.app.ijk;
 
 public class InjectorOptions {
 	private Surface surface;

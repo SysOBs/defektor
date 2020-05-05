@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>pt.uc.sob</groupId>
-    <artifactId>defektor-parent</artifactId>
+    <groupId>pt.uc.sob.defektor</groupId>
+    <artifactId>defektor</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>defektor</name>
@@ -13,6 +13,8 @@
     <properties>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.source>14</maven.compiler.source>
+
+        <maven.compiler.version>3.8.1</maven.compiler.version>
 
         <javadoc.disabled>true</javadoc.disabled>
         <deploy.disabled>true</deploy.disabled>
@@ -39,10 +41,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>13</source>
-                    <target>13</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -50,7 +52,7 @@
 
     <modules>
         <module>app</module>
-        <module>api</module>
+        <module>plugin_api</module>
         <module>plugins</module>
     </modules>
 </project>

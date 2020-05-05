@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor_api;
+package pt.uc.sob.defektor.app.api;
 
 import org.pf4j.ExtensionPoint;
 

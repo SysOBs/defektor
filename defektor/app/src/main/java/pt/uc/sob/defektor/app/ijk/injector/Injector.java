@@ -1,7 +1,7 @@
-package pt.uc.sob.defektor.ijk.injector;
+package pt.uc.sob.defektor.app.ijk.injector;
 
-import pt.uc.sob.defektor.ijk.InjectorOptions;
-import pt.uc.sob.defektor.ijk.TargetType;
+import pt.uc.sob.defektor.app.ijk.InjectorOptions;
+import pt.uc.sob.defektor.app.ijk.TargetType;
 
 import java.util.List;
 

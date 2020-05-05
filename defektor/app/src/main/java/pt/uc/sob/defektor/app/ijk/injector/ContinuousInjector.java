@@ -1,6 +1,6 @@
-package pt.uc.sob.defektor.ijk.injector;
+package pt.uc.sob.defektor.app.ijk.injector;
 
-import pt.uc.sob.defektor.ijk.InjectorOptions;
+import pt.uc.sob.defektor.app.ijk.InjectorOptions;
 
 import java.time.Duration;
 

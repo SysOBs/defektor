@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor;
+package pt.uc.sob.defektor.app;
 
 import org.pf4j.DefaultPluginManager;
 import org.pf4j.PluginManager;

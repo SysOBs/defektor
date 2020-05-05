@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor;
+package pt.uc.sob.defektor.app;
 
 /**
  * Defektor main class.

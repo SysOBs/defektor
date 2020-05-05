@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.ijk;
+package pt.uc.sob.defektor.app.ijk;
 
 public abstract class Target {
 	private TargetType type;

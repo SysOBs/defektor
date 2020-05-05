@@ -1,11 +1,11 @@
-package pt.uc.sob.defektor;
+package pt.uc.sob.defektor.app;
 
 import org.pf4j.Extension;
 import org.pf4j.Plugin;
 import org.pf4j.PluginWrapper;
 import org.pf4j.RuntimeMode;
-import pt.uc.sob.defektor_api.HoleyBoat;
-import pt.uc.sob.defektor_api.InjektorConfig;
+import pt.uc.sob.defektor.app.api.HoleyBoat;
+import pt.uc.sob.defektor.app.api.InjektorConfig;
 
 public class TemplateExtensionPlugin extends Plugin {
 

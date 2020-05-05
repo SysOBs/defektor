@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.ijk;
+package pt.uc.sob.defektor.app.ijk;
 
 import java.util.List;
 
