@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="HoleyBoat" />
         <module name="api" />
         <module name="app" />
-        <module name="HoleyBoat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
