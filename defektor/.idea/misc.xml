@@ -9,7 +9,6 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/plugins/TestPlugin/pom.xml" />
-        <option value="$PROJECT_DIR$/plugins/TemplatePlugin/pom.xml" />
         <option value="$PROJECT_DIR$/plugins/TemplateExtentionPlugin/pom.xml" />
         <option value="$PROJECT_DIR$/plugins/HoleyBoat/pom.xml" />
         <option value="$PROJECT_DIR$/plugin-api/pom.xml" />
@@ -18,6 +17,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/plugins/plugin1/pom.xml" />
+        <option value="$PROJECT_DIR$/plugins/pom.xml" />
       </set>
     </option>
   </component>

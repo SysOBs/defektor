@@ -5,7 +5,5 @@
     <file url="file://$PROJECT_DIR$/plugin_api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/plugins/TemplateExtensionPlugin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/plugins/TemplateExtensionPlugin/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/plugins/TemplatePlugin/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/plugins/TemplatePlugin/src/main/resources" charset="UTF-8" />
   </component>
 </project>

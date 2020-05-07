@@ -6,16 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TemplatePlugin" />
         <module name="api" />
-        <module name="TemplateExtensionPlugin" />
-        <module name="plugin_api" />
         <module name="app" />
         <module name="HoleyBoat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="defektor-api" target="13" />
+      <module name="plugin_api" target="14" />
+      <module name="plugins" target="14" />
+      <module name="TemplateExtensionPlugin" target="14" />
+      <module name="TemplatePlugin" target="14" />
       <module name="TestPlugin" target="13" />
     </bytecodeTargetLevel>
   </component>
