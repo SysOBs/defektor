@@ -1,0 +1,4 @@
+[submodule "defektor/server/src/main/resources/defektorOpenAPISpec"]
+	path = defektor/server/src/main/resources/defektorOpenAPISpec
+	url = git@github.com:SysOBs/defektorOpenAPISpec.git
+	branch = master
