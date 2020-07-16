@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("${openapi.server.base-path:/defektor-api/1.0.0}")
-public class MyPlan implements PlanApi {
+public class PlanController implements PlanApi {
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
