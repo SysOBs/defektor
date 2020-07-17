@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.app.fault.istio.virtualservice;
+package pt.uc.defektor.injektors.istio.virtualservice;
 
 public class FaultYAML {
 

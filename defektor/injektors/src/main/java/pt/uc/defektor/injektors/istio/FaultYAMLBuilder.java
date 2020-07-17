@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.app.fault.istio;
+package pt.uc.defektor.injektors.istio;
 
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
@@ -6,7 +6,7 @@ import org.yaml.snakeyaml.introspector.Property;
 import org.yaml.snakeyaml.nodes.NodeTuple;
 import org.yaml.snakeyaml.nodes.Tag;
 import org.yaml.snakeyaml.representer.Representer;
-import pt.uc.sob.defektor.app.fault.istio.virtualservice.*;
+import pt.uc.defektor.injektors.istio.virtualservice.*;
 
 import java.util.Collections;
 import java.util.Map;

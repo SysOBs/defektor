@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.app.fault.istio;
+package pt.uc.defektor.injektors.istio;
 
 public enum FaultType {
     DELAY,

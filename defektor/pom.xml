@@ -57,6 +57,7 @@
     <modules>
         <module>app</module>
         <module>server</module>
+        <module>injektors</module>
     </modules>
 
     <dependencies>
