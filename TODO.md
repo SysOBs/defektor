@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Find out why Request arrives empty @Controller and fix it
+- [X] Find out why Request arrives empty @Controller and fix it
 - [ ] Create new submodule (injectors) for future pluginization
 - [ ] Move HoleyBoat to injectors module
 - [ ] Replace app.ijk with the model objects generated from spec (inside server)
