@@ -10,6 +10,7 @@
         <module name="api" />
         <module name="server" />
         <module name="app" />
+        <module name="injektors" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
