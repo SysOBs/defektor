@@ -42,12 +42,16 @@ public class PlanController implements PlanApi {
          */
 
         String fileName = DESKTOP_DIR + "/plan.json";
-        List<Plan> planList = Utils.serializePlansFromFile(fileName);
+        List<Plan> planList;
+
+        planList = Utils.serializePlansFromFile(fileName);
         if(planList == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        if(!Utils.isPlanUnique(planList, plan)) {
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        else {
+            if(planList.size() > 0 && !Utils.isPlanUnique(planList, plan)) {
+                return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+            }
         }
 
         planList.add(plan);
@@ -57,14 +61,12 @@ public class PlanController implements PlanApi {
 
         WorkloadGenerator.applyWorkload(
                 plan.getId(), //PLAN ID
-                plan.getInjektions().get(0).getWorkLoad().getNamespace(), //PLAN NAMESPACE
+                plan.getTargetNamespace(), //PLAN NAMESPACE
                 Utils.stringListSplitter(plan.getInjektions().get(0).getWorkLoad().getEnv(), "="), //ENV VARIABLES
                 plan.getInjektions().get(0).getWorkLoad().getReplicas() // NUM OF WORKLOAD REPLICAS
         );
         return new ResponseEntity<>(plan, HttpStatus.CREATED);
     }
-
-
 
     @Override
     public ResponseEntity<Plan> planGet(UUID planId) {
@@ -73,9 +75,16 @@ public class PlanController implements PlanApi {
                 - FILE IS OVERWRITING THE PREVIOUS PLAN
          */
         try {
-            Plan plan = new ObjectMapper().readValue(new File("/home/goncalo/Desktop/plan.json"), Plan.class);
-            if(plan.getId().equals(planId)){
-                return new ResponseEntity<>(plan, HttpStatus.OK);
+            List<Plan> planList = new ArrayList<>(
+                    Arrays.asList(
+                            new ObjectMapper().readValue(new File(DESKTOP_DIR + "/plan.json"), Plan[].class)
+                    )
+            );
+
+            for(Plan plan : planList){
+                if(planId.equals(plan.getId())){
+                    return new ResponseEntity<>(plan, HttpStatus.OK);
+                }
             }
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
@@ -92,9 +101,11 @@ public class PlanController implements PlanApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
+        Plan selectedPlan = null;
         boolean planFound = false;
         for(Plan plan : planList){
             if(plan.getId().equals(planId)){
+                selectedPlan = plan;
                 planList.remove(plan);
                 planFound = true;
                 break;
@@ -105,6 +116,10 @@ public class PlanController implements PlanApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         Utils.writePlanListInFile(planList, fileName);
+        WorkloadGenerator.stopWorkLoadGenerator(
+                selectedPlan.getId(),
+                selectedPlan.getTargetNamespace()
+        );
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

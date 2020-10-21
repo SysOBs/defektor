@@ -42,4 +42,21 @@ public class WorkloadGenerator {
         }
         return envList;
     }
+
+    public static void stopWorkLoadGenerator(UUID planId, String targetNamespace) {
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        String fileName = DESKTOP_DIR + "/load-gen-" + planId + ".yaml";
+        try {
+            Manifest loadGenManifest = objectMapper.readValue(new File(fileName), Manifest.class);
+            KubernetesInterface.deleteDeployment(
+                objectMapper.writeValueAsString(loadGenManifest),
+                    targetNamespace,
+                    fileName
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

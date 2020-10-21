@@ -15,7 +15,7 @@ import java.util.List;
 public class Utils {
 
     public static List<Plan> serializePlansFromFile(String fileName) {
-        List<Plan> planList = null;
+        List<Plan> planList = new ArrayList<>();
         File planFile = new File(fileName);
 
         if (planFile.exists() && !planFile.isDirectory()) {

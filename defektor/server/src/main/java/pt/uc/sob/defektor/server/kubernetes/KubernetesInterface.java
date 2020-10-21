@@ -22,4 +22,17 @@ public class KubernetesInterface {
             e.printStackTrace();
         }
     }
+
+    public static void deleteDeployment(String deployment, String targetNamespace, String fileName){
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            fileWriter.write(deployment);
+            fileWriter.close();
+
+            String command = "kubectl delete -n " + targetNamespace + " -f " + fileName;
+            Process process = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
