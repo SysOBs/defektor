@@ -1,10 +1,11 @@
 package pt.uc.sob.defektor.server.api.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import io.kubernetes.client.proto.V1;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pt.uc.sob.defektor.server.model.Plan;
-import pt.uc.sob.defektor.server.pojos.loadgen.Env;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,12 +45,14 @@ public class Utils {
         return planList;
     }
 
-    public static List<List<String>> stringListSplitter(List<String> stringList, String splitPattern){
-        List<List<String>> finalStringList = new ArrayList<>();
+    public static List<EnvVar> stringEnvToObject(List<String> stringList){
+        List<EnvVar> envVars = new ArrayList<>();
+
         for(String stringElement : stringList){
-            finalStringList.add(Arrays.asList(stringElement.split(splitPattern)));
+            String[] splicedString = stringElement.split("=");
+            envVars.add(new EnvVar(splicedString[0], splicedString[1], null));
         }
-        return finalStringList;
+        return envVars;
     }
 
     public static boolean isPlanUnique(List<Plan> planList, Plan plan) {

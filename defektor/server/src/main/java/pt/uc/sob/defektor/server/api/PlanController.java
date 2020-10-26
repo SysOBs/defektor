@@ -1,13 +1,15 @@
 package pt.uc.sob.defektor.server.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.Plan;
-import pt.uc.sob.defektor.server.workloadgen.WorkloadGenerator;
+import pt.uc.sob.defektor.server.WorkloadGenerator;
 
 import javax.validation.Valid;
 import java.io.*;
@@ -16,6 +18,9 @@ import java.util.*;
 @Controller
 @RequestMapping("${openapi.server.base-path:/defektor-api/1.0.0}")
 public class PlanController implements PlanApi {
+
+    @Autowired
+    private Orchestrator orchestrator;
 
     private static final String DESKTOP_DIR = "/home/goncalo/Desktop";
 
@@ -48,10 +53,8 @@ public class PlanController implements PlanApi {
         if(planList == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        else {
-            if(planList.size() > 0 && !Utils.isPlanUnique(planList, plan)) {
-                return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-            }
+        if(planList.size() > 0 && !Utils.isPlanUnique(planList, plan)) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         }
 
         planList.add(plan);
@@ -59,21 +62,19 @@ public class PlanController implements PlanApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
-        WorkloadGenerator.applyWorkload(
-                plan.getId(), //PLAN ID
-                plan.getTargetNamespace(), //PLAN NAMESPACE
-                Utils.stringListSplitter(plan.getInjektions().get(0).getWorkLoad().getEnv(), "="), //ENV VARIABLES
-                plan.getInjektions().get(0).getWorkLoad().getReplicas() // NUM OF WORKLOAD REPLICAS
-        );
+        this.orchestrator.runProcess(plan);
+        /*
+            FIX:
+                - IT CAN ONLY HANDLE 1 INJECTION PER PLAN
+        */
+
+
+
         return new ResponseEntity<>(plan, HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Plan> planGet(UUID planId) {
-        /*
-            FIX:
-                - FILE IS OVERWRITING THE PREVIOUS PLAN
-         */
         try {
             List<Plan> planList = new ArrayList<>(
                     Arrays.asList(
