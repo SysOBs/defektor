@@ -5,31 +5,39 @@ import io.fabric8.kubernetes.api.model.Quantity;
 import io.fabric8.kubernetes.api.model.apps.Deployment;
 import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
 import pt.uc.sob.defektor.server.kubernetes.KubernetesIntegrator;
+import pt.uc.sob.defektor.server.model.WorkLoad;
+import pt.uc.sob.defektor.server.api.utils.Utils;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
-public class WorkloadGenerator {
+public class WorkloadGenerator extends WorkLoad {
 
-    private static Deployment createWorkloadDeployment(UUID planUUID, List<EnvVar> environmentVariables){
+    public WorkloadGenerator() {
+        super();
+    }
 
-//        List
+    private Deployment createWorkloadDeployment(UUID planUUID, List<EnvVar> environmentVariables){
+
         Map<String, Quantity> resourceLimits = new HashMap<>();
-        Map<String, Quantity> resourceRequests = new HashMap<>();
-
         resourceLimits.put("cpu", new Quantity("200m"));
         resourceLimits.put("memory", new Quantity("200Mi"));
 
+        Map<String, Quantity> resourceRequests = new HashMap<>();
         resourceRequests.put("cpu", new Quantity("100m"));
         resourceRequests.put("memory", new Quantity("100Mi"));
 
-//        resourceLimits.
+        String imageName = this.getImage().getUser() + "/" + this.getImage().getName() + ":" + this.getImage().getTag();
+
+
         Deployment deployment = new DeploymentBuilder()
                 .withNewMetadata()
                     .withName("load-" + planUUID)
                     .addToLabels("service", "load")
                 .endMetadata()
                 .withNewSpec()
-                    .withReplicas(2)
+                    .withReplicas(this.getReplicas())
                     .withNewSelector()
                         .addToMatchLabels("service", "load")
                     .endSelector()
@@ -41,7 +49,7 @@ public class WorkloadGenerator {
                             .addNewContainer()
                                 .withName("load")
                                 .withEnv(environmentVariables)
-                                .withImage("robotshop/rs-load:0.4.30")
+                                .withImage(imageName)
                                 .withNewResources()
                                     .withLimits(resourceLimits)
                                     .withRequests(resourceRequests)
@@ -55,8 +63,8 @@ public class WorkloadGenerator {
         return deployment;
     }
 
-    public static void deployWorkloadGenerator(UUID planUUID, String targetNamespace, List<EnvVar> environmentVariables, int replicas) {
-        Deployment deployment = createWorkloadDeployment(planUUID, environmentVariables);
+    public void deployWorkloadGenerator(@NotNull @Valid UUID planUUID, String targetNamespace) {
+        Deployment deployment = createWorkloadDeployment(planUUID, Utils.stringEnvToObject(this.getEnv()));
         KubernetesIntegrator.applyDeployment(deployment, targetNamespace);
 
         //IMPROVE LOGGING

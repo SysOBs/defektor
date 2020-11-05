@@ -1,18 +1,18 @@
 package pt.uc.sob.defektor.server;
 
-import io.fabric8.kubernetes.api.model.EnvVar;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.server.api.utils.Utils;
-import pt.uc.sob.defektor.server.injectors.Injektors;
+import pt.uc.sob.defektor.server.injectors.ArbitraryYamlInjektor;
+import pt.uc.sob.defektor.server.injectors.PodCpuHog;
+import pt.uc.sob.defektor.server.injectors.PodDelete;
+import pt.uc.sob.defektor.server.model.Ijk;
+import pt.uc.sob.defektor.server.model.Injektion;
 import pt.uc.sob.defektor.server.model.Plan;
+import pt.uc.sob.defektor.server.model.WorkLoad;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.UUID;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -21,37 +21,69 @@ public class Orchestrator {
     @Async
     public void runProcess(Plan plan) {
 
-        int injectionsSize = plan.getInjektions().size();
-        UUID planUUID = plan.getId();
-        String targetNamespace = plan.getTargetNamespace();
+        for (Injektion injektion: plan.getInjektions()) {
+            WorkLoad workLoad = injektion.getWorkLoad();
+            WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
-        int replicas;
-        int planDuration;
-        List<EnvVar> environmentVariables;
+            workloadGenerator.deployWorkloadGenerator(plan.getId(), plan.getTargetNamespace());
+            sleep(workLoad.getDuration());
 
-        for(int i = 0; i < injectionsSize; i++) {
-            planDuration = plan.getInjektions().get(i).getWorkLoad().getDuration();
-            environmentVariables = Utils.stringEnvToObject(plan.getInjektions().get(i).getWorkLoad().getEnv());
-            replicas = plan.getInjektions().get(i).getWorkLoad().getReplicas();
+            workloadGenerator.stopWorkLoadGenerator(plan.getId(), plan.getTargetNamespace());
 
-            WorkloadGenerator.deployWorkloadGenerator(planUUID, targetNamespace, environmentVariables, replicas);
-            sleep(planDuration);
-            WorkloadGenerator.stopWorkLoadGenerator(planUUID, targetNamespace);
-            Injektors.deployInjection(planUUID, targetNamespace, "/home/claro/Desktop/robot-shop-pod-cpu-hog.yaml");
-            //GET TO KNOW WHEN POD IS RUNNING INSTEAD OF 1 MIN DELAY
-            sleep(60);
+            Ijk ijk;
+            switch (injektion.getIjk()) {
+                case "pod_cpu_hog":
+                    ijk = new PodCpuHog();
+                    ijk.setName(injektion.getIjk());
 
+                    break;
+                case "pod_delete":
+                    ijk = new PodDelete();
+                    break;
+            }
+            try {
+                ArbitraryYamlInjektor.deployInjection(
+                        plan.getId(),
+                        plan.getTargetNamespace(),
+                        Paths.get(Orchestrator.class.getResource("/ChaosEngineDeployments/pod_cpu_hog.yaml").toURI()).toFile().getAbsolutePath()
+                );
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
 
             /*
                 TO-DO:
-                    - DELETE ELASTIC SEARCH DATA
+                    - DELETE ELASTIC SEARCH DATA.
              */
 
-            WorkloadGenerator.deployWorkloadGenerator(planUUID, targetNamespace, environmentVariables, replicas);
-            sleep(planDuration);
-            WorkloadGenerator.stopWorkLoadGenerator(planUUID, targetNamespace);
-            Injektors.removeInjection(planUUID, targetNamespace, "/home/claro/Desktop/robot-shop-pod-cpu-hog.yaml");
+            sleep(60);
+
+            workloadGenerator.deployWorkloadGenerator(plan.getId(), plan.getTargetNamespace());
+            sleep(workLoad.getDuration());
+            workloadGenerator.stopWorkLoadGenerator(plan.getId(), plan.getTargetNamespace());
+
+            try {
+                ArbitraryYamlInjektor.removeInjection(plan.getId(),
+                        plan.getTargetNamespace(),
+                        Paths.get(Orchestrator.class.getResource("/ChaosEngineDeployments/pod_cpu_hog.yaml").toURI()).toFile().getAbsolutePath()
+                );
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private WorkloadGenerator workloadComposer(@Valid WorkLoad workLoad) {
+
+        WorkloadGenerator workLoadGenerator = new WorkloadGenerator();
+        workLoadGenerator.setCmd(workLoad.getCmd());
+        workLoadGenerator.setDuration(workLoad.getDuration());
+        workLoadGenerator.setEnv(workLoad.getEnv());
+        workLoadGenerator.setImage(workLoad.getImage());
+        workLoadGenerator.setReplicas(workLoad.getReplicas());
+        workLoadGenerator.setSlaves(workLoad.getSlaves());
+
+        return workLoadGenerator;
     }
 
     private void sleep(int seconds) {

@@ -1,0 +1,25 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: robot-shop-cart-chaos
+  namespace: robot-shop
+spec:
+  appinfo:
+    appns: 'robot-shop' # App namespace
+    applabel: 'service=web' # App label
+    appkind: 'deployment'
+  chaosServiceAccount: robot-shop-chaos-sa
+
+  experiments:
+    - name: pod-delete
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '120'
+            # pod failures without '--force' & default terminationGracePeriodSeconds
+            - name: FORCE
+              value: 'true'
+            - name: CHAOS_INTERVAL
+              value: '2'

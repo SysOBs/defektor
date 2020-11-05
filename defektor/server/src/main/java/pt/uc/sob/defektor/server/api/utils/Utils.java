@@ -9,11 +9,11 @@ import pt.uc.sob.defektor.server.model.Plan;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-public class Utils {
+public abstract class Utils {
 
     public static List<Plan> serializePlansFromFile(String fileName) {
         List<Plan> planList = new ArrayList<>();
@@ -62,6 +62,14 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    public static String getStringedCurrentDate() {
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        Date today = Calendar.getInstance().getTime();
+
+        return dateFormat.format(today);
     }
 
 }

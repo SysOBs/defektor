@@ -1,14 +1,12 @@
 package pt.uc.sob.defektor.server.injectors;
 
-import io.fabric8.kubernetes.api.model.apps.Deployment;
-import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
-import pt.uc.sob.defektor.server.Utils;
+import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.kubernetes.KubernetesIntegrator;
+import pt.uc.sob.defektor.server.model.Ijk;
 
-import java.io.IOException;
 import java.util.UUID;
 
-public class Injektors {
+public class ArbitraryYamlInjektor extends Ijk {
 
     /*
         WORKFLOW:
@@ -23,6 +21,10 @@ public class Injektors {
 
     }
 
+    /*
+
+     */
+
     public static void deployInjection(UUID planUUID, String targetNamespace, String fileName) {
         KubernetesIntegrator.applyDeploymentByCommand(fileName, targetNamespace);
         System.out.println("Plan " + planUUID + " injected at: " + Utils.getStringedCurrentDate());
@@ -31,6 +33,5 @@ public class Injektors {
     public static void removeInjection(UUID planUUID, String targetNamespace, String fileName) {
         KubernetesIntegrator.deleteDeploymentByCommand(fileName, targetNamespace);
         System.out.println("Plan " + planUUID + " removed failure at: " + Utils.getStringedCurrentDate());
-
     }
 }
