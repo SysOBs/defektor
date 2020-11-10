@@ -62,7 +62,7 @@ public class PlanController implements PlanApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
-        this.orchestrator.runProcess(plan);
+        this.orchestrator.conductProcess(plan);
         /*
             FIX:
                 - IT CAN ONLY HANDLE 1 INJECTION PER PLAN

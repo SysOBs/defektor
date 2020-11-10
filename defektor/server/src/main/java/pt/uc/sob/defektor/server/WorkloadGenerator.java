@@ -4,7 +4,7 @@ import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.Quantity;
 import io.fabric8.kubernetes.api.model.apps.Deployment;
 import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
-import pt.uc.sob.defektor.server.kubernetes.KubernetesIntegrator;
+import pt.uc.sob.defektor.server.kubernetes.KubernetesController;
 import pt.uc.sob.defektor.server.model.WorkLoad;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 
@@ -65,14 +65,14 @@ public class WorkloadGenerator extends WorkLoad {
 
     public void deployWorkloadGenerator(@NotNull @Valid UUID planUUID, String targetNamespace) {
         Deployment deployment = createWorkloadDeployment(planUUID, Utils.stringEnvToObject(this.getEnv()));
-        KubernetesIntegrator.applyDeployment(deployment, targetNamespace);
+        KubernetesController.applyDeployment(deployment, targetNamespace);
 
         //IMPROVE LOGGING
         System.out.println("Plan " + planUUID + " Workload Gen started at: " + Utils.getStringedCurrentDate());
     }
 
     public static void stopWorkLoadGenerator(UUID planUUID, String targetNamespace) {
-        KubernetesIntegrator.deleteDeployment(planUUID, targetNamespace);
+        KubernetesController.deleteDeployment(planUUID, targetNamespace);
         System.out.println("Plan " + planUUID + " Workload Gen stopped at: " + Utils.getStringedCurrentDate());
     }
 

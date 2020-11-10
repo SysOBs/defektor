@@ -5,10 +5,13 @@ import io.fabric8.kubernetes.api.model.EnvVar;
 import io.kubernetes.client.proto.V1;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -72,4 +75,14 @@ public abstract class Utils {
         return dateFormat.format(today);
     }
 
+    public static String getResourceFileAbsolutePath(String resourceRelativePath) {
+        try {
+            return Paths.get(Orchestrator.class.getResource(resourceRelativePath).toURI()).toFile().getAbsolutePath();
+        } catch (URISyntaxException e) {
+            /*
+            ADD LOGGING
+             */
+            return null;
+        }
+    }
 }

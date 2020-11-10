@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.UUID;
 
-public abstract class KubernetesIntegrator {
+public abstract class KubernetesController {
 
     public static void applyDeploymentByCommand(String fileName, String targetNamespace){
 

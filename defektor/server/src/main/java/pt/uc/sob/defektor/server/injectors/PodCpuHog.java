@@ -7,8 +7,8 @@ public class PodCpuHog extends Ijk {
 
     public PodCpuHog() {
         super();
-        this.setName();
-        this.setTargetTypes();
+//        this.setName();
+//        this.setTargetTypes();
     }
 
     @Override
