@@ -2,9 +2,6 @@ package pt.uc.sob.defektor.server.api.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.fabric8.kubernetes.api.model.EnvVar;
-import io.kubernetes.client.proto.V1;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.model.Plan;
 

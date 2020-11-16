@@ -1,7 +1,6 @@
 package pt.uc.sob.defektor.app;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 import pt.uc.sob.defektor.server.Server;
 
 /**

@@ -1,8 +1,9 @@
-package pt.uc.sob.defektor.server.api;
+package pt.uc.sob.defektor.server.api.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.NativeWebRequest;
+import pt.uc.sob.defektor.server.api.TargetApi;
 
 import java.util.Optional;
 

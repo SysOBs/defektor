@@ -31,7 +31,7 @@ public class WorkloadGenerator extends WorkLoad {
         String imageName = this.getImage().getUser() + "/" + this.getImage().getName() + ":" + this.getImage().getTag();
 
 
-        Deployment deployment = new DeploymentBuilder()
+        return new DeploymentBuilder()
                 .withNewMetadata()
                     .withName("load-" + planUUID)
                     .addToLabels("service", "load")
@@ -59,8 +59,6 @@ public class WorkloadGenerator extends WorkLoad {
                     .endTemplate()
                 .endSpec()
                 .build();
-
-        return deployment;
     }
 
     public void deployWorkloadGenerator(@NotNull @Valid UUID planUUID, String targetNamespace) {
@@ -75,12 +73,4 @@ public class WorkloadGenerator extends WorkLoad {
         KubernetesController.deleteDeployment(planUUID, targetNamespace);
         System.out.println("Plan " + planUUID + " Workload Gen stopped at: " + Utils.getStringedCurrentDate());
     }
-
-//    private static List<Env> setEnvironmentVariables(List<List<String>> environmentVariables){
-//        List<Env> envList = new ArrayList<>();
-//        for(int i = 0; i < environmentVariables.size(); i++){
-//            envList.add(new Env(environmentVariables.get(i).get(0), environmentVariables.get(i).get(1)));
-//        }
-//        return envList;
-//    }
 }

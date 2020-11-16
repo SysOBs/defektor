@@ -16,15 +16,6 @@ public class ArbitraryYamlInjektor extends Ijk {
             - DEPLOY INJECTION MANIFEST
      */
 
-    private void createInjektionDeployment() {
-
-
-    }
-
-    /*
-
-     */
-
     public static void deployInjection(UUID planUUID, String targetNamespace, String fileName) {
         KubernetesController.applyDeploymentByCommand(fileName, targetNamespace);
         System.out.println("Plan " + planUUID + " injected at: " + Utils.getStringedCurrentDate());

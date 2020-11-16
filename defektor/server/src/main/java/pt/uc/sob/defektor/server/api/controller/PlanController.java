@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.api;
+package pt.uc.sob.defektor.server.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.Orchestrator;
+import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.Plan;
 import pt.uc.sob.defektor.server.WorkloadGenerator;
@@ -117,10 +118,10 @@ public class PlanController implements PlanApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         Utils.writePlanListInFile(planList, fileName);
-        WorkloadGenerator.stopWorkLoadGenerator(
-                selectedPlan.getId(),
-                selectedPlan.getTargetNamespace()
-        );
+//        WorkloadGenerator.stopWorkLoadGenerator(
+//                selectedPlan.getId(),
+//                selectedPlan.getTargetNamespace()
+//        );
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

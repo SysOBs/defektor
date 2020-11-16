@@ -24,18 +24,19 @@ public class Orchestrator {
     @Async
     public void conductProcess(Plan plan) {
         this.planUUID = plan.getId();
-        this.planTargetNamespace = plan.getTargetNamespace();
 
         for (Injektion injektion: plan.getInjektions()) {
+            this.planTargetNamespace = injektion.getTargetNamespace();
             WorkLoad workLoad = injektion.getWorkLoad();
             WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
-            /*
-                APPLY LOAD GEN TO CLUSTER
-             */
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
-            Ijk ijk = defineInjectionType(injektion.getIjk());
+            Ijk ijk = defineInjectionType(injektion.getIjk().getName());
+            if(ijk == null) {
+//                Log
+                return;
+            }
             applyFailureInjection(ijk);
 
             //GIVE TIME TO INJECTION BE DEPLOYED
@@ -63,23 +64,22 @@ public class Orchestrator {
     private void applyLoadGen(WorkloadGenerator workloadGenerator, int loadDuration ) {
         workloadGenerator.deployWorkloadGenerator(this.planUUID, this.planTargetNamespace);
         sleep(loadDuration);
-        workloadGenerator.stopWorkLoadGenerator(this.planUUID, this.planTargetNamespace);
+        WorkloadGenerator.stopWorkLoadGenerator(this.planUUID, this.planTargetNamespace);
     }
 
     private Ijk defineInjectionType(String ijkName) {
         Ijk ijk;
 
         switch (ijkName) {
-            case "pod_cpu_hog":
+            case "pod_cpu_hog" -> {
                 ijk = new PodCpuHog();
                 ijk.setName(ijkName);
-                break;
-            case "pod_delete":
+            }
+            case "pod_delete" -> {
                 ijk = new PodDelete();
                 ijk.setName(ijkName);
-                break;
-            default:
-                ijk = null;
+            }
+            default -> ijk = null;
         }
         return ijk;
     }
@@ -88,7 +88,7 @@ public class Orchestrator {
 
         String manifestAbsolutePath = Utils.getResourceFileAbsolutePath("/ChaosEngineDeployments/" + ijk.getName() + ".yaml");
 
-        if(manifestAbsolutePath.equals(null)) {
+        if(manifestAbsolutePath == null) {
             System.out.println("ERROR GETTING INJECTION MANIFEST");
             return;
         }
@@ -103,7 +103,7 @@ public class Orchestrator {
     private void removeFailureInjection(Ijk ijk) {
         String manifestAbsolutePath = Utils.getResourceFileAbsolutePath("/ChaosEngineDeployments/" + ijk.getName() + ".yaml");
 
-        if(manifestAbsolutePath.equals(null)) {
+        if(manifestAbsolutePath == null) {
             System.out.println("ERROR GETTING INJECTION MANIFEST");
             return;
         }

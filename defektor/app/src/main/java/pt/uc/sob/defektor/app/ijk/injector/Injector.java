@@ -10,7 +10,7 @@ import java.util.List;
  * An Injector object defines the object that encapsulates a particular fault/failure injector.
  */
 public abstract class Injector {
-	private InjectorOptions options;
+	private final InjectorOptions options;
 
 	public abstract List<TargetType> getTargetTypes();
 
