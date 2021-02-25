@@ -26,13 +26,13 @@ public class Orchestrator {
         this.planUUID = plan.getId();
 
         for (Injektion injektion: plan.getInjektions()) {
-            this.planTargetNamespace = injektion.getTargetNamespace();
+            this.planTargetNamespace = "injektion.getTargetNamespace()";
             WorkLoad workLoad = injektion.getWorkLoad();
             WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
-            Ijk ijk = defineInjectionType(injektion.getIjk().getName());
+            Ijk ijk = defineInjectionType("injektion.getIjk().getName()");
             if(ijk == null) {
 //                Log
                 return;
