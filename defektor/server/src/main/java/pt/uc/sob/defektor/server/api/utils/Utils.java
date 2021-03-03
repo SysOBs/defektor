@@ -2,10 +2,9 @@ package pt.uc.sob.defektor.server.api.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import pt.uc.sob.defektor.server.Orchestrator;
-import pt.uc.sob.defektor.server.model.Plan;
+import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.model.Slave;
 
 import java.io.File;
@@ -21,31 +20,33 @@ import java.util.*;
 
 public abstract class Utils {
 
-    public static class PlanUtils {
-        public static boolean isDuplicate(List<Plan> planList, Plan plan) {
-            boolean found = false;
-            for(Plan itPlan : planList) {
-                if(itPlan.getId().equals(plan.getId())) {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
-        }
+    public static String getPlanFileDB() {
+        return "DefektorState\\plan.db";
     }
 
-    public static class SlaveUtils {
-        public static boolean isDuplicate(List<Slave> slaveList, Slave slave) {
-            boolean found = false;
-            for(Slave itSlave : slaveList) {
-                if(itSlave.getId().equals(slave.getId())) {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
-        }
+    public static String getSlaveFileDB() {
+        return "DefektorState\\slave.db";
     }
+
+    public static <T> boolean isUnique(T t, List<T> tList)  {
+        for(T t1 : tList)
+            if(t1.hashCode() == t.hashCode())
+                return false;
+        return true;
+    }
+
+    //    public static class SlaveUtils {
+//        public static boolean isDuplicate(List<Slave> slaveList, Slave slave) {
+//            boolean found = false;
+//            for(Slave itSlave : slaveList) {
+//                if(itSlave.getId().equals(slave.getId())) {
+//                    found = true;
+//                    break;
+//                }
+//            }
+//            return found;
+//        }
+//    }
 
     public static class Json {
         public static <T> List<T> readJsonFromFile(String fileDir, Class<T[]> tClass) throws IOException {

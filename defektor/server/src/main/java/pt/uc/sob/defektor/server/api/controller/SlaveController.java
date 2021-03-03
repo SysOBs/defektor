@@ -25,8 +25,6 @@ public class SlaveController implements SlaveApi {
     private Orchestrator orchestrator;
     private final SlaveService slaveService;
 
-    private static final String DESKTOP_DIR = "/home/goncalo/Desktop";
-
     @Override
     public ResponseEntity<List<Slave>> slaveList() {
         try {
@@ -41,7 +39,7 @@ public class SlaveController implements SlaveApi {
     public ResponseEntity<Slave> slaveAdd(@Valid Slave slave) {
         try {
             slaveService.slaveAdd(slave);
-            return new ResponseEntity<>(slave, HttpStatus.OK);
+            return new ResponseEntity<>(slave, HttpStatus.CREATED);
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

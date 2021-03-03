@@ -1,6 +1,5 @@
 package pt.uc.sob.defektor.server.api.service;
 
-import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.model.Plan;
 

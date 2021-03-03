@@ -24,7 +24,6 @@ public class PlanController implements PlanApi {
     private Orchestrator orchestrator;
     private final PlanService planService;
 
-    private static final String DESKTOP_DIR = "/home/goncalo/Desktop";
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
@@ -40,14 +39,15 @@ public class PlanController implements PlanApi {
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
         try {
             planService.planAdd(plan);
+            //TODO START PROCESS
 //            this.orchestrator.conductProcess(plan);
-            return new ResponseEntity<>(plan, HttpStatus.OK);
+            return new ResponseEntity<>(plan, HttpStatus.CREATED);
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         catch (DuplicateEntryException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         }
     }
 

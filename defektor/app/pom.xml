@@ -42,7 +42,7 @@
                 <version>${maven.compiler.version}</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <targetData>${maven.compiler.targetData}</targetData>
                 </configuration>
             </plugin>
         </plugins>

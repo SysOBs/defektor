@@ -30,3 +30,16 @@
             - considerações que fiz para garantir que a arq
 
 
+
+
+
+
+
+
+## 2NDO SEMESTRE
+
+
+25/02: look for mongodb, reddis (in storage)
+
+Problems:
+    - The performance looks horrible with MapDB (Well, maybe not)
