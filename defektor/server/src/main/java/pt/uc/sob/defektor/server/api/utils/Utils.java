@@ -48,25 +48,25 @@ public abstract class Utils {
 //        }
 //    }
 
-    public static class Json {
-        public static <T> List<T> readJsonFromFile(String fileDir, Class<T[]> tClass) throws IOException {
-            File f = new File(fileDir);
-            if(f.exists() && !f.isDirectory() && f.length() != 0) {
-                String jsonString = new String(Files.readAllBytes(Paths.get(fileDir)));
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                return new ArrayList<>(Arrays.asList(gson.fromJson(jsonString, tClass)));
-            }
-            else
-                return new ArrayList<>();
-        }
-
-        public static <T> void writeJsonToFile(List<T> objectList, String fileDir) throws IOException {
-            try (Writer writer = new FileWriter(fileDir)) {
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                gson.toJson(objectList, writer);
-            }
-        }
-    }
+//    public static class Json {
+//        public static <T> List<T> readJsonFromFile(String fileDir, Class<T[]> tClass) throws IOException {
+//            File f = new File(fileDir);
+//            if(f.exists() && !f.isDirectory() && f.length() != 0) {
+//                String jsonString = new String(Files.readAllBytes(Paths.get(fileDir)));
+//                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//                return new ArrayList<>(Arrays.asList(gson.fromJson(jsonString, tClass)));
+//            }
+//            else
+//                return new ArrayList<>();
+//        }
+//
+//        public static <T> void writeJsonToFile(List<T> objectList, String fileDir) throws IOException {
+//            try (Writer writer = new FileWriter(fileDir)) {
+//                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//                gson.toJson(objectList, writer);
+//            }
+//        }
+//    }
 
 
     public static List<EnvVar> stringEnvToObject(List<String> stringList){

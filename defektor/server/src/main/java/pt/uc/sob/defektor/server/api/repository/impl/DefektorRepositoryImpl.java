@@ -48,7 +48,7 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
     }
 
     @Override
-    public void delete(T plan, String dbFileDir) throws NullPointerException {
+    public void delete(T plan, String dbFileDir) {
         DB db = DBMaker.fileDB(dbFileDir).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
 

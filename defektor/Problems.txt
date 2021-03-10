@@ -43,3 +43,5 @@
 
 Problems:
     - The performance looks horrible with MapDB (Well, maybe not)
+
+ 04/03: start doing UML diagrams

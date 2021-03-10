@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.api.SlaveApi;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
+import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.model.Slave;
 import sun.tools.asm.TryData;
@@ -27,12 +28,7 @@ public class SlaveController implements SlaveApi {
 
     @Override
     public ResponseEntity<List<Slave>> slaveList() {
-        try {
-            return new ResponseEntity<>(slaveService.slavesList(), HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(slaveService.slavesList(), HttpStatus.OK);
     }
 
     @Override
@@ -40,11 +36,7 @@ public class SlaveController implements SlaveApi {
         try {
             slaveService.slaveAdd(slave);
             return new ResponseEntity<>(slave, HttpStatus.CREATED);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        catch (DuplicateEntryException e) {
+        } catch (DuplicateEntryException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
@@ -52,16 +44,9 @@ public class SlaveController implements SlaveApi {
     @Override
     public ResponseEntity<Slave> slaveGet(UUID id) {
         try {
-            Slave slave = slaveService.slaveGet(id);
-
-            if(slave == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(slave, HttpStatus.OK);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(slaveService.slaveGet(id), HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -70,9 +55,7 @@ public class SlaveController implements SlaveApi {
         try {
             slaveService.slaveDelete(id);
             return new ResponseEntity<>(null, HttpStatus.OK);
-        } catch (IOException e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (NullPointerException e) {
+        } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
+import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
@@ -27,12 +28,7 @@ public class PlanController implements PlanApi {
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
-        try {
-            return new ResponseEntity<>(planService.plansList(), HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(planService.plansList(), HttpStatus.OK);
     }
 
     @Override
@@ -54,16 +50,9 @@ public class PlanController implements PlanApi {
     @Override
     public ResponseEntity<Plan> planGet(UUID id) {
         try {
-            Plan plan = planService.planGet(id);
-
-            if(plan == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(plan, HttpStatus.OK);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(planService.planGet(id), HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -72,9 +61,7 @@ public class PlanController implements PlanApi {
         try {
             planService.planDelete(id);
             return new ResponseEntity<>(null, HttpStatus.OK);
-        } catch (IOException e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (NullPointerException e) {
+        } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
