@@ -19,7 +19,6 @@ public abstract class AbstractPluginInstaller {
 
     public void installPlugins() {
         final String pluginDir = getPluginDirectory();
-        System.out.println(pluginDir);
         List<PluginInfo> plugins = null;
 
         pluginFactory.unload();
@@ -30,9 +29,10 @@ public abstract class AbstractPluginInstaller {
 
         List<String> pluginNames = new LinkedList<>();
 
+        System.out.println("\nLoaded plugins:");
         for (PluginInfo pi : plugins) {
-            System.out.println(pi.getName());
-            File file = new File(pluginDir + File.separator + pi.getName() + ".jar");
+            System.out.println("\t- " + pi.getName());
+//            File file = new File(pluginDir + File.separator + pi.getName() + ".jar");
 
 //            file.getParentFile().mkdirs();
 //            file.delete();

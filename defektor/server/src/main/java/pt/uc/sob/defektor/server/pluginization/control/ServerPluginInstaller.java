@@ -1,10 +1,10 @@
-package pt.uc.sob.defektor.server.control;
+package pt.uc.sob.defektor.server.pluginization.control;
 
 
 import pt.uc.sob.defektor.common.com.PluginInfo;
 import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
 import pt.uc.sob.defektor.common.plugins.AbstractPluginInstaller;
-import pt.uc.sob.defektor.server.ServerConfiguration;
+import pt.uc.sob.defektor.server.pluginization.ServerConfiguration;
 
 import java.util.List;
 

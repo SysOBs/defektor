@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.control;
+package pt.uc.sob.defektor.server.pluginization.control;
 
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 

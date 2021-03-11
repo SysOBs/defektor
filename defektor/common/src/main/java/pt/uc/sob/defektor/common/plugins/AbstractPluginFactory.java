@@ -23,6 +23,7 @@ public abstract class AbstractPluginFactory {
         Class clazz = classMap.get(command);
         Object object = null;
         if(clazz==null){
+            //TODO THROW EXCEPTION
             System.out.println("NO CLASS :D");
             return null;
         }
@@ -67,8 +68,8 @@ public abstract class AbstractPluginFactory {
 
         for (String name : pluginNames) {
             try {
-                file = new File(path + File.separator + name + ".jar");
-                System.out.println(file.getAbsolutePath());
+//                file = new File(path + File.separator + name + ".jar");
+                file = new File(path + File.separator + name);
                 jar = new JarFile(file);
                 man = jar.getManifest();
                 command = man.getMainAttributes().getValue(getCommandAttribute());
@@ -80,6 +81,7 @@ public abstract class AbstractPluginFactory {
                 clazz = cl.loadClass(className);
                 classMap.put(command, clazz);
             } catch (IOException | ClassNotFoundException e) {
+                //TODO EXCEPTION
                 System.out.println("AbstractPluginFactory Exception");
                 e.printStackTrace();
             }

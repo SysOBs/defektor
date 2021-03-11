@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server;
+package pt.uc.sob.defektor.server.pluginization;
 
 import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
@@ -25,7 +25,7 @@ public class PluginFactory extends AbstractPluginFactory {
 
 	@Override
 	protected String getClassNameAttribute() {
-		return "pt.uc.sob.defektor.common.ServerPlug";
+		return "ServerPlug";
 	}
 
 }
