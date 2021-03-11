@@ -16,7 +16,7 @@
 //
 //@Repository
 //public class PlanRepositoryImpl implements PlanRepository {
-//    private final String PLAN_DB_FILE = "DefektorState\\plan.db";
+//    private final String PLAN_DB_FILE = "state\\plan.db";
 //
 //    @Override
 //    public void save(PlanData plan) throws IOException, DuplicateEntryException {

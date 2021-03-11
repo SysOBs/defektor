@@ -1,31 +1,25 @@
 package pt.uc.sob.defektor.server.api.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import pt.uc.sob.defektor.server.Orchestrator;
-import pt.uc.sob.defektor.server.api.data.PlanData;
-import pt.uc.sob.defektor.server.model.Slave;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public abstract class Utils {
 
     public static String getPlanFileDB() {
-        return "DefektorState\\plan.db";
+        return "state\\plan.db";
     }
 
     public static String getSlaveFileDB() {
-        return "DefektorState\\slave.db";
+        return "state\\slave.db";
     }
 
     public static <T> boolean isUnique(T t, List<T> tList)  {
@@ -34,40 +28,6 @@ public abstract class Utils {
                 return false;
         return true;
     }
-
-    //    public static class SlaveUtils {
-//        public static boolean isDuplicate(List<Slave> slaveList, Slave slave) {
-//            boolean found = false;
-//            for(Slave itSlave : slaveList) {
-//                if(itSlave.getId().equals(slave.getId())) {
-//                    found = true;
-//                    break;
-//                }
-//            }
-//            return found;
-//        }
-//    }
-
-//    public static class Json {
-//        public static <T> List<T> readJsonFromFile(String fileDir, Class<T[]> tClass) throws IOException {
-//            File f = new File(fileDir);
-//            if(f.exists() && !f.isDirectory() && f.length() != 0) {
-//                String jsonString = new String(Files.readAllBytes(Paths.get(fileDir)));
-//                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//                return new ArrayList<>(Arrays.asList(gson.fromJson(jsonString, tClass)));
-//            }
-//            else
-//                return new ArrayList<>();
-//        }
-//
-//        public static <T> void writeJsonToFile(List<T> objectList, String fileDir) throws IOException {
-//            try (Writer writer = new FileWriter(fileDir)) {
-//                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//                gson.toJson(objectList, writer);
-//            }
-//        }
-//    }
-
 
     public static List<EnvVar> stringEnvToObject(List<String> stringList){
         List<EnvVar> envVars = new ArrayList<>();

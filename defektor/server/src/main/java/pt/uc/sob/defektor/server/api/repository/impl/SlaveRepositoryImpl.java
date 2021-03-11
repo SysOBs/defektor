@@ -12,7 +12,7 @@
 //
 //@Repository
 //public class SlaveRepositoryImpl implements SlaveRepository {
-//    private final String SALVE_DB_FILE = "DefektorState\\slave.json";
+//    private final String SALVE_DB_FILE = "state\\slave.json";
 //
 //    @Override
 //    public Slave save(Slave plan) throws IOException, DuplicateEntryException {
