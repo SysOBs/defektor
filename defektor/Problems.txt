@@ -45,3 +45,27 @@ Problems:
     - The performance looks horrible with MapDB (Well, maybe not)
 
  04/03: start doing UML diagrams
+
+ 11/03:
+  - Start developing system type plugins
+
+18/03:
+  - Could not be present in the meeting
+
+25/03:
+  Questions:
+    - Configure SystemType: This could be achieved by either turning the API stateful (which is not exactly the purpose of a REST API)
+      OR saving this information in the client-side (dfk) and using it everytime a request needs it.
+      In this last case, this information should be wrapped inside the Plan object. -> Submit de um systemconfig/systemtype
+    - What is the exact purpose of a SystemType object? Should it act as intermediary for ijk plugin instructions. So, if the pod delete ijk need to perform instructions on a
+    k8, should the system plugin be an intermediary? -> Criar nova entity SystemConfig que faz parte do SystemType ; - look for client config
+    SystemType recebe um SystemConfig
+
+    - What should be stored in the SystemType object? It was discussed that it would be mandatory the name of the system and an array of commands. For instance with Kubernetes,
+    as long as there is .kube/config file there should be no additional configs for the kubernetes plugin.
+    - In the SystemTarget object it is described the multiple target type (i.e. node, pod,...). Should it be described which Ijks are capable of target every single TargetType?
+
+    Suggestions:
+        - Compare gant's diagram with the current work.
+        - gbaptist@student.dei.uc.pt
+

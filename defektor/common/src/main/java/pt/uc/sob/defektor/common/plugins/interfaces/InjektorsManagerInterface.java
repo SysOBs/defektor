@@ -1,6 +1,6 @@
 package pt.uc.sob.defektor.common.plugins.interfaces;
 
-import pt.uc.sob.defektor.common.com.InjektorInfo;
+import pt.uc.sob.defektor.common.com.info.InjektorInfo;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package pt.uc.sob.defektor.common.plugins;
 
+import pt.uc.sob.defektor.common.SystemPlug;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -54,7 +56,7 @@ public abstract class AbstractPluginFactory {
         classLoaderMap.clear();
     }
 
-    public void loadPlugins(String path, List<String> pluginNames){
+    public void loadPlugins(List<String> pathList, List<String> pluginNames){
         this.path = path;
         this.pluginNames = pluginNames;
         File file;
@@ -64,12 +66,13 @@ public abstract class AbstractPluginFactory {
         URL[] urls;
         URLClassLoader cl;
         Class clazz;
+        Map<String, String> pluginInfo;
         classMap.clear();
 
+        int i = 0;
         for (String name : pluginNames) {
             try {
-//                file = new File(path + File.separator + name + ".jar");
-                file = new File(path + File.separator + name);
+                file = new File(pathList.get(i) + File.separator + name + ".jar");
                 jar = new JarFile(file);
                 man = jar.getManifest();
                 command = man.getMainAttributes().getValue(getCommandAttribute());
@@ -81,10 +84,12 @@ public abstract class AbstractPluginFactory {
                 clazz = cl.loadClass(className);
                 classMap.put(command, clazz);
             } catch (IOException | ClassNotFoundException e) {
+
                 //TODO EXCEPTION
                 System.out.println("AbstractPluginFactory Exception");
                 e.printStackTrace();
             }
+            i++;
         }
     }
 }

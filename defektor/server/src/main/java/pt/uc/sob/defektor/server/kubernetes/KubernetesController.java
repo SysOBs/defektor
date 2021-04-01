@@ -1,9 +1,7 @@
 package pt.uc.sob.defektor.server.kubernetes;
 
 import io.fabric8.kubernetes.api.model.apps.Deployment;
-import io.fabric8.kubernetes.client.DefaultKubernetesClient;
-import io.fabric8.kubernetes.client.KubernetesClient;
-import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.*;
 
 import java.io.IOException;
 import java.util.UUID;

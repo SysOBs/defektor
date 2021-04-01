@@ -8,21 +8,21 @@ import pt.uc.sob.defektor.server.pluginization.Configuration;
 
 import java.util.List;
 
-public class ServerPluginInstaller extends AbstractPluginInstaller {
+public class IjkPluginInstaller extends AbstractPluginInstaller {
     protected static Configuration configuration = null;
 
-    public ServerPluginInstaller(AbstractPluginFactory pluginFactory) {
+    public IjkPluginInstaller(AbstractPluginFactory pluginFactory) {
         super(pluginFactory);
     }
 
     public static void init(Configuration configuration) {
-        ServerPluginInstaller.configuration = configuration;
+        IjkPluginInstaller.configuration = configuration;
     }
 
     @Override
     protected String getPluginDirectory() {
         if(configuration == null) return null;
-        return ServerPluginInstaller.configuration.getPluginFolder();
+        return IjkPluginInstaller.configuration.getPluginFolder();
     }
 
     @Override

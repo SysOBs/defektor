@@ -3,9 +3,6 @@ package pt.uc.sob.defektor.server;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.utils.Utils;
-import pt.uc.sob.defektor.server.injectors.ArbitraryYamlInjektor;
-import pt.uc.sob.defektor.server.injectors.PodCpuHog;
-import pt.uc.sob.defektor.server.injectors.PodDelete;
 import pt.uc.sob.defektor.server.model.Ijk;
 import pt.uc.sob.defektor.server.model.Injektion;
 import pt.uc.sob.defektor.server.model.Plan;
@@ -23,6 +20,7 @@ public class Orchestrator {
 
     @Async
     public void conductProcess(Plan plan) {
+
         this.planUUID = plan.getId();
 
         for (Injektion injektion: plan.getInjektions()) {
@@ -68,16 +66,16 @@ public class Orchestrator {
     }
 
     private Ijk defineInjectionType(String ijkName) {
-        Ijk ijk;
+        Ijk ijk = null;
 
         switch (ijkName) {
             case "pod_cpu_hog" -> {
-                ijk = new PodCpuHog();
-                ijk.setName(ijkName);
+//                ijk = new PodCpuHog();
+//                ijk.setName(ijkName);
             }
             case "pod_delete" -> {
-                ijk = new PodDelete();
-                ijk.setName(ijkName);
+//                ijk = new PodDelete();
+//                ijk.setName(ijkName);
             }
             default -> ijk = null;
         }
@@ -93,11 +91,11 @@ public class Orchestrator {
             return;
         }
 
-        ArbitraryYamlInjektor.deployInjection(
-                this.planUUID,
-                this.planTargetNamespace,
-                manifestAbsolutePath
-        );
+//        ArbitraryYamlInjektor.deployInjection(
+//                this.planUUID,
+//                this.planTargetNamespace,
+//                manifestAbsolutePath
+//        );
     }
 
     private void removeFailureInjection(Ijk ijk) {
@@ -108,11 +106,11 @@ public class Orchestrator {
             return;
         }
 
-        ArbitraryYamlInjektor.removeInjection(
-                this.planUUID,
-                this.planTargetNamespace,
-                manifestAbsolutePath
-        );
+//        ArbitraryYamlInjektor.removeInjection(
+//                this.planUUID,
+//                this.planTargetNamespace,
+//                manifestAbsolutePath
+//        );
     }
 
     private void sleep(int seconds) {

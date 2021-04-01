@@ -6,23 +6,24 @@ import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
 import pt.uc.sob.defektor.common.plugins.AbstractPluginInstaller;
 import pt.uc.sob.defektor.server.pluginization.Configuration;
 
+import java.io.File;
 import java.util.List;
 
-public class ServerPluginInstaller extends AbstractPluginInstaller {
+public class SystemPluginInstaller extends AbstractPluginInstaller {
     protected static Configuration configuration = null;
 
-    public ServerPluginInstaller(AbstractPluginFactory pluginFactory) {
+    public SystemPluginInstaller(AbstractPluginFactory pluginFactory) {
         super(pluginFactory);
     }
 
     public static void init(Configuration configuration) {
-        ServerPluginInstaller.configuration = configuration;
+        SystemPluginInstaller.configuration = configuration;
     }
 
     @Override
     protected String getPluginDirectory() {
         if(configuration == null) return null;
-        return ServerPluginInstaller.configuration.getPluginFolder();
+        return SystemPluginInstaller.configuration.getPluginFolder();
     }
 
     @Override

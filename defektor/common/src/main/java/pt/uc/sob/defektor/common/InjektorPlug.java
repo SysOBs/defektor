@@ -25,7 +25,7 @@ public abstract class InjektorPlug <S extends SystemPlug>{
 
     public abstract List<Target> getTargetInstancesByType(TargetType targetType);
 
-//    public abstract Class getTheNameOfTheClass();
+    public abstract Class getTheNameOfTheClass();
 
     //TODO os ijks plugin têm de "conhecer" os system types plugs
     //TODO O injektor plug tem que conhecer que system type é que interopera

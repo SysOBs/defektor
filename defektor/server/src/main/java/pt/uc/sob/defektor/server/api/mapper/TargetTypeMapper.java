@@ -18,4 +18,6 @@ public abstract class TargetTypeMapper {
 
         return targetTypeData;
     }
+
+    //TODO Check if can switch targettypedata for targettype enum
 }
