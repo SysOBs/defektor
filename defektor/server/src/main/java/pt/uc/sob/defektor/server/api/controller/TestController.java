@@ -9,7 +9,7 @@ public class TestController {
 
     @GetMapping("/test")
     public void performInjection() {
-        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("http-abort");
+        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("process-terminator");
         ijkTaskHandler.performInjection();
         System.out.println("Performed injection");
     }
