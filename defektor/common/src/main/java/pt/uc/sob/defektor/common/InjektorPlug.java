@@ -2,6 +2,7 @@ package pt.uc.sob.defektor.common;
 
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
+import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 
@@ -17,7 +18,7 @@ public abstract class InjektorPlug <S extends SystemPlug>{
         this.taskManagerInterface = taskManagerInterface;
     }
 
-    public abstract void performInjection(/* TODO PARAMS */);
+    public abstract void performInjection(AbstractParam param);
 
     public abstract void setup();
 

@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Command: http-delay
+PluginClass: pt.uc.sob.defektor.common.plugins.ijk.httpdelay.Server
