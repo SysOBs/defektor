@@ -4,7 +4,7 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
-import pt.uc.sob.defektor.common.com.params.ProcessTerminatorParam;
+import pt.uc.sob.defektor.common.com.params.InstanceRebootParam;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 
@@ -20,7 +20,7 @@ public class InstanceReboot extends InjektorPlug {
 
     @Override
     public void performInjection(AbstractParam abstractParam) {
-        ProcessTerminatorParam param = (ProcessTerminatorParam) abstractParam;
+        InstanceRebootParam param = (InstanceRebootParam) abstractParam;
         String command = null;
 
         if(param.getPid() != null) {
