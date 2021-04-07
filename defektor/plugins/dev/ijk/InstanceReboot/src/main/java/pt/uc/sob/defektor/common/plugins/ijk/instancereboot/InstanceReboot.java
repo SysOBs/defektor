@@ -1,5 +1,6 @@
 package pt.uc.sob.defektor.common.plugins.ijk.instancereboot;
 
+import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
@@ -8,7 +9,6 @@ import pt.uc.sob.defektor.common.com.params.InstanceRebootParam;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,21 +21,32 @@ public class InstanceReboot extends InjektorPlug {
     @Override
     public void performInjection(AbstractParam abstractParam) {
         InstanceRebootParam param = (InstanceRebootParam) abstractParam;
-        String command = null;
 
-        if(param.getPid() != null) {
-            command = "kill -9 " + param.getPid();
-        }
-        else if(param.getPid() != null) {
-            command = "killall " + param.getProcessName();
+        JSch jSch = new JSch();
+        Session session = null;
+
+        try {
+            jSch.addIdentity(param.getKeyDir());
+            session = jSch.getSession(param.getUsername(), param.getHost(), param.getPort());
+            session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+        } catch (JSchException e) {
+            e.printStackTrace();
         }
 
-        if(command != null) {
-            try {
-                Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        String command = "sudo reboot";
+        try {
+            session.connect();
+            Channel channel = session.openChannel("exec");
+            ((ChannelExec) channel).setCommand(command);
+            ((ChannelExec) channel).setPty(false);
+            channel.connect();
+            channel.disconnect();
+            session.disconnect();
+        } catch (JSchException e) {
+            throw new RuntimeException("Error durring SSH command execution. Command: " + command);
         }
     }
 

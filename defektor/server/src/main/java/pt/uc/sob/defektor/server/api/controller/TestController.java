@@ -25,8 +25,8 @@ public class TestController {
 
     @GetMapping("/test/3")
     public void performInjection2() {
-        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("process-terminator");
-        ijkTaskHandler.performInjection(new InstanceRebootParam("gbaptist", "key"));
+        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("instance-reboot");
+        ijkTaskHandler.performInjection(new InstanceRebootParam("goncalo", "192.168.1.2", 22, "~/.ssh/id_rsa"));
         System.out.println("Performed injection");
     }
 }
