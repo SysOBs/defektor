@@ -69,3 +69,6 @@ Problems:
         - Compare gant's diagram with the current work.
         - gbaptist@student.dei.uc.pt
 
+
+
+// TODO - SYSTYPE WRAPS THE NAME, SYSCONFIG WRAPS THE CONFIG AND A SYSTYPE

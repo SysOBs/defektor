@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class InstanceRebootParam extends AbstractParam{
+public class InstanceRebootParam implements AbstractParam {
     String username;
     String host;
     Integer port;

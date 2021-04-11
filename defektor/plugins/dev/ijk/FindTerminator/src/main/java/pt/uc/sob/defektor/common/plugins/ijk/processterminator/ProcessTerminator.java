@@ -23,12 +23,13 @@ public class ProcessTerminator extends InjektorPlug {
         ProcessTerminatorParam param = (ProcessTerminatorParam) abstractParam;
         String command = null;
 
-        if(param.getPid() != null) {
+        // TODO - WHAT ABOUT DESIGN PATTERNS?
+        if(param.getPid() != null)
             command = "kill -9 " + param.getPid();
-        }
-        else if(param.getPid() != null) {
+
+        else if(param.getProcessName() != null)
             command = "killall " + param.getProcessName();
-        }
+//            command = "pkill -9 " + param.getProcessName();
 
         if(command != null) {
             try {

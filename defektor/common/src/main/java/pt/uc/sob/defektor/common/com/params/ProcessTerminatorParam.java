@@ -1,11 +1,9 @@
 package pt.uc.sob.defektor.common.com.params;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-public class ProcessTerminatorParam extends AbstractParam {
+public class ProcessTerminatorParam implements AbstractParam {
     public String processName;
     public Integer pid;
 
