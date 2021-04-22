@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Utils {
+public class Utils {
 
     public static String getPlanFileDB() {
         return "state\\plan.db";
@@ -38,8 +38,6 @@ public abstract class Utils {
         }
         return envVars;
     }
-
-
 
     public static String getStringedCurrentDate() {
         String pattern = "MM/dd/yyyy HH:mm:ss";

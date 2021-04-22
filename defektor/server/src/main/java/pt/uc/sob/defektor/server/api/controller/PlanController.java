@@ -9,6 +9,7 @@ import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
+import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
@@ -22,7 +23,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PlanController implements PlanApi {
 
-    private Orchestrator orchestrator;
+    private final Orchestrator orchestrator;
     private final PlanService planService;
 
 
@@ -35,8 +36,8 @@ public class PlanController implements PlanApi {
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
         try {
             planService.planAdd(plan);
-            //TODO START PROCESS
-//            this.orchestrator.conductProcess(plan);
+            planService.planValidate(plan);
+            orchestrator.conductProcess(plan);
             return new ResponseEntity<>(plan, HttpStatus.CREATED);
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,6 +45,9 @@ public class PlanController implements PlanApi {
         }
         catch (DuplicateEntryException e) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        }
+        catch (InvalidPlanException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 

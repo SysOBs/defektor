@@ -2,11 +2,10 @@ package pt.uc.sob.defektor.server;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.server.api.utils.Utils;
-import pt.uc.sob.defektor.server.model.Ijk;
-import pt.uc.sob.defektor.server.model.Injektion;
-import pt.uc.sob.defektor.server.model.Plan;
-import pt.uc.sob.defektor.server.model.WorkLoad;
+import pt.uc.sob.defektor.server.model.*;
+import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -15,34 +14,44 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class Orchestrator {
 
-    private UUID planUUID;
-    private String planTargetNamespace;
+//    private UUID planUUID;
+//    private String planTargetNamespace;
+
+    private IjkTaskHandler ijkTaskHandler;
+    private AbstractParam abstractParam;
+
 
     @Async
     public void conductProcess(Plan plan) {
 
-        this.planUUID = plan.getId();
+//        this.planUUID = plan.getId();
 
         for (Injektion injektion: plan.getInjektions()) {
-            this.planTargetNamespace = "injektion.getTargetNamespace()";
+
+            SystemType systemType = new SystemType();
             WorkLoad workLoad = injektion.getWorkLoad();
             WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
-            Ijk ijk = defineInjectionType("injektion.getIjk().getName()");
-            if(ijk == null) {
-//                Log
+            defineInjectionType(injektion.getIjk());
+            if(ijkTaskHandler == null) {
+                //TODO Mandar aqui ganda exception
                 return;
             }
-            applyFailureInjection(ijk);
+
+
+            //TODO I must figure what's the best way to parametrize injektors in plan description
+            //abstract
+            ijkTaskHandler.performInjection(abstractParam);
 
             //GIVE TIME TO INJECTION BE DEPLOYED
+            //TODO NOT SURE IT IS THE BEST WAY TO DO IT
             sleep(60);
 
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
-            removeFailureInjection(ijk);
+            ijkTaskHandler.stopInjection();
         }
     }
 
@@ -60,26 +69,26 @@ public class Orchestrator {
     }
 
     private void applyLoadGen(WorkloadGenerator workloadGenerator, int loadDuration ) {
-        workloadGenerator.deployWorkloadGenerator(this.planUUID, this.planTargetNamespace);
-        sleep(loadDuration);
-        WorkloadGenerator.stopWorkLoadGenerator(this.planUUID, this.planTargetNamespace);
+        //TODO Yet to do
+//        workloadGenerator.deployWorkloadGenerator(this.planUUID, this.planTargetNamespace);
+//        sleep(loadDuration);
+//        WorkloadGenerator.stopWorkLoadGenerator(this.planUUID, this.planTargetNamespace);
     }
 
-    private Ijk defineInjectionType(String ijkName) {
-        Ijk ijk = null;
-
+    private void defineInjectionType(String ijkName) {
         switch (ijkName) {
-            case "pod_cpu_hog" -> {
-//                ijk = new PodCpuHog();
-//                ijk.setName(ijkName);
-            }
-            case "pod_delete" -> {
-//                ijk = new PodDelete();
-//                ijk.setName(ijkName);
-            }
-            default -> ijk = null;
+            case "pod-delete":
+                ijkTaskHandler = new IjkTaskHandler("pod-delete");
+                break;
+            case "http-abort":
+                ijkTaskHandler = new IjkTaskHandler("http-abort");
+                break;
+            case "http-delay":
+                ijkTaskHandler = new IjkTaskHandler("http-delay");
+                break;
+            default:
+                ijkTaskHandler = null;
         }
-        return ijk;
     }
 
     private void applyFailureInjection(Ijk ijk) {

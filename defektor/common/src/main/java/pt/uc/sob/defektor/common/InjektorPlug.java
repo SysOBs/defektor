@@ -20,6 +20,8 @@ public abstract class InjektorPlug <S extends SystemPlug>{
 
     public abstract void performInjection(AbstractParam param);
 
+    public abstract void stopInjection();
+
     public abstract void setup();
 
     public abstract List<TargetType> getTargetTypes();

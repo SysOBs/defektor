@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
+import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
@@ -48,7 +49,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void planValidate(Plan plan) {
+    public void planValidate(Plan plan) throws InvalidPlanException {
         //TODO To implement
     }
 

@@ -36,6 +36,12 @@ public class IjkTaskHandler {
         plug.performInjection(param);
     }
 
+    public void stopInjection() {
+        if(task == null) return; //TODO exceptions
+        if(plug == null) return; //TODO exceptions
+        plug.stopInjection();
+    }
+
     //TODO FAZER UM SSH REBOOT À MAQUINA
     // FAZER KILLALL A UM {NOME_PROCESSO}
     // FAZER KILL -9 {PID}
