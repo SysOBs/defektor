@@ -18,6 +18,10 @@ public class SystemTaskHandler {
         plug = (SystemPlug) PluginFactory.getInstance().getPluginInstance(command, systemsManager, task);
     }
 
+    public SystemPlug getPlug() {
+        return plug;
+    }
+
     public void configure(SystemConfiguration configuration) {
         if(plug == null) return; //TODO exceptions
         plug.configure(configuration);

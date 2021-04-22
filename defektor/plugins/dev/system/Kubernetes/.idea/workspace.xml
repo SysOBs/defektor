@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="" />
+    <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +77,7 @@
       <workItem from="1617289450323" duration="1976000" />
       <workItem from="1617876204760" duration="733000" />
       <workItem from="1617880617948" duration="278000" />
-      <workItem from="1619059731964" duration="605000" />
+      <workItem from="1619059731964" duration="623000" />
     </task>
     <servers />
   </component>
@@ -92,5 +95,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../../.." />
+    </ignored-roots>
   </component>
 </project>

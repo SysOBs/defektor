@@ -6,6 +6,7 @@ import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.*;
 import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
+import pt.uc.sob.defektor.server.pluginization.control.SystemTaskHandler;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class Orchestrator {
 //    private String planTargetNamespace;
 
     private IjkTaskHandler ijkTaskHandler;
+    private SystemTaskHandler systemTaskHandler;
     private AbstractParam abstractParam;
 
 
@@ -34,7 +36,9 @@ public class Orchestrator {
 
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
+            defineSystemType(plan.getSystem().getName());
             defineInjectionType(injektion.getIjk());
+
             if(ijkTaskHandler == null) {
                 //TODO Mandar aqui ganda exception
                 return;
@@ -53,6 +57,10 @@ public class Orchestrator {
 
             ijkTaskHandler.stopInjection();
         }
+    }
+
+    private void defineSystemType(String systemType) {
+        systemTaskHandler = new SystemTaskHandler(systemType);
     }
 
     private WorkloadGenerator workloadComposer(@Valid WorkLoad workLoad) {
@@ -76,19 +84,20 @@ public class Orchestrator {
     }
 
     private void defineInjectionType(String ijkName) {
-        switch (ijkName) {
-            case "pod-delete":
-                ijkTaskHandler = new IjkTaskHandler("pod-delete");
-                break;
-            case "http-abort":
-                ijkTaskHandler = new IjkTaskHandler("http-abort");
-                break;
-            case "http-delay":
-                ijkTaskHandler = new IjkTaskHandler("http-delay");
-                break;
-            default:
-                ijkTaskHandler = null;
-        }
+        ijkTaskHandler = new IjkTaskHandler(ijkName);
+//        switch (ijkName) {
+//            case "pod-delete":
+//                ijkTaskHandler = new IjkTaskHandler("pod-delete");
+//                break;
+//            case "http-abort":
+//                ijkTaskHandler = new IjkTaskHandler("http-abort");
+//                break;
+//            case "http-delay":
+//                ijkTaskHandler = new IjkTaskHandler("http-delay");
+//                break;
+//            default:
+//                ijkTaskHandler = null;
+//        }
     }
 
     private void applyFailureInjection(Ijk ijk) {
