@@ -23,6 +23,14 @@
 <!--            <systemPath>C:/Users/claro/Desktop/defektor/defektor/common/target/common-1.0.0-SNAPSHOT.jar</systemPath>-->
             <systemPath>/home/goncalo/Desktop/defektor/defektor/common/target/common-1.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
+        <dependency>
+<!--            TODO ADD SUB PACKAGE (SYS, IJK)-->
+            <groupId>pt.uc.sob.defektor.common.plugins</groupId>
+            <artifactId>kubernetes</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>/home/goncalo/Desktop/defektor/defektor/plugins/libs/system/kubernetes.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

@@ -46,8 +46,13 @@ public class InstanceReboot extends InjektorPlug {
             channel.disconnect();
             session.disconnect();
         } catch (JSchException e) {
-            throw new RuntimeException("Error durring SSH command execution. Command: " + command);
+            throw new RuntimeException("Error during SSH command execution. Command: " + command);
         }
+    }
+
+    @Override
+    public void stopInjection() {
+
     }
 
     @Override

@@ -1,7 +1,5 @@
 package pt.uc.sob.defektor.common.plugins;
 
-import pt.uc.sob.defektor.common.SystemPlug;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -12,12 +10,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.util.stream.Collectors;
 
 public abstract class AbstractPluginFactory {
     protected Map<String, Class> classMap = new ConcurrentHashMap<>();
     protected Map<String, URLClassLoader> classLoaderMap = new ConcurrentHashMap<>();
-    protected String path;
-    protected List<String> pluginNames;
+    protected List<String> pluginPaths;
 
     protected abstract Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;
 
@@ -56,9 +54,12 @@ public abstract class AbstractPluginFactory {
         classLoaderMap.clear();
     }
 
-    public void loadPlugins(List<String> pathList, List<String> pluginNames){
-        this.path = path;
-        this.pluginNames = pluginNames;
+    public List<String> getLoadedPlugins() {
+        return classLoaderMap.keySet().stream().map(Object::toString).collect(Collectors.toList());
+    }
+
+    public void loadPlugins(List<String> pluginPaths){
+        this.pluginPaths = pluginPaths;
         File file;
         JarFile jar;
         Manifest man;
@@ -66,13 +67,11 @@ public abstract class AbstractPluginFactory {
         URL[] urls;
         URLClassLoader cl;
         Class clazz;
-        Map<String, String> pluginInfo;
         classMap.clear();
 
-        int i = 0;
-        for (String name : pluginNames) {
+        for (String path : pluginPaths) {
             try {
-                file = new File(pathList.get(i) + File.separator + name + ".jar");
+                file = new File(path);
                 jar = new JarFile(file);
                 man = jar.getManifest();
                 command = man.getMainAttributes().getValue(getCommandAttribute());
@@ -84,12 +83,10 @@ public abstract class AbstractPluginFactory {
                 clazz = cl.loadClass(className);
                 classMap.put(command, clazz);
             } catch (IOException | ClassNotFoundException e) {
-
                 //TODO EXCEPTION
                 System.out.println("AbstractPluginFactory Exception");
                 e.printStackTrace();
             }
-            i++;
         }
     }
 }

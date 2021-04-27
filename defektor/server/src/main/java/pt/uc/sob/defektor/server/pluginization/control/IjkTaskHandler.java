@@ -25,7 +25,6 @@ public class IjkTaskHandler {
         return plug.getTargetTypes();
     }
 
-
     public List<Target> getTargetInstanceByType(TargetType targetType) {
         return null;
     }

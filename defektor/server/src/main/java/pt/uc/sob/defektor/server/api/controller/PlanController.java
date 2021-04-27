@@ -35,8 +35,8 @@ public class PlanController implements PlanApi {
     @Override
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
         try {
-            planService.planAdd(plan);
             planService.planValidate(plan);
+            planService.planAdd(plan);
             orchestrator.conductProcess(plan);
             return new ResponseEntity<>(plan, HttpStatus.CREATED);
         } catch (IOException e) {

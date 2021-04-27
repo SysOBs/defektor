@@ -35,9 +35,9 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <pt.uc.sob.defektor.common.plugins>
+        <plugins>
             <plugin>
-                <groupId>org.apache.maven.pt.uc.sob.defektor.common.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
@@ -45,7 +45,7 @@
                     <target>${maven.compiler.targetData}</target>
                 </configuration>
             </plugin>
-        </pt.uc.sob.defektor.common.plugins>
+        </plugins>
     </build>
 
     <dependencies>

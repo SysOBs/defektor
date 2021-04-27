@@ -2,6 +2,7 @@ package pt.uc.sob.defektor.server;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import pt.uc.sob.defektor.common.com.SystemConfiguration;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.*;
@@ -9,6 +10,7 @@ import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
 import pt.uc.sob.defektor.server.pluginization.control.SystemTaskHandler;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -30,23 +32,21 @@ public class Orchestrator {
 
         for (Injektion injektion: plan.getInjektions()) {
 
-            SystemType systemType = new SystemType();
             WorkLoad workLoad = injektion.getWorkLoad();
             WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
+            //TODO APPLY LOAD GEN (HAVE TO FIGURE A WAY TO MAKE THIS SYS AGNOSTIC)
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
             defineSystemType(plan.getSystem().getName());
             defineInjectionType(injektion.getIjk());
 
             if(ijkTaskHandler == null) {
-                //TODO Mandar aqui ganda exception
+                //TODO Throw exception
                 return;
             }
 
-
-            //TODO I must figure what's the best way to parametrize injektors in plan description
-            //abstract
+            //TODO I must figure what's the best way to parametrize injektors in plan description. Is it possible to be flexible with the json?
             ijkTaskHandler.performInjection(abstractParam);
 
             //GIVE TIME TO INJECTION BE DEPLOYED
@@ -60,7 +60,7 @@ public class Orchestrator {
     }
 
     private void defineSystemType(String systemType) {
-        systemTaskHandler = new SystemTaskHandler(systemType);
+//        systemTaskHandler = new SystemTaskHandler(systemType);
     }
 
     private WorkloadGenerator workloadComposer(@Valid WorkLoad workLoad) {

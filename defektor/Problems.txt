@@ -70,5 +70,8 @@ Problems:
         - gbaptist@student.dei.uc.pt
 
 
-
-// TODO - SYSTYPE WRAPS THE NAME, SYSCONFIG WRAPS THE CONFIG AND A SYSTYPE
+22/04:
+    Questions:
+      - Should the injektions be parameterized. If yes, how so? Can it be JSON flexible?
+      - Still not quite sure what's the best approach to define system types. Should it be done separately from the rest of the plan?
+      - Some problems raised in Orchestrator.java

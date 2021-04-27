@@ -4,26 +4,36 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
+import pt.uc.sob.defektor.common.com.params.PodDeleteParam;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
+import pt.uc.sob.defektor.common.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PodDelete extends InjektorPlug {
+public class PodDelete extends InjektorPlug<KubernetesSystemPlug> {
 
-    public PodDelete(InjektorsManagerInterface injektorsManagerInterface, TaskManagerInterface taskManagerInterface) {
-        super(injektorsManagerInterface, taskManagerInterface);
+
+    public PodDelete(InjektorsManagerInterface injektorsManagerInterface, TaskManagerInterface taskManagerInterface, KubernetesSystemPlug system) {
+        super(injektorsManagerInterface, taskManagerInterface, system);
     }
 
     @Override
     public void performInjection(AbstractParam abstractParam) {
-        
+        PodDeleteParam param = (PodDeleteParam) abstractParam;
+
+        //TODO fetch sample manifest and change some parameters according to the plan
+        //TODO apply manifest
+    }
+
+    @Override
+    public void stopInjection() {
     }
 
     @Override
     public void setup() {
-
+        //TODO not quite sure if this is needed
     }
 
     @Override
