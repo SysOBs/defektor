@@ -7,12 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.api.IjkApi;
 import pt.uc.sob.defektor.server.model.Ijk;
-import pt.uc.sob.defektor.server.model.TargetType;
 import pt.uc.sob.defektor.server.pluginization.IjkPluginFactory;
-import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
-import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

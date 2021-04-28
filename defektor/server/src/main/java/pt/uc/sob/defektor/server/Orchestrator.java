@@ -2,7 +2,6 @@ package pt.uc.sob.defektor.server;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.SystemConfiguration;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.*;
@@ -10,8 +9,6 @@ import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
 import pt.uc.sob.defektor.server.pluginization.control.SystemTaskHandler;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service

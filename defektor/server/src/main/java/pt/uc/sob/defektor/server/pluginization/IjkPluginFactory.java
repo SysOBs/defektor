@@ -24,6 +24,6 @@ public class IjkPluginFactory extends AbstractPluginFactory {
 
     @Override
     protected String getClassNameAttribute() {
-        return null;
+        return "PluginClass";
     }
 }

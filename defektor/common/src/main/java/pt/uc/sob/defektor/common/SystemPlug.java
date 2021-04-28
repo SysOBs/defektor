@@ -1,15 +1,15 @@
 package pt.uc.sob.defektor.common;
 
-import pt.uc.sob.defektor.common.com.SystemConfiguration;
+import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
 import pt.uc.sob.defektor.common.com.TargetType;
 
 import java.util.List;
 
 public abstract class SystemPlug {
 
-    protected SystemConfiguration configuration;
+    protected AbstractSysConfig configuration;
 
-    public SystemPlug(SystemConfiguration systemConfiguration) {
+    public SystemPlug(AbstractSysConfig systemConfiguration) {
         this.configuration = systemConfiguration;
         this.configure(systemConfiguration);
     }
@@ -18,5 +18,5 @@ public abstract class SystemPlug {
 
     public abstract List<TargetType> getTargetTypes();
 
-    protected abstract void configure(SystemConfiguration configuration);
+    protected abstract void configure(AbstractSysConfig configuration);
 }

@@ -2,21 +2,23 @@ package pt.uc.sob.defektor.common.plugins.ijk.instancereboot;
 
 import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.InjektorPlug;
+import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.common.com.params.InstanceRebootParam;
-import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
-import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
+import pt.uc.sob.defektor.common.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InstanceReboot extends InjektorPlug {
 
-    public InstanceReboot(InjektorsManagerInterface injektorsManagerInterface, TaskManagerInterface taskManagerInterface) {
-        super(injektorsManagerInterface, taskManagerInterface);
+public class InstanceReboot extends InjektorPlug<VMSystemPlug> {
+
+    public InstanceReboot(VMSystemPlug system) {
+        super(system);
     }
+
 
     @Override
     public void performInjection(AbstractParam abstractParam) {

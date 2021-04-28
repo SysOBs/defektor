@@ -26,7 +26,7 @@ public class SystemController implements SystemApi {
 //        PluginManager pluginManager = new PluginManager();
 //        List<PluginInfo> pluginInfoList = pluginManager.getPluginList("SYSTEM");
 //        List<SystemTarget> systemTargetList = new ArrayList<>()
-        SystemPluginFactory.getInstance().getLoadedPlugins();
+        System.out.println(SystemPluginFactory.getInstance().getLoadedPlugins());
 
 
 

@@ -2,10 +2,8 @@ package pt.uc.sob.defektor.server.pluginization;
 
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.SystemConfiguration;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfiguration;
 import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
-import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
-import pt.uc.sob.defektor.common.plugins.interfaces.SystemsManagerInterface;
 
 import java.lang.reflect.InvocationTargetException;
 

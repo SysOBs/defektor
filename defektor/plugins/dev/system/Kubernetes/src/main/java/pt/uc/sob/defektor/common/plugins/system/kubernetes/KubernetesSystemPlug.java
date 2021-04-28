@@ -10,9 +10,8 @@ import io.kubernetes.client.openapi.models.V1PodList;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.KubeConfig;
 import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.common.com.SystemConfiguration;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.plugins.interfaces.SystemsManagerInterface;
-import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,8 +23,8 @@ public class KubernetesSystemPlug extends SystemPlug {
 
     ApiClient client;
 
-    public KubernetesSystemPlug(SystemsManagerInterface systemsManagerInterface, TaskManagerInterface taskManagerInterface) {
-        super(systemsManagerInterface, taskManagerInterface);
+    public KubernetesSystemPlug(SystemConfiguration configuration) {
+        super(configuration);
     }
 
     @Override
@@ -34,7 +33,17 @@ public class KubernetesSystemPlug extends SystemPlug {
     }
 
     @Override
-    public void setup() {
+    public List<TargetType> getTargetTypes() {
+        return new ArrayList<>() {
+            {
+                add(TargetType.POD);
+                add(TargetType.NODE);
+            }
+        };
+    }
+
+    @Override
+    protected void configure(SystemConfiguration systemConfiguration) {
         String kubeConfigPath = "yaml.yaml";
 
         V1Deployment v1Deployment = new V1Deployment();
@@ -55,15 +64,5 @@ public class KubernetesSystemPlug extends SystemPlug {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public List<TargetType> getTargetTypes() {
-        return new ArrayList<>() {
-            {
-                add(TargetType.POD);
-                add(TargetType.NODE);
-            }
-        };
     }
 }

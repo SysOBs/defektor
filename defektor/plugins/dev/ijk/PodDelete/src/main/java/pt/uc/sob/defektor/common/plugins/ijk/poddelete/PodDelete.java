@@ -5,8 +5,6 @@ import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
 import pt.uc.sob.defektor.common.com.params.PodDeleteParam;
-import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
-import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 import pt.uc.sob.defektor.common.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.util.ArrayList;
@@ -15,8 +13,8 @@ import java.util.List;
 public class PodDelete extends InjektorPlug<KubernetesSystemPlug> {
 
 
-    public PodDelete(InjektorsManagerInterface injektorsManagerInterface, TaskManagerInterface taskManagerInterface, KubernetesSystemPlug system) {
-        super(injektorsManagerInterface, taskManagerInterface, system);
+    public PodDelete(KubernetesSystemPlug system) {
+        super(system);
     }
 
     @Override

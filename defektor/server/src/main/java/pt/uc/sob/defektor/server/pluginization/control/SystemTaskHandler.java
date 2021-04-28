@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.server.pluginization.control;
 
 
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.SystemConfiguration;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfiguration;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.server.pluginization.PluginFactory;
 
