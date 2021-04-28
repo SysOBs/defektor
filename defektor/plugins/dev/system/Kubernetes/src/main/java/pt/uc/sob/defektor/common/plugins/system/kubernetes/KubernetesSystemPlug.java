@@ -10,8 +10,9 @@ import io.kubernetes.client.openapi.models.V1PodList;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.KubeConfig;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.SystemConfiguration;
 import pt.uc.sob.defektor.common.com.TargetType;
+import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.KubernetesConfig;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -23,7 +24,7 @@ public class KubernetesSystemPlug extends SystemPlug {
 
     ApiClient client;
 
-    public KubernetesSystemPlug(SystemConfiguration configuration) {
+    public KubernetesSystemPlug(KubernetesConfig configuration) {
         super(configuration);
     }
 
@@ -43,7 +44,7 @@ public class KubernetesSystemPlug extends SystemPlug {
     }
 
     @Override
-    protected void configure(SystemConfiguration systemConfiguration) {
+    protected void configure(AbstractSysConfig config) {
         String kubeConfigPath = "yaml.yaml";
 
         V1Deployment v1Deployment = new V1Deployment();

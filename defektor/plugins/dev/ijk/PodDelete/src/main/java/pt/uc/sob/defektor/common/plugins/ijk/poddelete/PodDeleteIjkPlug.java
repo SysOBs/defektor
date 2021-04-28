@@ -10,10 +10,10 @@ import pt.uc.sob.defektor.common.plugins.system.kubernetes.KubernetesSystemPlug;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PodDelete extends InjektorPlug<KubernetesSystemPlug> {
+public class PodDeleteIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
 
-    public PodDelete(KubernetesSystemPlug system) {
+    public PodDeleteIjkPlug(KubernetesSystemPlug system) {
         super(system);
     }
 

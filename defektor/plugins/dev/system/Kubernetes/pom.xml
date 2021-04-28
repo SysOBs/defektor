@@ -20,8 +20,7 @@
             <artifactId>common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>system</scope>
-<!--            <systemPath>/home/goncalo/Desktop/defektor/defektor/common/target/common-1.0.0-SNAPSHOT.jar</systemPath>-->
-            <systemPath>C:/Users/claro/Desktop/defektor/defektor/common/target/common-1.0.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/../../../../common/target/common-1.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.fabric8</groupId>
@@ -46,8 +45,7 @@
                         <archive>
                             <manifestFile>META-INF/MANIFEST.MF</manifestFile>
                         </archive>
-                        <outputDirectory>C:\Users\claro\Desktop\defektor\defektor\plugins\libs\system</outputDirectory>
-<!--                        <outputDirectory>/home/goncalo/Desktop/defektor/defektor/plugins/libs/system</outputDirectory>-->
+                        <outputDirectory>${project.basedir}/../../../libs/system</outputDirectory>
                     </configuration>
                 </plugin>
                 <plugin>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PodDelete.iml" filepath="$PROJECT_DIR$/.idea/PodDelete.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pod-delete.iml" filepath="$PROJECT_DIR$/pod-delete.iml" />
     </modules>
   </component>
 </project>

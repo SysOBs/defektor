@@ -5,26 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../../.idea/defektor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../app/app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../common/common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../VirtualMachine/.idea/VirtualMachine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../VirtualMachine/kubernetes.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../VirtualMachine/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/HttpDelay/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/HttpDelay/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ijk/PodDelete/pod-delete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VirtualMachine/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/defektor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../defektor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/PodDelete.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDelete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ijk/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDeleteIjkPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/system/kubernetes/KubernetesSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/system/kubernetes/KubernetesSystemPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/IjkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/IjkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VirtualMachine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VirtualMachine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VirtualMachine/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/PluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/PluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/SystemPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/SystemPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemTaskHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +51,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
   </component>
   <component name="ProjectId" id="1pcN1Tfa6t64ACTaQa5GNgFkqsj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,6 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -103,6 +115,7 @@
       <workItem from="1619536475855" duration="2238000" />
       <workItem from="1619562509244" duration="2489000" />
       <workItem from="1619570619355" duration="399000" />
+      <workItem from="1619585258217" duration="1418000" />
     </task>
     <servers />
   </component>

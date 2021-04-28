@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.server.pluginization.control;
 
 
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfiguration;
+import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.server.pluginization.PluginFactory;
 
@@ -14,7 +14,7 @@ public class SystemTaskHandler {
     private TaskManager task = new TaskManager();
     private SystemsManager systemsManager = new SystemsManager();
 
-    public SystemTaskHandler(String command, SystemConfiguration configuration) {
+    public SystemTaskHandler(String command, AbstractSysConfig configuration) {
         plug = (SystemPlug) PluginFactory.getInstance().getPluginInstance(command, configuration);
     }
 

@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.server.pluginization;
 
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfiguration;
+import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
 import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +21,7 @@ public class PluginFactory extends AbstractPluginFactory {
 	@Override
 	protected Object instantiate(Class<?> clazz, Object ...objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		if(SystemPlug.class.isAssignableFrom(clazz))
-			return clazz.getConstructor(SystemConfiguration.class).newInstance(objects);
+			return clazz.getConstructor(AbstractSysConfig.class).newInstance(objects);
 		else if (InjektorPlug.class.isAssignableFrom(clazz))
 			return clazz.getConstructor(SystemPlug.class).newInstance(objects);
 		else

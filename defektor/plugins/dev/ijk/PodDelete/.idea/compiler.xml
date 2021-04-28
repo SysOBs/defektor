@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="pod-delete" />
-        <module name="PodDelete" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pod-delete" target="14" />
+    </bytecodeTargetLevel>
   </component>
 </project>
