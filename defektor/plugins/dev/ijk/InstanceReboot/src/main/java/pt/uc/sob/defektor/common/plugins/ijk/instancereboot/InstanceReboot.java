@@ -1,8 +1,10 @@
 package pt.uc.sob.defektor.common.plugins.ijk.instancereboot;
 
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.params.AbstractParam;
@@ -23,33 +25,7 @@ public class InstanceReboot extends InjektorPlug<VMSystemPlug> {
     @Override
     public void performInjection(AbstractParam abstractParam) {
         InstanceRebootParam param = (InstanceRebootParam) abstractParam;
-
-        JSch jSch = new JSch();
-        Session session = null;
-
-        try {
-            jSch.addIdentity(param.getKeyDir());
-            session = jSch.getSession(param.getUsername(), param.getHost(), param.getPort());
-            session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
-            java.util.Properties config = new java.util.Properties();
-            config.put("StrictHostKeyChecking", "no");
-            session.setConfig(config);
-        } catch (JSchException e) {
-            e.printStackTrace();
-        }
-
-        String command = "sudo reboot";
-        try {
-            session.connect();
-            Channel channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(command);
-            ((ChannelExec) channel).setPty(false);
-            channel.connect();
-            channel.disconnect();
-            session.disconnect();
-        } catch (JSchException e) {
-            throw new RuntimeException("Error during SSH command execution. Command: " + command);
-        }
+        this.system.sendSshCommand(param.getCommand());
     }
 
     @Override

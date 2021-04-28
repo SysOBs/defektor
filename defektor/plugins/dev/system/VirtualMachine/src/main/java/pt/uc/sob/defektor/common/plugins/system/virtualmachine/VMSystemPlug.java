@@ -1,8 +1,6 @@
 package pt.uc.sob.defektor.common.plugins.system.virtualmachine;
 
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
@@ -50,6 +48,19 @@ public class VMSystemPlug extends SystemPlug {
             session.setConfig(properties);
         } catch (JSchException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendSshCommand(String command) {
+        try {
+            Channel channel = session.openChannel("exec");
+            ((ChannelExec) channel).setCommand(command);
+            ((ChannelExec) channel).setPty(false);
+            channel.connect();
+            channel.disconnect();
+            session.disconnect();
+        } catch (JSchException e) {
+            throw new RuntimeException("Error during SSH command execution. Command: " + command);
         }
     }
 }

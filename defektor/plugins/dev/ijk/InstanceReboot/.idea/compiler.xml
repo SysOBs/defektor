@@ -6,12 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="processterminator" />
-        <module name="HttpAbort" />
         <module name="InstanceReboot" />
-        <module name="FindTerminator" />
-        <module name="PodDelete" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="InstanceReboot" target="14" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="VM System implemented">
-      <change afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/InstanceReboot.iml" afterDir="false" />
+    <list default="true" id="458fc3bb-be6a-45c2-99f8-be6d1f47d4cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/InstanceReboot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/defektor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/defektor.iml" afterDir="false" />
@@ -186,27 +186,27 @@
       <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/AbstractSysConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/AbstractSysConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/KubernetesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/KubernetesConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/VMConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/VMConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/HttpAbort.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/VirtualMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VirtualMachine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kubernetes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HttpAbort.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/VirtualMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/VirtualMachine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/kubernetes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/kubernetes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -214,17 +214,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
   </component>
-  <component name="ProjectId" id="1pcN1Tfa6t64ACTaQa5GNgFkqsj" />
+  <component name="ProjectId" id="1rlugcq2xbgX1hKsBI9zNac9ip6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -233,63 +226,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ijk/InstanceReboot" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\claro\Desktop\Testes Spring\PodDelete" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="" />
-      <created>1615478204992</created>
+      <changelist id="458fc3bb-be6a-45c2-99f8-be6d1f47d4cf" name="Default Changelist" comment="" />
+      <created>1619563110318</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1615478204992</updated>
-      <workItem from="1615478206256" duration="2081000" />
-      <workItem from="1615480392039" duration="294000" />
-      <workItem from="1615480792542" duration="26000" />
-      <workItem from="1615480854955" duration="102000" />
-      <workItem from="1615486992946" duration="101000" />
-      <workItem from="1615487104573" duration="123000" />
-      <workItem from="1615837161601" duration="1880000" />
-      <workItem from="1615845237037" duration="86000" />
-      <workItem from="1615845338404" duration="502000" />
-      <workItem from="1615988482885" duration="1180000" />
-      <workItem from="1615990214756" duration="158000" />
-      <workItem from="1615991301879" duration="358000" />
-      <workItem from="1615991669590" duration="2128000" />
-      <workItem from="1616269117618" duration="1031000" />
-      <workItem from="1616427761287" duration="4101000" />
-      <workItem from="1616523932079" duration="2608000" />
-      <workItem from="1616619625167" duration="33000" />
-      <workItem from="1616649041834" duration="21000" />
-      <workItem from="1616649206140" duration="621000" />
-      <workItem from="1617200183010" duration="9507000" />
-      <workItem from="1617289450323" duration="1976000" />
-      <workItem from="1617876204760" duration="733000" />
-      <workItem from="1617880617948" duration="278000" />
-      <workItem from="1619059731964" duration="623000" />
-      <workItem from="1619089207276" duration="1367000" />
-      <workItem from="1619534043527" duration="311000" />
-      <workItem from="1619534372025" duration="505000" />
-      <workItem from="1619534895033" duration="601000" />
-      <workItem from="1619536475855" duration="2238000" />
-      <workItem from="1619562509244" duration="2489000" />
-      <workItem from="1619566488898" duration="1103000" />
-      <workItem from="1619570609081" duration="112000" />
-      <workItem from="1619570925474" duration="2314000" />
+      <updated>1619563110318</updated>
+      <workItem from="1619563112072" duration="302000" />
+      <workItem from="1619570362759" duration="218000" />
+      <workItem from="1619570603558" duration="1208000" />
+      <workItem from="1619572563243" duration="680000" />
     </task>
     <servers />
   </component>
@@ -307,12 +259,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/../../../.." />
-    </ignored-roots>
-    <MESSAGE value="VM System implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="VM System implemented" />
   </component>
 </project>

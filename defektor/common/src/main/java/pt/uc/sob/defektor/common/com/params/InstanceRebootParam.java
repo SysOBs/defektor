@@ -6,10 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class InstanceRebootParam implements AbstractParam {
-    String username;
-    String host;
-    Integer port;
-    String keyDir;
+    String command = "sudo reboot";
 }
 
 
