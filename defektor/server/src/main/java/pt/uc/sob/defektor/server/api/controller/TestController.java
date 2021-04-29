@@ -23,4 +23,15 @@ public class TestController {
         ijkTaskHandler.performInjection(new InstanceRebootParam());
         System.out.println("Performed injection");
     }
+
+    @GetMapping("/test1")
+    public void performInjection1() {
+        AbstractSysConfig config = new VMConfig("goncalo", "192.168.1.2", 22, "~/.ssh/id_rsa");
+        SystemTaskHandler systemTaskHandler = new SystemTaskHandler("virtual-machine", config);
+        SystemPlug systemPlug = systemTaskHandler.getPlug();
+
+        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("process-terminator", systemPlug);
+        ijkTaskHandler.performInjection(new ProcessTerminatorParam("find"));
+        System.out.println("Performed injection");
+    }
 }

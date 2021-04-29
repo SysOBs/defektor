@@ -4,27 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="458fc3bb-be6a-45c2-99f8-be6d1f47d4cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/InstanceRebootParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/InstanceRebootParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/plugins/AbstractPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/plugins/AbstractPluginFactory.java" afterDir="false" />
+    <list default="true" id="458fc3bb-be6a-45c2-99f8-be6d1f47d4cf" name="Default Changelist" comment="InstanceReboot plug is finished">
+      <change afterPath="$PROJECT_DIR$/../FindTerminator/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/PodDelete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/processterminator.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProcessTerminator/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/HttpAbort.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/PodDelete.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindTerminator/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PodDelete/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PodDelete/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/PluginFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/IjkTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/IjkTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemTaskHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,17 +37,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
   </component>
   <component name="ProjectId" id="1rlugcq2xbgX1hKsBI9zNac9ip6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProcessTerminator" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,8 +65,18 @@
       <workItem from="1619570603558" duration="1208000" />
       <workItem from="1619572563243" duration="680000" />
       <workItem from="1619588686674" duration="1415000" />
-      <workItem from="1619623850824" duration="5984000" />
+      <workItem from="1619623850824" duration="6242000" />
+      <workItem from="1619671088753" duration="93000" />
+      <workItem from="1619671208313" duration="392000" />
     </task>
+    <task id="LOCAL-00001" summary="InstanceReboot plug is finished">
+      <created>1619670658600</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619670658600</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,5 +93,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="InstanceReboot plug is finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="InstanceReboot plug is finished" />
   </component>
 </project>

@@ -20,7 +20,15 @@
             <artifactId>common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>/home/goncalo/Desktop/defektor/defektor/common/target/common-1.0.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/../../../../common/target/common-1.0.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <!--            TODO ADD SUB PACKAGE (SYS, IJK)-->
+            <groupId>pt.uc.sob.defektor.common.plugins</groupId>
+            <artifactId>virtualmachine</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../../../libs/system/virtualmachine.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -35,7 +43,7 @@
                         <archive>
                             <manifestFile>META-INF/MANIFEST.MF</manifestFile>
                         </archive>
-                        <outputDirectory>/home/goncalo/Desktop/defektor/defektor/plugins/libs/ijk</outputDirectory>
+                        <outputDirectory>${project.basedir}/../../../libs/ijk</outputDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
