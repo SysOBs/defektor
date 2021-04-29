@@ -4,29 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../FindTerminator/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PodDelete.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processterminator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/HttpAbort.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/PodDelete.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindTerminator/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InstanceReboot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InstanceReboot/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="ProcessTerminator finished">
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +77,16 @@
       <workItem from="1617875488936" duration="1447000" />
       <workItem from="1617879031312" duration="1843000" />
       <workItem from="1619671081304" duration="97000" />
-      <workItem from="1619671266431" duration="334000" />
+      <workItem from="1619671266431" duration="548000" />
     </task>
+    <task id="LOCAL-00001" summary="ProcessTerminator finished">
+      <created>1619671783545</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619671783545</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,5 +108,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../../.." />
     </ignored-roots>
+    <MESSAGE value="ProcessTerminator finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProcessTerminator finished" />
   </component>
 </project>

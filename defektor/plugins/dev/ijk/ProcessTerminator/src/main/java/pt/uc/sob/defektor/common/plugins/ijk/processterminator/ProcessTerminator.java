@@ -28,10 +28,8 @@ public class ProcessTerminator extends InjektorPlug<VMSystemPlug> {
         ProcessTerminatorParam param = (ProcessTerminatorParam) abstractParam;
         String command = null;
 
-        // TODO - WHAT ABOUT DESIGN PATTERNS?
         if(param.getPid() != null)
             command = "kill -9 " + param.getPid();
-
         else if(param.getProcessName() != null)
             command = "killall " + param.getProcessName();
 
