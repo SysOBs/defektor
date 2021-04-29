@@ -16,6 +16,7 @@ public class VMSystemPlug extends SystemPlug {
 
     public VMSystemPlug(AbstractSysConfig configuration) {
         super(configuration);
+        configure(configuration);
     }
 
     @Override
@@ -36,7 +37,6 @@ public class VMSystemPlug extends SystemPlug {
     @Override
     protected void configure(AbstractSysConfig abstractSysConfig) {
         VMConfig config = (VMConfig) abstractSysConfig;
-
         JSch jSch = new JSch();
 
         try {
@@ -52,15 +52,25 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     public void sendSshCommand(String command) {
+        if(this.session == null) return;
+
+        ChannelExec channel = null;
         try {
-            Channel channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(command);
-            ((ChannelExec) channel).setPty(false);
+            session.connect();
+            channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand(command);
+            channel.setPty(false);
             channel.connect();
-            channel.disconnect();
-            session.disconnect();
         } catch (JSchException e) {
-            throw new RuntimeException("Error during SSH command execution. Command: " + command);
+            e.printStackTrace();
+        }
+        finally {
+            if (session != null && session.isConnected()) {
+                session.disconnect();
+            }
+            if (channel != null && channel.isConnected()) {
+                channel.disconnect();
+            }
         }
     }
 }

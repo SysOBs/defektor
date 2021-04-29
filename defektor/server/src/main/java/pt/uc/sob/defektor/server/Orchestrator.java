@@ -81,7 +81,7 @@ public class Orchestrator {
     }
 
     private void defineInjectionType(String ijkName) {
-        ijkTaskHandler = new IjkTaskHandler(ijkName);
+//        ijkTaskHandler = new IjkTaskHandler(ijkName);
 //        switch (ijkName) {
 //            case "pod-delete":
 //                ijkTaskHandler = new IjkTaskHandler("pod-delete");

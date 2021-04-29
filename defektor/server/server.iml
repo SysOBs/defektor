@@ -10,7 +10,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="server" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -170,6 +172,15 @@
     <orderEntry type="library" name="Maven: org.mapdb:elsa:3.0.0-M5" level="project" />
     <orderEntry type="library" name="Maven: com.jcraft:jsch:0.1.55" level="project" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="module-library">
+      <library name="Maven: pt.uc.sob.defektor.common.plugins:virtualmachine:1.0.0-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../plugins/libs/system/virtualmachine.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.13.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.13.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.13.2" level="project" />

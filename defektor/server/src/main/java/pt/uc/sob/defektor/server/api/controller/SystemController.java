@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.api.SystemApi;
 import pt.uc.sob.defektor.server.model.SystemTarget;
 import pt.uc.sob.defektor.server.model.SystemType;
-import pt.uc.sob.defektor.server.pluginization.PluginFactory;
 import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

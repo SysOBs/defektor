@@ -19,8 +19,6 @@ public abstract class InjektorPlug <S extends SystemPlug>{
 
     public abstract void stopInjection();
 
-    public abstract void setup();
-
     public abstract List<TargetType> getTargetTypes();
 
     public abstract List<Target> getTargetInstancesByType(TargetType targetType);

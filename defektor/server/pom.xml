@@ -141,6 +141,14 @@
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <!--            TODO ADD SUB PACKAGE (SYS, IJK)-->
+            <groupId>pt.uc.sob.defektor.common.plugins</groupId>
+            <artifactId>virtualmachine</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../plugins/libs/system/virtualmachine.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

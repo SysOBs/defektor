@@ -1,5 +1,7 @@
 package pt.uc.sob.defektor.common.plugins;
 
+import pt.uc.sob.defektor.common.SystemPlug;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

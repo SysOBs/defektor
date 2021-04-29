@@ -13,13 +13,14 @@ public class IjkPluginFactory extends AbstractPluginFactory {
     }
 
     public static IjkPluginFactory getInstance() {
-        if(instance==null) instance = new IjkPluginFactory();
+        if (instance == null) instance = new IjkPluginFactory();
         return instance;
     }
 
     @Override
     protected Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return clazz.getConstructor(SystemPlug.class).newInstance(objects);
+//        return clazz.getConstructor(VMSystemPlug.class).newInstance(objects);
     }
 
     @Override
