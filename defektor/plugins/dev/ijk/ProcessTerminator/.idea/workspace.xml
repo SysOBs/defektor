@@ -5,7 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="ProcessTerminator finished">
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_hamcrest_hamcrest_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/runConfigurations/TestController_performInjection.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../server/src/test/java/pt/uc/sob/defektor/server/api/controller/PluginTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../server/src/test/java/pt/uc/sob/defektor/server/api/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__junit_junit_3_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_apache_commons_commons_compress_1_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_2_71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_2_71.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Problems.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Problems.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/SystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/SystemPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/AbstractParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/ParamInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/InstanceRebootParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/InstanceRebootParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/PodDeleteParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/PodDeleteParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/ProcessTerminatorParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/params/ProcessTerminatorParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/AbstractSysConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/SysConfigInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/KubernetesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/KubernetesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/VMConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/sysconfigs/VMConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/plugins/AbstractPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/AbstractPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/plugins/AbstractPluginInstaller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InstanceReboot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InstanceReboot/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../InstanceReboot/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/instancereboot/InstanceReboot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/processterminator/ProcessTerminator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../system/VirtualMachine/src/main/java/pt/uc/sob/defektor/common/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/bootsrap/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/bootsrap/Bootstrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/ServerPluginLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/SystemPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/SystemPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/IjkTaskHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/InjektorsManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/PluginInstaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/PluginInstaller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemTaskHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/SystemsManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/control/TaskManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +121,7 @@
       <workItem from="1617879031312" duration="1843000" />
       <workItem from="1619671081304" duration="97000" />
       <workItem from="1619671266431" duration="548000" />
+      <workItem from="1619689928859" duration="3231000" />
     </task>
     <task id="LOCAL-00001" summary="ProcessTerminator finished">
       <created>1619671783545</created>

@@ -1,7 +1,6 @@
 package pt.uc.sob.defektor.server.pluginization;
 
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
-import pt.uc.sob.defektor.common.plugins.AbstractPluginFactory;
+import pt.uc.sob.defektor.common.com.sysconfigs.SysConfigInterface;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -19,12 +18,6 @@ public class SystemPluginFactory extends AbstractPluginFactory {
 
     @Override
     protected Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        return clazz.getConstructor(AbstractSysConfig.class).newInstance(objects);
+        return clazz.getConstructor(SysConfigInterface.class).newInstance(objects);
     }
-
-    @Override
-    protected String getClassNameAttribute() {
-            return "PluginClass";
-    }
-
 }

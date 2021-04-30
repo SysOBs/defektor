@@ -1,6 +1,4 @@
-package pt.uc.sob.defektor.common.plugins;
-
-import pt.uc.sob.defektor.common.SystemPlug;
+package pt.uc.sob.defektor.server.pluginization;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,12 +37,6 @@ public abstract class AbstractPluginFactory {
         return object;
     }
 
-    protected abstract String getClassNameAttribute();
-
-    public static String getCommandAttribute(){
-        return "Command";
-    }
-
     public void unload(){
         classLoaderMap.values().forEach(
                 classLoader -> {
@@ -72,12 +64,13 @@ public abstract class AbstractPluginFactory {
         classMap.clear();
 
         for (String path : pluginPaths) {
+            //TODO Merge all URLs in the same ClassLoader
             try {
                 file = new File(path);
                 jar = new JarFile(file);
                 man = jar.getManifest();
-                command = man.getMainAttributes().getValue(getCommandAttribute());
-                className = man.getMainAttributes().getValue(getClassNameAttribute());
+                command = man.getMainAttributes().getValue("Command");
+                className = man.getMainAttributes().getValue("PluginClass");
                 jar.close();
                 urls = new URL[]{ new URL("jar:file:" + file.getPath() + "!/") };
                 cl = URLClassLoader.newInstance(urls);

@@ -3,25 +3,25 @@ package pt.uc.sob.defektor.common.plugins.system.virtualmachine;
 import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SysConfigInterface;
 import pt.uc.sob.defektor.common.com.sysconfigs.VMConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+//TODO refactor package names (not "commmon")
 public class VMSystemPlug extends SystemPlug {
 
     private Session session = null;
 
-    public VMSystemPlug(AbstractSysConfig configuration) {
+    public VMSystemPlug(SysConfigInterface configuration) {
         super(configuration);
-        configure(configuration);
     }
 
     @Override
     public void help() {
-
+        System.out.println("--> HELP");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     @Override
-    protected void configure(AbstractSysConfig abstractSysConfig) {
+    protected void configure(SysConfigInterface abstractSysConfig) {
         VMConfig config = (VMConfig) abstractSysConfig;
         JSch jSch = new JSch();
 
@@ -52,7 +52,7 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     public void sendSshCommand(String command) {
-        if(this.session == null) return;
+        if(this.session == null) throw new RuntimeException("session not defined");
 
         ChannelExec channel = null;
         try {

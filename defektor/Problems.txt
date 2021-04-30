@@ -75,3 +75,7 @@ Problems:
       - Should the injektions be parameterized. If yes, how so? Can it be JSON flexible?
       - Still not quite sure what's the best approach to define system types. Should it be done separately from the rest of the plan?
       - Some problems raised in Orchestrator.java
+
+27/04:
+    Obs:
+      - Mostrar com uma experiência o

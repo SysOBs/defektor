@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VMConfig implements AbstractSysConfig {
+public class VMConfig implements SysConfigInterface {
     private String username;
     private String host;
     private Integer port;

@@ -1,5 +1,5 @@
 package pt.uc.sob.defektor.common.com.params;
 
-public class PodDeleteParam implements AbstractParam{
+public class PodDeleteParam implements ParamInterface {
 
 }

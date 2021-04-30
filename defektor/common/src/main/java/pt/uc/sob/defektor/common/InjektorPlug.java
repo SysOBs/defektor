@@ -2,8 +2,7 @@ package pt.uc.sob.defektor.common;
 
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.AbstractParam;
-import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
+import pt.uc.sob.defektor.common.com.params.ParamInterface;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public abstract class InjektorPlug <S extends SystemPlug>{
         this.system = system;
     }
 
-    public abstract void performInjection(AbstractParam param);
+    public abstract void performInjection(ParamInterface param);
 
     public abstract void stopInjection();
 

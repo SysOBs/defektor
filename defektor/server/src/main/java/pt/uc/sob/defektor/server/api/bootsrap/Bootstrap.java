@@ -18,7 +18,6 @@ public class Bootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        //TODO doesn't work
         new PluginInstaller(SystemPluginFactory.getInstance(), SYS_PLUGINS_DIRS).installPlugins();
         new PluginInstaller(IjkPluginFactory.getInstance(), IJK_PLUGINS_DIRS).installPlugins();
     }

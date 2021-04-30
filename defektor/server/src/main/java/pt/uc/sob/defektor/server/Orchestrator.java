@@ -2,11 +2,9 @@ package pt.uc.sob.defektor.server;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.params.AbstractParam;
+import pt.uc.sob.defektor.common.com.params.ParamInterface;
 import pt.uc.sob.defektor.server.api.utils.Utils;
 import pt.uc.sob.defektor.server.model.*;
-import pt.uc.sob.defektor.server.pluginization.control.IjkTaskHandler;
-import pt.uc.sob.defektor.server.pluginization.control.SystemTaskHandler;
 
 import javax.validation.Valid;
 import java.util.concurrent.TimeUnit;
@@ -17,15 +15,11 @@ public class Orchestrator {
 //    private UUID planUUID;
 //    private String planTargetNamespace;
 
-    private IjkTaskHandler ijkTaskHandler;
-    private SystemTaskHandler systemTaskHandler;
-    private AbstractParam abstractParam;
+    private ParamInterface paramInterface;
 
 
     @Async
     public void conductProcess(Plan plan) {
-
-//        this.planUUID = plan.getId();
 
         for (Injektion injektion: plan.getInjektions()) {
 
@@ -38,13 +32,7 @@ public class Orchestrator {
             defineSystemType(plan.getSystem().getName());
             defineInjectionType(injektion.getIjk());
 
-            if(ijkTaskHandler == null) {
-                //TODO Throw exception
-                return;
-            }
-
             //TODO I must figure what's the best way to parametrize injektors in plan description. Is it possible to be flexible with the json?
-            ijkTaskHandler.performInjection(abstractParam);
 
             //GIVE TIME TO INJECTION BE DEPLOYED
             //TODO NOT SURE IT IS THE BEST WAY TO DO IT
@@ -52,7 +40,6 @@ public class Orchestrator {
 
             applyLoadGen(workloadGenerator, workLoad.getDuration());
 
-            ijkTaskHandler.stopInjection();
         }
     }
 
