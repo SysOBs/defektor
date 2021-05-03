@@ -56,7 +56,6 @@
     </build>
 
     <modules>
-        <module>app</module>
         <module>server</module>
         <module>common</module>
     </modules>

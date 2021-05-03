@@ -3,10 +3,11 @@ package pt.uc.sob.defektor.common.plugins.system.virtualmachine;
 import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.SysConfigInterface;
+import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
 import pt.uc.sob.defektor.common.com.sysconfigs.VMConfig;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -15,7 +16,7 @@ public class VMSystemPlug extends SystemPlug {
 
     private Session session = null;
 
-    public VMSystemPlug(SysConfigInterface configuration) {
+    public VMSystemPlug(AbstractSysConfig configuration) {
         super(configuration);
     }
 
@@ -35,8 +36,14 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     @Override
-    protected void configure(SysConfigInterface abstractSysConfig) {
-        VMConfig config = (VMConfig) abstractSysConfig;
+    protected void configure(AbstractSysConfig abstractSysConfig) {
+        Object[] objects = abstractSysConfig.getObjects();
+        Config config = new Config(
+                (String) objects[0],
+                (String) objects[1],
+                (Integer) objects[2],
+                (String) objects[3]
+        );
         JSch jSch = new JSch();
 
         try {
