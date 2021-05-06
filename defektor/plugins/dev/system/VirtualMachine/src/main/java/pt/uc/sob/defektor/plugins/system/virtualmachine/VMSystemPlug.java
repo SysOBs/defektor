@@ -1,13 +1,11 @@
-package pt.uc.sob.defektor.common.plugins.system.virtualmachine;
+package pt.uc.sob.defektor.plugins.system.virtualmachine;
 
 import com.jcraft.jsch.*;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
-import pt.uc.sob.defektor.common.com.sysconfigs.VMConfig;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 

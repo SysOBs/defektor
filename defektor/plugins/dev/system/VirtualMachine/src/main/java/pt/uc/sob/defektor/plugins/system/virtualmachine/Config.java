@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.common.plugins.system.virtualmachine;
+package pt.uc.sob.defektor.plugins.system.virtualmachine;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
