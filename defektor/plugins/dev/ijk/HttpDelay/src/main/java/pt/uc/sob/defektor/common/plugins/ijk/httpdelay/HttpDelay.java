@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.common.plugins.ijk.httpdelay;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.AbstractParam;
+import pt.uc.sob.defektor.common.com.ijkparams.AbstractParam;
 import pt.uc.sob.defektor.common.plugins.interfaces.InjektorsManagerInterface;
 import pt.uc.sob.defektor.common.plugins.interfaces.TaskManagerInterface;
 

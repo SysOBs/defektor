@@ -3,7 +3,7 @@
 //import org.springframework.stereotype.Repository;
 //import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 //import pt.uc.sob.defektor.server.api.repository.SlaveRepository;
-//import pt.uc.sob.defektor.server.api.utils.Utils;
+//import pt.uc.sob.defektor.server.utils.Utils;
 //import pt.uc.sob.defektor.server.model.Slave;
 //
 //import java.io.IOException;

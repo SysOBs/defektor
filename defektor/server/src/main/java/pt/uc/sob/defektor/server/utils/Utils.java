@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.api.utils;
+package pt.uc.sob.defektor.server.utils;
 
 import io.fabric8.kubernetes.api.model.EnvVar;
 import pt.uc.sob.defektor.server.Orchestrator;
@@ -57,7 +57,4 @@ public class Utils {
             return null;
         }
     }
-
-
-
 }

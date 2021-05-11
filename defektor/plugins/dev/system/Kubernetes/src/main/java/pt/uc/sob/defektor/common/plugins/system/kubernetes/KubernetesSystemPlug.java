@@ -12,7 +12,6 @@ import io.kubernetes.client.util.KubeConfig;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
-import pt.uc.sob.defektor.common.com.sysconfigs.KubernetesConfig;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,7 +23,7 @@ public class KubernetesSystemPlug extends SystemPlug {
 
     ApiClient client;
 
-    public KubernetesSystemPlug(KubernetesConfig configuration) {
+    public KubernetesSystemPlug(AbstractSysConfig configuration) {
         super(configuration);
     }
 

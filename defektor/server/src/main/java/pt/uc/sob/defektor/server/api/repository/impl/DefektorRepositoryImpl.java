@@ -6,7 +6,7 @@ import org.mapdb.Serializer;
 import org.springframework.stereotype.Repository;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
-import pt.uc.sob.defektor.server.api.utils.Utils;
+import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

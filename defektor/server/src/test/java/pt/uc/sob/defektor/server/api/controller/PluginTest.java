@@ -1,9 +1,10 @@
 package pt.uc.sob.defektor.server.api.controller;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -22,16 +23,23 @@ public class PluginTest {
         File vmFile = new File(vmPath);
         URL[] urls = new URL[]{ new URL("jar:file:" + vmFile.getPath() + "!/") };
         ClassLoader vmClassLoader = URLClassLoader.newInstance(urls);
-        String vmClassName = "pt.uc.sob.defektor.common.plugins.system.virtualmachine.VMSystemPlug";
+        String vmClassName = "pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug";
         Class vmClass = vmClassLoader.loadClass(vmClassName);
-        AbstractSysConfig config = new AbstractSysConfig("goncalo", "192.168.1.2", 22, "~/.ssh/id_rsa");
-        SystemPlug systemPlug = (SystemPlug) vmClass.getConstructor(AbstractSysConfig.class).newInstance(config);
+
+        JSONObject object = new JSONObject();
+        object.put("username", "goncalo");
+        object.put("host", "192.168.1.2");
+        object.put("port", 22);
+        object.put("privateKey", "~/.ssh/id_rsa");
+
+        SystemConfig config = new SystemConfig(object);
+        SystemPlug systemPlug = (SystemPlug) vmClass.getConstructor(SystemConfig.class).newInstance(config);
 
 
         String ijkPath = DESKTOP_DIR + "/defektor/defektor/plugins/libs/ijk/instancereboot.jar";
         File ijkFile = new File(ijkPath);
         URL[] ijkUrls = new URL[]{ new URL("jar:file:" + ijkFile.getPath() + "!/") };
-        ClassLoader ijkClassLoader = URLClassLoader.newInstance(ijkUrls, vmClassLoader);
+        ClassLoader ijkClassLoader = URLClassLoader.newInstance(ijkUrls);
         String className = "pt.uc.sob.defektor.plugins.ijk.instancereboot.InstanceRebootIjkPlug";
         Class ijkClass = ijkClassLoader.loadClass(className);
         InjektorPlug injektorPlug = (InjektorPlug) ijkClass.getConstructor(SystemPlug.class).newInstance(systemPlug);

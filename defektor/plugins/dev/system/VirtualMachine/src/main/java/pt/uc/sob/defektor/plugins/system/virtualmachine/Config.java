@@ -2,11 +2,14 @@ package pt.uc.sob.defektor.plugins.system.virtualmachine;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import lombok.ToString;
+import org.json.JSONObject;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
 @Data
 @AllArgsConstructor
-public class Config extends AbstractSysConfig {
+@ToString
+public class Config {
     private String username;
     private String host;
     private Integer port;

@@ -1,6 +1,5 @@
 package pt.uc.sob.defektor.server.api.service.impl;
 
-import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.data.SlaveData;
@@ -9,7 +8,7 @@ import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
-import pt.uc.sob.defektor.server.api.utils.Utils;
+import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.Slave;
 
 import java.util.List;

@@ -9,7 +9,7 @@ import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
-import pt.uc.sob.defektor.server.api.utils.Utils;
+import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import java.util.List;

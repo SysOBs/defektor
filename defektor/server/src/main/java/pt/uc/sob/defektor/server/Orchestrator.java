@@ -2,8 +2,8 @@ package pt.uc.sob.defektor.server;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.params.ParamInterface;
-import pt.uc.sob.defektor.server.api.utils.Utils;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.*;
 
 import javax.validation.Valid;
@@ -15,7 +15,7 @@ public class Orchestrator {
 //    private UUID planUUID;
 //    private String planTargetNamespace;
 
-    private ParamInterface paramInterface;
+    private IjkParam ijkParam;
 
 
     @Async

@@ -4,8 +4,8 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.ParamInterface;
-import pt.uc.sob.defektor.common.com.params.ProcessTerminatorParam;
+import pt.uc.sob.defektor.common.com.ijkparams.ParamInterface;
+import pt.uc.sob.defektor.common.com.ijkparams.ProcessTerminatorParam;
 import pt.uc.sob.defektor.common.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;

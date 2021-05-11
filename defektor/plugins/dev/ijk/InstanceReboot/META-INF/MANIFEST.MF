@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Command: instance-reboot
-PluginClass: pt.uc.sob.defektor.plugins.ijk.instancereboot.InstanceRebootIjkPlug
+PluginName: instancereboot
+PluginClass: pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot.InstanceRebootIjkPlug

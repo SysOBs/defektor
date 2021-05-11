@@ -1,21 +1,24 @@
 package pt.uc.sob.defektor.plugins.system.virtualmachine;
 
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-//TODO refactor package names (not "commmon")
 public class VMSystemPlug extends SystemPlug {
 
-    private Session session = null;
+    Session session = null;
 
-    public VMSystemPlug(AbstractSysConfig configuration) {
+    public VMSystemPlug(SystemConfig configuration) {
         super(configuration);
+        configure(configuration);
     }
 
     @Override
@@ -34,19 +37,14 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     @Override
-    protected void configure(AbstractSysConfig abstractSysConfig) {
-        Object[] objects = abstractSysConfig.getObjects();
-        Config config = new Config(
-                (String) objects[0],
-                (String) objects[1],
-                (Integer) objects[2],
-                (String) objects[3]
-        );
+    protected void configure(SystemConfig systemConfig) {
+        Config config = Utils.jsonToObject(systemConfig.getJsonSysConfig().toString());
         JSch jSch = new JSch();
 
         try {
             jSch.addIdentity(config.getPrivateKey());
             session = jSch.getSession(config.getUsername(), config.getHost(), config.getPort());
+            System.out.println(session.toString());
             session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
             Properties properties = new java.util.Properties();
             properties.put("StrictHostKeyChecking", "no");
@@ -56,8 +54,9 @@ public class VMSystemPlug extends SystemPlug {
         }
     }
 
-    public void sendSshCommand(String command) {
-        if(this.session == null) throw new RuntimeException("session not defined");
+    public void sendSSHCommand(String command) {
+//        System.out.println(session.getHost() + " " + session.getPort());
+        if (this.session == null) throw new RuntimeException("session not defined");
 
         ChannelExec channel = null;
         try {
@@ -68,8 +67,7 @@ public class VMSystemPlug extends SystemPlug {
             channel.connect();
         } catch (JSchException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (session != null && session.isConnected()) {
                 session.disconnect();
             }

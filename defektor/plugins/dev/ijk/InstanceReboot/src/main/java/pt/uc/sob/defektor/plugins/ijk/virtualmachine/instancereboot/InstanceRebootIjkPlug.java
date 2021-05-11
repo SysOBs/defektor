@@ -1,12 +1,11 @@
-package pt.uc.sob.defektor.plugins.ijk.instancereboot;
+package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.InstanceRebootParam;
-import pt.uc.sob.defektor.common.com.params.ParamInterface;
-import pt.uc.sob.defektor.common.plugins.system.virtualmachine.VMSystemPlug;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +13,14 @@ import java.util.List;
 
 public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
 
-    public InstanceRebootIjkPlug(VMSystemPlug system) {
+    private final String REBOOT_COMMAND = "sudo reboot";
+    public InstanceRebootIjkPlug (SystemPlug system) {
         super(system);
     }
 
     @Override
-    public void performInjection(ParamInterface abstractParam) {
-        InstanceRebootParam param = (InstanceRebootParam) abstractParam;
-        this.system.sendSshCommand(param.getCommand());
+    public void performInjection(IjkParam param) {
+        this.system.sendSSHCommand(REBOOT_COMMAND);
     }
 
     @Override

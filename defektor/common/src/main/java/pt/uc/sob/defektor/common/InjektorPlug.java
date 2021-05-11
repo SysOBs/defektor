@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.common;
 
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.ParamInterface;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ public abstract class InjektorPlug <S extends SystemPlug>{
 
     protected S system;
 
-    public InjektorPlug(S system) {
-        this.system = system;
+    public InjektorPlug(SystemPlug system) {
+        this.system = (S) system;
     }
 
-    public abstract void performInjection(ParamInterface param);
+    public abstract void performInjection(IjkParam param);
 
     public abstract void stopInjection();
 

@@ -1,10 +1,12 @@
 package pt.uc.sob.defektor.server.api.controller;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.sysconfigs.AbstractSysConfig;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import pt.uc.sob.defektor.server.Defektor;
 import pt.uc.sob.defektor.server.pluginization.IjkPluginFactory;
 import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
@@ -15,13 +17,20 @@ public class TestController {
     public void performInjection() {
         new SpringApplication(Defektor.class).run(new String[]{});
 
-        AbstractSysConfig config = new AbstractSysConfig("goncalo", "192.168.1.2", 22, "~/.ssh/id_rsa");
-        SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("virtual-machine", config);
-        systemPlug.help();
+        JSONObject configJson = new JSONObject();
+        configJson.put("username", "goncalo");
+        configJson.put("host", "192.168.1.2");
+        configJson.put("port", 22);
+        configJson.put("privateKey", "~/.ssh/id_rsa");
 
+        SystemConfig config = new SystemConfig(configJson);
+        SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("virtualmachine", config);
 
-        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("instance-reboot", systemPlug);
-        System.out.println("Performed injection");
+        JSONObject paramJson = new JSONObject();
+        IjkParam param = new IjkParam(paramJson);
+
+        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("instancereboot", systemPlug);
+        injektorPlug.performInjection(param);
     }
 
     @Test

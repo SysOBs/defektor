@@ -3,8 +3,8 @@ package pt.uc.sob.defektor.common.plugins.ijk.poddelete;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.com.Target;
 import pt.uc.sob.defektor.common.com.TargetType;
-import pt.uc.sob.defektor.common.com.params.AbstractParam;
-import pt.uc.sob.defektor.common.com.params.PodDeleteParam;
+import pt.uc.sob.defektor.common.com.ijkparams.AbstractParam;
+import pt.uc.sob.defektor.common.com.ijkparams.PodDeleteParam;
 import pt.uc.sob.defektor.common.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.util.ArrayList;
