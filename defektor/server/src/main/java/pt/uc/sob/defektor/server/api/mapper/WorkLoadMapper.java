@@ -5,7 +5,7 @@ import pt.uc.sob.defektor.server.model.WorkLoad;
 
 public class WorkLoadMapper {
 
-    public static WorkLoad convertToDAO(WorkLoadData workLoadData) {
+    public static WorkLoad convertToDTO(WorkLoadData workLoadData) {
         WorkLoad workLoad = new WorkLoad();
         workLoad.setImage(DockerImageMapper.convertToDAO(workLoadData.getImage()));
         workLoad.setCmd(workLoadData.getCmd());
@@ -15,7 +15,7 @@ public class WorkLoadMapper {
         return workLoad;
     }
 
-    public static WorkLoadData convertToDTO(WorkLoad workLoad) {
+    public static WorkLoadData convertToDAO(WorkLoad workLoad) {
 
         WorkLoadData workLoadData = new WorkLoadData();
         workLoadData.setImage(DockerImageMapper.convertToDTO(workLoad.getImage()));

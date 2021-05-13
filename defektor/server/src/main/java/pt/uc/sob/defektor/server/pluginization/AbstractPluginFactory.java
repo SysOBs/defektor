@@ -16,7 +16,6 @@ public abstract class AbstractPluginFactory {
     protected abstract Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;
 
     public Object getPluginInstance(String pluginName, Object ...objects){
-        //TODO CHANGE "Command" to "PluginName"
         Class clazz = classMap.get(pluginName);
         Object object = null;
         if(clazz==null){

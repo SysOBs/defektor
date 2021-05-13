@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.api.mapper;
 import pt.uc.sob.defektor.server.api.data.DockerImageData;
 import pt.uc.sob.defektor.server.model.DockerImage;
 
-public abstract class DockerImageMapper {
+public class DockerImageMapper {
 
     public static DockerImage convertToDAO(DockerImageData dockerImageData) {
         DockerImage dockerImage = new DockerImage();

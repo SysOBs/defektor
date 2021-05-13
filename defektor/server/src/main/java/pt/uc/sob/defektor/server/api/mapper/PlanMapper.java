@@ -5,7 +5,7 @@ import pt.uc.sob.defektor.server.model.Plan;
 
 import java.util.stream.Collectors;
 
-public abstract class PlanMapper {
+public class PlanMapper {
 
     public static PlanData convertToDAO(Plan plan) {
         PlanData planData = new PlanData();
@@ -13,7 +13,7 @@ public abstract class PlanMapper {
         planData.setName(plan.getName());
         planData.setInjektions(
                 plan.getInjektions().stream()
-                        .map(InjektionMapper::convertToDTO)
+                        .map(InjektionMapper::convertToDAO)
                         .collect(Collectors.toList())
         );
 
@@ -25,7 +25,7 @@ public abstract class PlanMapper {
         plan.setName(planData.getName());
         plan.setInjektions(
                 planData.getInjektions().stream()
-                        .map(InjektionMapper::convertToDAO)
+                        .map(InjektionMapper::convertToDTO)
                         .collect(Collectors.toList())
         );
         return plan;

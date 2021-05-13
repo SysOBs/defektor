@@ -9,6 +9,7 @@ import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
+import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.Plan;
 
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class PlanServiceImpl implements PlanService {
 
     private final DefektorRepository defektorRepository;
-    private final String planDbFileDir = Utils.getPlanFileDB();
+    private final String planDbFileDir = Strings.PLAN_DB_PATH;
 
     @Override
     public Plan planAdd(Plan plan) throws DuplicateEntryException {
@@ -45,7 +46,6 @@ public class PlanServiceImpl implements PlanService {
         return (List<Plan>) defektorRepository.findAll(planDbFileDir).stream()
                 .map(Mapper::convertToDTO)
                 .collect(Collectors.toList());
-
     }
 
     @Override

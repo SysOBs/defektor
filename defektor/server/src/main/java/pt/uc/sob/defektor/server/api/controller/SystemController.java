@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.api.SystemApi;
-import pt.uc.sob.defektor.server.model.SystemTarget;
-import pt.uc.sob.defektor.server.model.SystemType;
-import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
+import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
+import pt.uc.sob.defektor.server.api.service.SystemService;
+import pt.uc.sob.defektor.server.model.SystemConfig;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,29 +19,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SystemController implements SystemApi {
 
+    private final SystemService systemService;
+
     @Override
-    public ResponseEntity<List<SystemTarget>> systemTypeList() {
-//        PluginManager pluginManager = new PluginManager();
-//        List<PluginInfo> pluginInfoList = pluginManager.getPluginList("SYSTEM");
-//        List<SystemTarget> systemTargetList = new ArrayList<>()
-        System.out.println(SystemPluginFactory.getInstance().getLoadedPlugins());
-
-
-
-
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public ResponseEntity<List<SystemConfig>> systemConfigList() {
+        return new ResponseEntity<>(systemService.sysConfigList(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<SystemType>> systemTypeConfigure(@Valid @RequestBody SystemType systemType) {
-        System.out.println(systemType);
-//        JsonNode jsonNodeTree = new ObjectMapper().readTree(systemType.getSystemConfig().getParams().get(0));
-//        String jsonAsYaml = new YAMLMapper().writeValueAsString(jsonNodeTree);
-//        System.out.println(jsonAsYaml);
-//        File file = new File("yaml.yaml");
-//        FileWriter fileWriter = new FileWriter(file);
-//        fileWriter.write(jsonAsYaml);
-//        fileWriter.close();
-        return null;
+    public ResponseEntity<SystemConfig> systemTypeConfigure(@Valid @RequestBody SystemConfig systemConfig) {
+        try {
+            systemService.sysConfigAdd(systemConfig);
+            return new ResponseEntity<>(systemConfig, HttpStatus.CREATED);
+        } catch (DuplicateEntryException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -3,6 +3,7 @@ package pt.uc.sob.defektor.server.utils;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import pt.uc.sob.defektor.server.Orchestrator;
 
+import java.io.File;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -13,14 +14,6 @@ import java.util.Date;
 import java.util.List;
 
 public class Utils {
-
-    public static String getPlanFileDB() {
-        return "state\\plan.db";
-    }
-
-    public static String getSlaveFileDB() {
-        return "state\\slave.db";
-    }
 
     public static <T> boolean isUnique(T t, List<T> tList)  {
         for(T t1 : tList)

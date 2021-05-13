@@ -63,11 +63,9 @@ public class IjkPluginFactory extends AbstractPluginFactory {
                     systemName = VIRTUAL_MACHINE;
                 else if (pluginClassName.contains(KUBERNETES))
                     systemName = KUBERNETES;
-                else
-                    systemName = null;
-
-                if (systemName == null)
+                else {
                     throw new RuntimeException("Couldn't find the matching system");
+                }
 
                 ClassLoader parentClassLoader = systemsClassLoaders.get(systemName);
 

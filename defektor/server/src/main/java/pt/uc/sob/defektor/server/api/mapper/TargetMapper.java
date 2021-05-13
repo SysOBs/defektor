@@ -4,8 +4,8 @@ import pt.uc.sob.defektor.server.api.data.TargetData;
 import pt.uc.sob.defektor.server.model.Target;
 import pt.uc.sob.defektor.server.model.TargetType;
 
-public abstract class TargetMapper {
-    public static Target convertToDAO(TargetData targetData) {
+public class TargetMapper {
+    public static Target convertToDTO(TargetData targetData) {
         Target target = new Target();
         target.setName(targetData.getName());
         target.setType(TargetTypeMapper.convertToDAO(targetData.getType()));
@@ -13,7 +13,7 @@ public abstract class TargetMapper {
         return target;
     }
 
-    public static TargetData convertToDTO(Target target) {
+    public static TargetData convertToDAO(Target target) {
 
         TargetData targetData = new TargetData();
         targetData.setName(target.getName());

@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.api.mapper;
 import pt.uc.sob.defektor.server.api.data.TargetTypeData;
 import pt.uc.sob.defektor.server.model.TargetType;
 
-public abstract class TargetTypeMapper {
+public class TargetTypeMapper {
 
     public static TargetType convertToDAO(TargetTypeData targetTypeData) {
         TargetType targetType = new TargetType();

@@ -9,9 +9,6 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InjektionData implements Serializable {
-  private IjkData ijk;
-  private WorkLoadData workLoad;
-  private TargetData target;
+public class SystemTypeData implements Serializable {
+    private String name;
 }
-

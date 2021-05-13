@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class VMSystemPlug extends SystemPlug {
 
-    Session session = null;
+    protected Session session = null;
 
     public VMSystemPlug(SystemConfig configuration) {
         super(configuration);
@@ -37,14 +37,13 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     @Override
-    protected void configure(SystemConfig systemConfig) {
+    public void configure(SystemConfig systemConfig) {
         Config config = Utils.jsonToObject(systemConfig.getJsonSysConfig().toString());
         JSch jSch = new JSch();
 
         try {
             jSch.addIdentity(config.getPrivateKey());
             session = jSch.getSession(config.getUsername(), config.getHost(), config.getPort());
-            System.out.println(session.toString());
             session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
             Properties properties = new java.util.Properties();
             properties.put("StrictHostKeyChecking", "no");
@@ -55,7 +54,6 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     public void sendSSHCommand(String command) {
-//        System.out.println(session.getHost() + " " + session.getPort());
         if (this.session == null) throw new RuntimeException("session not defined");
 
         ChannelExec channel = null;

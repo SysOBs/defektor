@@ -5,13 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InjektionData implements Serializable {
-  private IjkData ijk;
-  private WorkLoadData workLoad;
-  private TargetData target;
+public class IjkParamsData implements Serializable {
+    private List<KeyData> keyData = null;
 }
-

@@ -8,6 +8,7 @@ import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
+import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.Slave;
 
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class SlaveServiceImpl implements SlaveService {
 
     private final DefektorRepository defektorRepository;
-    private final String slaveDbFileDir = Utils.getSlaveFileDB();
+    private final String slaveDbFileDir = Strings.SLAVE_DB_PATH;
 
 
     @Override
