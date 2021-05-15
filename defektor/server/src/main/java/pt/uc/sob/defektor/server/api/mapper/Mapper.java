@@ -7,7 +7,7 @@ import pt.uc.sob.defektor.server.model.Plan;
 import pt.uc.sob.defektor.server.model.Slave;
 import pt.uc.sob.defektor.server.model.SystemConfig;
 
-public abstract class Mapper {
+public class Mapper {
 
     public static <T, E> T convertToDTO(E e)  {
         if (e instanceof PlanData)

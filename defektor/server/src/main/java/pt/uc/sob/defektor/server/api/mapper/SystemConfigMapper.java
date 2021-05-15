@@ -10,10 +10,10 @@ public class SystemConfigMapper {
     public static SystemConfigData convertToDAO(SystemConfig systemConfig) {
         SystemConfigData systemConfigData = new SystemConfigData();
         systemConfigData.setSystemType(SystemTypeMapper.convertToDAO(systemConfig.getSystemType()));
-        systemConfigData.setKeyData(
-                systemConfig.getKey().stream()
-                    .map(KeyMapper::convertToDAO)
-                    .collect(Collectors.toList())
+        systemConfigData.setConfigs(
+                systemConfig.getConfigs().stream()
+                        .map(KeyValueMapper::convertToDAO)
+                        .collect(Collectors.toList())
         );
         return systemConfigData;
     }
@@ -21,9 +21,9 @@ public class SystemConfigMapper {
     public static SystemConfig convertToDTO(SystemConfigData systemConfigData) {
         SystemConfig systemConfig = new SystemConfig();
         systemConfig.setSystemType(SystemTypeMapper.convertToDTO(systemConfigData.getSystemType()));
-        systemConfig.setKey(
-                systemConfigData.getKeyData().stream()
-                        .map(KeyMapper::convertToDTO)
+        systemConfig.setConfigs(
+                systemConfigData.getConfigs().stream()
+                        .map(KeyValueMapper::convertToDTO)
                         .collect(Collectors.toList())
         );
         return systemConfig;

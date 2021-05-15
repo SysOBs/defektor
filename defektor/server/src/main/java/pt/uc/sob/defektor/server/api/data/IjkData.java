@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class IjkData implements Serializable {
   private String name;
-  private IjkParamsData params;
+  private List<KeyValueData> params;
 }

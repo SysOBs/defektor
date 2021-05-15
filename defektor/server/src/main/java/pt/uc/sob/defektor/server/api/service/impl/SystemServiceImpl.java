@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
+import pt.uc.sob.defektor.server.api.mapper.SystemConfigMapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.model.Plan;
@@ -23,7 +24,7 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public SystemConfig sysConfigAdd(SystemConfig config) throws DuplicateEntryException {
-        defektorRepository.save(Mapper.convertToDAO(config), dbFileDir);
+        defektorRepository.save(SystemConfigMapper.convertToDAO(config), dbFileDir);
         return config;
     }
 

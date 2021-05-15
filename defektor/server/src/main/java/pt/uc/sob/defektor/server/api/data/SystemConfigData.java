@@ -12,6 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SystemConfigData implements Serializable {
-    private List<KeyData> keyData = null;
+    private List<KeyValueData> configs = null;
     private SystemTypeData systemType;
 }

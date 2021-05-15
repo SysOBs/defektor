@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Param {
-    String pid;
-    String processName;
+    private String pid;
+    private String processName;
 }

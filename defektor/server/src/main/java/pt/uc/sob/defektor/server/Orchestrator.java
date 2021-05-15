@@ -8,7 +8,7 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
-import pt.uc.sob.defektor.server.api.data.KeyData;
+import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.model.*;
@@ -42,6 +42,7 @@ public class Orchestrator {
             List<SystemConfig> sysConfigList = buildSysConfigObject(systemName);
             List<SystemPlug> systemPlugs = new ArrayList<>();
 
+            //TODO CASO NAO HAJA NENHUM SISTEMA CONFIGURADO MANDA-SE UMA EXCEPTION
             for (SystemConfig sysConfig : sysConfigList) {
                 SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance(systemName, sysConfig);
                 systemPlugs.add(systemPlug);
@@ -60,10 +61,10 @@ public class Orchestrator {
         }
     }
 
-    private IjkParam buildIjkParams(IjkParams params) {
+    private IjkParam buildIjkParams(List<KeyValue> params) {
         JSONObject jsonObject = new JSONObject();
-        for(Key key : params.getKey()){
-            jsonObject.put(key.getName(), key.getValue());
+        for(KeyValue keyValue : params){
+            jsonObject.put(keyValue.getKey(), keyValue.getValue());
         }
         return new IjkParam(jsonObject);
     }
@@ -74,8 +75,8 @@ public class Orchestrator {
         for (SystemConfigData systemConfigData : systemService.sysConfigListDAO()) {
             if (systemConfigData.getSystemType().getName().equals(systemName)) {
                 JSONObject jsonObject = new JSONObject();
-                for (KeyData keyData : systemConfigData.getKeyData()) {
-                    jsonObject.put(keyData.getName(), keyData.getValue());
+                for (KeyValueData keyData : systemConfigData.getConfigs()) {
+                    jsonObject.put(keyData.getKey(), keyData.getValue());
                 }
                 systemConfigs.add(new SystemConfig(jsonObject));
             }
