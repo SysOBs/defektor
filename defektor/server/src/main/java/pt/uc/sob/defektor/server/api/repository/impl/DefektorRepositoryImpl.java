@@ -17,8 +17,8 @@ import java.util.UUID;
 public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
-    public void save(T t, String dbFileDir) throws DuplicateEntryException {
-        DB db = DBMaker.fileDB(dbFileDir).make();
+    public void save(T t, String dbFilePath) throws DuplicateEntryException {
+        DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
 
         if(Utils.isUnique(t, tList) == false) {
@@ -33,8 +33,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
     }
 
     @Override
-    public T findById(UUID id, String dbFileDir) {
-        DB db = DBMaker.fileDB(dbFileDir).make();
+    public T findById(UUID id, String dbFilePath) {
+        DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         T returnableT = null;
 
@@ -48,8 +48,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
     }
 
     @Override
-    public void delete(T plan, String dbFileDir) {
-        DB db = DBMaker.fileDB(dbFileDir).make();
+    public void delete(T plan, String dbFilePath) {
+        DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
 
         tList.remove(plan);
@@ -58,8 +58,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
     }
 
     @Override
-    public List<T> findAll(String dbFileDir) {
-        DB db = DBMaker.fileDB(dbFileDir).make();
+    public List<T> findAll(String dbFilePath) {
+        DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         List<T> returnablePlanList = new ArrayList<>(tList);
 

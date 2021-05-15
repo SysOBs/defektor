@@ -7,11 +7,11 @@ import java.util.UUID;
 
 public interface DefektorRepository<T> {
 
-    void save(T t, String dbFileDir) throws DuplicateEntryException;
+    void save(T t, String dbFilePath) throws DuplicateEntryException;
 
-    T findById(UUID id, String dbFileDir);
+    T findById(UUID id, String dbFilePath);
 
-    void delete(T plan, String dbFileDir);
+    void delete(T plan, String dbFilePath);
 
-    List<T> findAll(String dbFileDir);
+    List<T> findAll(String dbFilePath);
 }

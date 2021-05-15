@@ -22,17 +22,17 @@ import java.util.stream.Collectors;
 public class PlanServiceImpl implements PlanService {
 
     private final DefektorRepository defektorRepository;
-    private final String planDbFileDir = Strings.PLAN_DB_PATH;
+    private final String plandbFilePath = Strings.PLAN_DB_PATH;
 
     @Override
     public Plan planAdd(Plan plan) throws DuplicateEntryException {
-        defektorRepository.save(Mapper.convertToDAO(plan), planDbFileDir);
+        defektorRepository.save(Mapper.convertToDAO(plan), plandbFilePath);
         return plan;
     }
 
     @Override
     public Plan planGet(UUID id) throws EntityNotFoundException {
-        PlanData plan = (PlanData) defektorRepository.findById(id, planDbFileDir);
+        PlanData plan = (PlanData) defektorRepository.findById(id, plandbFilePath);
 
         if(plan == null)
             //TODO test
@@ -43,7 +43,7 @@ public class PlanServiceImpl implements PlanService {
 
     @Override
     public List<Plan> plansList() {
-        return (List<Plan>) defektorRepository.findAll(planDbFileDir).stream()
+        return (List<Plan>) defektorRepository.findAll(plandbFilePath).stream()
                 .map(Mapper::convertToDTO)
                 .collect(Collectors.toList());
     }
@@ -55,10 +55,10 @@ public class PlanServiceImpl implements PlanService {
 
     @Override
     public void planDelete(UUID id) throws EntityNotFoundException {
-        PlanData plan = (PlanData) defektorRepository.findById(id, planDbFileDir);
+        PlanData plan = (PlanData) defektorRepository.findById(id, plandbFilePath);
         if(plan == null) {
             throw new EntityNotFoundException("");
         }
-        defektorRepository.delete(plan, planDbFileDir);
+        defektorRepository.delete(plan, plandbFilePath);
     }
 }

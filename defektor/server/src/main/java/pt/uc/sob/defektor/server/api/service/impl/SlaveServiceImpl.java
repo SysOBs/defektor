@@ -21,18 +21,18 @@ import java.util.stream.Collectors;
 public class SlaveServiceImpl implements SlaveService {
 
     private final DefektorRepository defektorRepository;
-    private final String slaveDbFileDir = Strings.SLAVE_DB_PATH;
+    private final String slavedbFilePath = Strings.SLAVE_DB_PATH;
 
 
     @Override
     public Slave slaveAdd(Slave slave) throws DuplicateEntryException {
-        defektorRepository.save(Mapper.convertToDAO(slave), slaveDbFileDir);
+        defektorRepository.save(Mapper.convertToDAO(slave), slavedbFilePath);
         return slave;
     }
 
     @Override
     public Slave slaveGet(UUID id) throws EntityNotFoundException {
-        SlaveData slave = (SlaveData) defektorRepository.findById(id, slaveDbFileDir);
+        SlaveData slave = (SlaveData) defektorRepository.findById(id, slavedbFilePath);
 
         if(slave == null)
             //TODO
@@ -43,18 +43,18 @@ public class SlaveServiceImpl implements SlaveService {
 
     @Override
     public List<Slave> slavesList() {
-        return (List<Slave>) defektorRepository.findAll(slaveDbFileDir).stream()
+        return (List<Slave>) defektorRepository.findAll(slavedbFilePath).stream()
                 .map(Mapper::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void slaveDelete(UUID id) throws EntityNotFoundException {
-        SlaveData slave = (SlaveData) defektorRepository.findById(id, slaveDbFileDir);
+        SlaveData slave = (SlaveData) defektorRepository.findById(id, slavedbFilePath);
         if(slave == null) {
             //TODO Message
             throw new EntityNotFoundException("Test");
         }
-        defektorRepository.delete(slave, slaveDbFileDir);
+        defektorRepository.delete(slave, slavedbFilePath);
     }
 }

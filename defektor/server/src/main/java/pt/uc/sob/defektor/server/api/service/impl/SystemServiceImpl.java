@@ -20,22 +20,22 @@ import java.util.stream.Collectors;
 public class SystemServiceImpl implements SystemService {
 
     private final DefektorRepository defektorRepository;
-    private final String dbFileDir = Strings.SYS_CONFIG_DB_PATH;
+    private final String dbFilePath = Strings.SYS_CONFIG_DB_PATH;
 
     @Override
     public SystemConfig sysConfigAdd(SystemConfig config) throws DuplicateEntryException {
-        defektorRepository.save(SystemConfigMapper.convertToDAO(config), dbFileDir);
+        defektorRepository.save(SystemConfigMapper.convertToDAO(config), dbFilePath);
         return config;
     }
 
     @Override
     public List<SystemConfigData> sysConfigListDAO() {
-        return (List<SystemConfigData>) defektorRepository.findAll(dbFileDir);
+        return (List<SystemConfigData>) defektorRepository.findAll(dbFilePath);
     }
 
     @Override
     public List<SystemConfig> sysConfigList() {
-        return (List<SystemConfig>) defektorRepository.findAll(dbFileDir).stream()
+        return (List<SystemConfig>) defektorRepository.findAll(dbFilePath).stream()
                 .map(Mapper::convertToDTO)
                 .collect(Collectors.toList());
     }
