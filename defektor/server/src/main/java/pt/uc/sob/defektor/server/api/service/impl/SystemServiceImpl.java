@@ -4,39 +4,31 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
-import pt.uc.sob.defektor.server.api.mapper.Mapper;
-import pt.uc.sob.defektor.server.api.mapper.SystemConfigMapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SystemService;
-import pt.uc.sob.defektor.server.model.Plan;
-import pt.uc.sob.defektor.server.model.SystemConfig;
 import pt.uc.sob.defektor.server.utils.Strings;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class SystemServiceImpl implements SystemService {
 
-    private final DefektorRepository defektorRepository;
-    private final String dbFilePath = Strings.SYS_CONFIG_DB_PATH;
+    private final DefektorRepository<SystemConfigData> defektorRepository;
+    private final String dbFilePath = Strings.DB.SYS_CONFIG_DB_PATH;
 
     @Override
-    public SystemConfig sysConfigAdd(SystemConfig config) throws DuplicateEntryException {
-        defektorRepository.save(SystemConfigMapper.convertToDAO(config), dbFilePath);
-        return config;
+    public void sysConfigAdd(SystemConfigData systemConfig) throws DuplicateEntryException {
+        defektorRepository.save(systemConfig, dbFilePath);
     }
 
     @Override
     public List<SystemConfigData> sysConfigListDAO() {
-        return (List<SystemConfigData>) defektorRepository.findAll(dbFilePath);
+        return defektorRepository.findAll(dbFilePath);
     }
 
     @Override
-    public List<SystemConfig> sysConfigList() {
-        return (List<SystemConfig>) defektorRepository.findAll(dbFilePath).stream()
-                .map(Mapper::convertToDTO)
-                .collect(Collectors.toList());
+    public List<SystemConfigData> sysConfigList() {
+        return defektorRepository.findAll(dbFilePath);
     }
 }

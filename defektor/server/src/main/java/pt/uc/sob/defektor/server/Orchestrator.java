@@ -8,8 +8,7 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
-import pt.uc.sob.defektor.server.api.data.KeyValueData;
-import pt.uc.sob.defektor.server.api.data.SystemConfigData;
+import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.model.*;
 import pt.uc.sob.defektor.server.pluginization.IjkPluginFactory;
@@ -28,15 +27,15 @@ public class Orchestrator {
     private final SystemService systemService;
 
     @Async
-    public void conductProcess(Plan plan) {
+    public void conductProcess(PlanData plan) {
 
-        for (Injektion injektion : plan.getInjektions()) {
+        for (InjektionData injektion : plan.getInjektions()) {
 
-            WorkLoad workLoad = injektion.getWorkLoad();
-            WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
+            WorkLoadData workLoad = injektion.getWorkLoad();
+//            WorkloadGenerator workloadGenerator = workloadComposer(workLoad);
 
             //TODO APPLY LOAD GEN (HAVE TO FIGURE A WAY TO MAKE THIS SYS AGNOSTIC)
-            applyLoadGen(workloadGenerator, workLoad.getDuration());
+//            applyLoadGen(workloadGenerator, workLoad.getDuration());
 
             String systemName = plan.getSystem().getName();
             List<SystemConfig> sysConfigList = buildSysConfigObject(systemName);
@@ -49,21 +48,29 @@ public class Orchestrator {
             }
 
             for (SystemPlug systemPlug : systemPlugs){
-                buildIjkParams(injektion.getIjk().getParams());
-                InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(injektion.getIjk().getName(), systemPlug);
-                injektorPlug.performInjection(buildIjkParams(injektion.getIjk().getParams()));
+                performInjection(injektion, systemPlug);
             }
 
-//            sleep(60);
 
-            applyLoadGen(workloadGenerator, workLoad.getDuration());
+//            applyLoadGen(workloadGenerator, workLoad.getDuration());
 
         }
     }
 
-    private IjkParam buildIjkParams(List<KeyValue> params) {
+    private void performInjection(InjektionData injektion, SystemPlug systemPlug) {
+        //TODO GOTTA DO PROBABLY SOME ASYNC METHOD TO HANLDE MULTIPLE INJEKTIONS
+        buildIjkParams(injektion.getIjk().getParams());
+        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(injektion.getIjk().getName(), systemPlug);
+        injektorPlug.performInjection(buildIjkParams(injektion.getIjk().getParams()));
+        sleep(60);
+        injektorPlug.stopInjection();
+        System.out.println("STOPPED INJECTION");
+    }
+
+
+    private IjkParam buildIjkParams(List<KeyValueData> params) {
         JSONObject jsonObject = new JSONObject();
-        for(KeyValue keyValue : params){
+        for(KeyValueData keyValue : params){
             jsonObject.put(keyValue.getKey(), keyValue.getValue());
         }
         return new IjkParam(jsonObject);

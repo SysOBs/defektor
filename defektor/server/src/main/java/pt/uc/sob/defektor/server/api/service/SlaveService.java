@@ -1,5 +1,6 @@
 package pt.uc.sob.defektor.server.api.service;
 
+import pt.uc.sob.defektor.server.api.data.SlaveData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.model.Slave;
@@ -10,11 +11,11 @@ import java.util.UUID;
 
 public interface SlaveService {
 
-    Slave slaveAdd(Slave slave) throws DuplicateEntryException;
+    void slaveAdd(SlaveData slave) throws DuplicateEntryException;
 
-    Slave slaveGet(UUID uuid) throws EntityNotFoundException;
+    SlaveData slaveGet(UUID uuid) throws EntityNotFoundException;
 
-    List<Slave> slavesList();
+    List<SlaveData> slavesList();
 
     void slaveDelete(UUID id) throws EntityNotFoundException;
 }

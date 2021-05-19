@@ -1,6 +1,7 @@
 package pt.uc.sob.defektor.server.pluginization;
 
 import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.File;
@@ -13,8 +14,6 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import static pt.uc.sob.defektor.server.utils.Strings.KUBERNETES;
-import static pt.uc.sob.defektor.server.utils.Strings.VIRTUAL_MACHINE;
 
 
 public class IjkPluginFactory extends AbstractPluginFactory {
@@ -47,7 +46,6 @@ public class IjkPluginFactory extends AbstractPluginFactory {
         classMap.clear();
 
         for (String path : pluginPaths) {
-            //TODO Merge all URLs in the same ClassLoader
             try {
                 file = new File(path);
                 jar = new JarFile(file);
@@ -59,10 +57,10 @@ public class IjkPluginFactory extends AbstractPluginFactory {
 
                 Map<String, URLClassLoader> systemsClassLoaders = SystemPluginFactory.getInstance().getClassLoaderMap();
                 String systemName;
-                if(pluginClassName.contains(VIRTUAL_MACHINE))
-                    systemName = VIRTUAL_MACHINE;
-                else if (pluginClassName.contains(KUBERNETES))
-                    systemName = KUBERNETES;
+                if(pluginClassName.contains(Strings.Systems.VIRTUAL_MACHINE))
+                    systemName = Strings.Systems.VIRTUAL_MACHINE;
+                else if (pluginClassName.contains(Strings.Systems.KUBERNETES))
+                    systemName = Strings.Systems.KUBERNETES;
                 else {
                     throw new RuntimeException("Couldn't find the matching system");
                 }

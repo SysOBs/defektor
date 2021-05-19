@@ -1,9 +1,12 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
+import jdk.swing.interop.SwingInterOpUtils;
+import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.Target;
-import pt.uc.sob.defektor.common.com.TargetType;
+import pt.uc.sob.defektor.common.com.data.InjectionStatus;
+import pt.uc.sob.defektor.common.com.data.Target;
+import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
@@ -14,18 +17,41 @@ import java.util.List;
 public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
 
     private final String REBOOT_COMMAND = "sudo reboot";
-    public InstanceRebootIjkPlug (SystemPlug system) {
+
+    public InstanceRebootIjkPlug(SystemPlug system) {
         super(system);
     }
 
+
     @Override
     public void performInjection(IjkParam param) {
-        this.system.sendSSHCommand(REBOOT_COMMAND);
+
+        //TODO DO SOMETHING AFTER INJECTION
+        Thread thread = new Thread() {
+            @SneakyThrows
+            @Override
+            public void run() {
+                Integer interval = Integer.parseInt(
+                        (String) param.getJsonIjkParam().get("interval"));
+
+                injectionStatus = InjectionStatus.RUNNING;
+                while (true) {
+                    if (injectionStatus == InjectionStatus.STOPPING) {
+                        injectionStatus = InjectionStatus.STOPPED;
+                        break;
+                    }
+                    system.sendSSHCommand(REBOOT_COMMAND);
+                    sleep(interval * 1000);
+                }
+                injectionStatus = InjectionStatus.STOPPING;
+            }
+        };
+        thread.start();
     }
 
     @Override
     public void stopInjection() {
-
+        injectionStatus = InjectionStatus.STOPPING;
     }
 
     @Override

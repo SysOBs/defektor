@@ -16,6 +16,7 @@ import java.util.UUID;
 public class PlanData implements Serializable {
   private UUID id;
   private String name;
+  private SystemTypeData system;
   private List<InjektionData> injektions = new ArrayList<>();
 
   @Override

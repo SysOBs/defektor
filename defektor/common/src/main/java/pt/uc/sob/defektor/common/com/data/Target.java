@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.common.com;
+package pt.uc.sob.defektor.common.com.data;
 
 public abstract class Target {
 	private TargetType type;

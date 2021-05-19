@@ -7,16 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
+import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
+import pt.uc.sob.defektor.server.api.mapper.PlanMapper;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("${openapi.server.base-path:/defektor-api/1.0.0}")
@@ -29,15 +31,20 @@ public class PlanController implements PlanApi {
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
-        return new ResponseEntity<>(planService.plansList(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                planService.plansList().stream()
+                        .map(PlanMapper::convertToDTO)
+                        .collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
+        PlanData planData = PlanMapper.convertToDAO(plan);
         try {
-            planService.planValidate(plan);
-            planService.planAdd(plan);
-            orchestrator.conductProcess(plan);
+            planService.planValidate(planData);
+            planService.planAdd(planData);
+            orchestrator.conductProcess(planData);
             return new ResponseEntity<>(plan, HttpStatus.CREATED);
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +61,9 @@ public class PlanController implements PlanApi {
     @Override
     public ResponseEntity<Plan> planGet(UUID id) {
         try {
-            return new ResponseEntity<>(planService.planGet(id), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    PlanMapper.convertToDTO(planService.planGet(id)),
+                    HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

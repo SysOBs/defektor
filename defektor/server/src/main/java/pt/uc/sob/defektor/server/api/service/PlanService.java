@@ -1,5 +1,6 @@
 package pt.uc.sob.defektor.server.api.service;
 
+import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
@@ -11,13 +12,13 @@ import java.util.UUID;
 
 public interface PlanService {
 
-    Plan planAdd(Plan plan) throws IOException, DuplicateEntryException;
+    void planAdd(PlanData plan) throws IOException, DuplicateEntryException;
 
-    Plan planGet(UUID uuid) throws EntityNotFoundException;
+    PlanData planGet(UUID uuid) throws EntityNotFoundException;
 
-    List<Plan> plansList();
+    List<PlanData> plansList();
 
-    void planValidate(Plan plan) throws InvalidPlanException;
+    void planValidate(PlanData plan) throws InvalidPlanException;
 
     void planDelete(UUID id) throws EntityNotFoundException;
 }

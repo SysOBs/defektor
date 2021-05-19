@@ -1,5 +1,6 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 
+
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.Target;
@@ -19,6 +20,7 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
     @Override
     public void performInjection(IjkParam ijkParam) {
         Param param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
+
         String command = null;
 
         if(param.getPid() != null)

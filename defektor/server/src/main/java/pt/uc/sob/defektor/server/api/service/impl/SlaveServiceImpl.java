@@ -9,7 +9,6 @@ import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.utils.Strings;
-import pt.uc.sob.defektor.server.utils.Utils;
 import pt.uc.sob.defektor.server.model.Slave;
 
 import java.util.List;
@@ -20,41 +19,31 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SlaveServiceImpl implements SlaveService {
 
-    private final DefektorRepository defektorRepository;
-    private final String slavedbFilePath = Strings.SLAVE_DB_PATH;
+    private final DefektorRepository<SlaveData> defektorRepository;
+    private final String slaveDBPath = Strings.DB.SLAVE_DB_PATH;
 
 
     @Override
-    public Slave slaveAdd(Slave slave) throws DuplicateEntryException {
-        defektorRepository.save(Mapper.convertToDAO(slave), slavedbFilePath);
+    public void slaveAdd(SlaveData slave) throws DuplicateEntryException {
+        defektorRepository.save(slave, slaveDBPath);
+    }
+
+    @Override
+    public SlaveData slaveGet(UUID id) throws EntityNotFoundException {
+        SlaveData slave = defektorRepository.findById(id, slaveDBPath);
+        if(slave == null) throw new EntityNotFoundException(Strings.Errors.SLAVE_NOT_FOUND);
         return slave;
     }
 
     @Override
-    public Slave slaveGet(UUID id) throws EntityNotFoundException {
-        SlaveData slave = (SlaveData) defektorRepository.findById(id, slavedbFilePath);
-
-        if(slave == null)
-            //TODO
-            throw new EntityNotFoundException("");
-
-        return Mapper.convertToDTO(slave);
-    }
-
-    @Override
-    public List<Slave> slavesList() {
-        return (List<Slave>) defektorRepository.findAll(slavedbFilePath).stream()
-                .map(Mapper::convertToDTO)
-                .collect(Collectors.toList());
+    public List<SlaveData> slavesList() {
+        return defektorRepository.findAll(slaveDBPath);
     }
 
     @Override
     public void slaveDelete(UUID id) throws EntityNotFoundException {
-        SlaveData slave = (SlaveData) defektorRepository.findById(id, slavedbFilePath);
-        if(slave == null) {
-            //TODO Message
-            throw new EntityNotFoundException("Test");
-        }
-        defektorRepository.delete(slave, slavedbFilePath);
+        SlaveData slave = defektorRepository.findById(id, slaveDBPath);
+        if(slave == null) throw new EntityNotFoundException(Strings.Errors.SLAVE_NOT_FOUND);
+        defektorRepository.delete(slave, slaveDBPath);
     }
 }

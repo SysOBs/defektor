@@ -5,12 +5,13 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.TargetType;
+import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class VMSystemPlug extends SystemPlug {
 
@@ -18,7 +19,7 @@ public class VMSystemPlug extends SystemPlug {
 
     public VMSystemPlug(SystemConfig configuration) {
         super(configuration);
-        configure(configuration);
+        configure();
     }
 
     @Override
@@ -37,15 +38,15 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     @Override
-    public void configure(SystemConfig systemConfig) {
-        Config config = Utils.jsonToObject(systemConfig.getJsonSysConfig().toString());
+    public void configure() {
+        Config config = Utils.jsonToObject(configuration.getJsonSysConfig().toString());
         JSch jSch = new JSch();
 
         try {
             jSch.addIdentity(config.getPrivateKey());
             session = jSch.getSession(config.getUsername(), config.getHost(), config.getPort());
             session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
-            Properties properties = new java.util.Properties();
+            Properties properties = new Properties();
             properties.put("StrictHostKeyChecking", "no");
             session.setConfig(properties);
         } catch (JSchException e) {
@@ -55,6 +56,7 @@ public class VMSystemPlug extends SystemPlug {
 
     public void sendSSHCommand(String command) {
         if (this.session == null) throw new RuntimeException("session not defined");
+        closeConnectedSession();
 
         ChannelExec channel = null;
         try {
@@ -64,14 +66,23 @@ public class VMSystemPlug extends SystemPlug {
             channel.setPty(false);
             channel.connect();
         } catch (JSchException e) {
+            configure();
             e.printStackTrace();
         } finally {
-            if (session != null && session.isConnected()) {
-                session.disconnect();
-            }
-            if (channel != null && channel.isConnected()) {
-                channel.disconnect();
-            }
+            closeConnectedSession();
+            closeConnectedChannel(channel);
+        }
+    }
+
+    private void closeConnectedSession() {
+        if (session != null && session.isConnected()) {
+            session.disconnect();
+        }
+    }
+
+    private void closeConnectedChannel(ChannelExec channel) {
+        if (channel != null && channel.isConnected()) {
+            channel.disconnect();
         }
     }
 }

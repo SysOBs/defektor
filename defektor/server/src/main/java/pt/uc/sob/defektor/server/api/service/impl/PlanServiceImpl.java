@@ -10,55 +10,43 @@ import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.utils.Strings;
-import pt.uc.sob.defektor.server.utils.Utils;
-import pt.uc.sob.defektor.server.model.Plan;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PlanServiceImpl implements PlanService {
 
-    private final DefektorRepository defektorRepository;
-    private final String plandbFilePath = Strings.PLAN_DB_PATH;
+    private final DefektorRepository<PlanData> defektorRepository;
+    private final String planDBPath = Strings.DB.PLAN_DB_PATH;
 
     @Override
-    public Plan planAdd(Plan plan) throws DuplicateEntryException {
-        defektorRepository.save(Mapper.convertToDAO(plan), plandbFilePath);
+    public void planAdd(PlanData plan) throws DuplicateEntryException {
+        defektorRepository.save(plan, planDBPath);
+    }
+
+    @Override
+    public PlanData planGet(UUID id) throws EntityNotFoundException {
+        PlanData plan = defektorRepository.findById(id, planDBPath);
+        if(plan == null) throw new EntityNotFoundException("Plan not found");
         return plan;
     }
 
     @Override
-    public Plan planGet(UUID id) throws EntityNotFoundException {
-        PlanData plan = (PlanData) defektorRepository.findById(id, plandbFilePath);
-
-        if(plan == null)
-            //TODO test
-            throw new EntityNotFoundException("");
-
-        return Mapper.convertToDTO(plan);
+    public List<PlanData> plansList() {
+        return defektorRepository.findAll(planDBPath);
     }
 
     @Override
-    public List<Plan> plansList() {
-        return (List<Plan>) defektorRepository.findAll(plandbFilePath).stream()
-                .map(Mapper::convertToDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void planValidate(Plan plan) throws InvalidPlanException {
+    public void planValidate(PlanData plan) throws InvalidPlanException {
         //TODO To implement
     }
 
     @Override
     public void planDelete(UUID id) throws EntityNotFoundException {
-        PlanData plan = (PlanData) defektorRepository.findById(id, plandbFilePath);
-        if(plan == null) {
-            throw new EntityNotFoundException("");
-        }
-        defektorRepository.delete(plan, plandbFilePath);
+        PlanData plan = defektorRepository.findById(id, planDBPath);
+        if(plan == null) throw new EntityNotFoundException("Plan not found");
+        defektorRepository.delete(plan, planDBPath);
     }
 }

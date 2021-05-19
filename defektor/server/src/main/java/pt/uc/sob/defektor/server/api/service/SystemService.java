@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface SystemService {
 
-    SystemConfig sysConfigAdd(SystemConfig config) throws DuplicateEntryException;
+    void sysConfigAdd(SystemConfigData systemConfig) throws DuplicateEntryException;
 
     List<SystemConfigData> sysConfigListDAO();
 
-    List<SystemConfig> sysConfigList();
+    List<SystemConfigData> sysConfigList();
 }
