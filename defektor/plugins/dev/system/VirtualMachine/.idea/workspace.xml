@@ -5,31 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c0d691-115a-4074-ab86-b70d003dc775" name="Default Changelist" comment="Some minor changes in plugins">
-      <change afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/data/InjectionStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/SystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/SystemPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/data/Target.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/TargetType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/src/main/java/pt/uc/sob/defektor/common/com/data/TargetType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/InjektionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/InstanceRebootIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/InstanceRebootIjkPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Param.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/PlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SlaveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SlaveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/data/PlanData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/data/PlanData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/mapper/PlanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/mapper/PlanMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/PlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/SlaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/SlaveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/WorkloadGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/WorkloadGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/data/InjektionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/data/InjektionData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/SystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/SystemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/PlanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/PlanServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SlaveServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SlaveServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SystemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SystemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/utils/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/src/main/java/pt/uc/sob/defektor/server/utils/Strings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../state/plan.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../state/plan.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +133,7 @@
       <workItem from="1621205397651" duration="655000" />
       <workItem from="1621206179139" duration="5732000" />
       <workItem from="1621444850813" duration="594000" />
+      <workItem from="1621448446558" duration="1891000" />
     </task>
     <task id="LOCAL-00001" summary="Some minor changes in plugins">
       <created>1620768922102</created>

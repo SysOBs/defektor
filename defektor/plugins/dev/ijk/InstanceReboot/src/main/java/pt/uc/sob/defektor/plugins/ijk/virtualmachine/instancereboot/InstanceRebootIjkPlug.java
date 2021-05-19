@@ -1,6 +1,5 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
@@ -23,30 +22,23 @@ public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
 
+    @SneakyThrows
     @Override
     public void performInjection(IjkParam param) {
 
-        //TODO DO SOMETHING AFTER INJECTION
-        Thread thread = new Thread() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                Integer interval = Integer.parseInt(
-                        (String) param.getJsonIjkParam().get("interval"));
+        Integer interval = Integer.parseInt(
+                (String) param.getJsonIjkParam().get("interval"));
 
-                injectionStatus = InjectionStatus.RUNNING;
-                while (true) {
-                    if (injectionStatus == InjectionStatus.STOPPING) {
-                        injectionStatus = InjectionStatus.STOPPED;
-                        break;
-                    }
-                    system.sendSSHCommand(REBOOT_COMMAND);
-                    sleep(interval * 1000);
-                }
-                injectionStatus = InjectionStatus.STOPPING;
+        injectionStatus = InjectionStatus.RUNNING;
+        while (true) {
+            if (injectionStatus == InjectionStatus.STOPPING) {
+                injectionStatus = InjectionStatus.STOPPED;
+                break;
             }
-        };
-        thread.start();
+            system.sendSSHCommand(REBOOT_COMMAND);
+            Thread.sleep(interval * 1000);
+        }
+        injectionStatus = InjectionStatus.STOPPING;
     }
 
     @Override

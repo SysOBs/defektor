@@ -10,7 +10,5 @@ public interface SystemService {
 
     void sysConfigAdd(SystemConfigData systemConfig) throws DuplicateEntryException;
 
-    List<SystemConfigData> sysConfigListDAO();
-
     List<SystemConfigData> sysConfigList();
 }

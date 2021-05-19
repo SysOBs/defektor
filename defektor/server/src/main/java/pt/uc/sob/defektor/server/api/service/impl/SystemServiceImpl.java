@@ -23,11 +23,6 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public List<SystemConfigData> sysConfigListDAO() {
-        return defektorRepository.findAll(dbFilePath);
-    }
-
-    @Override
     public List<SystemConfigData> sysConfigList() {
         return defektorRepository.findAll(dbFilePath);
     }

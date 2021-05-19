@@ -4,6 +4,7 @@ import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.Quantity;
 import io.fabric8.kubernetes.api.model.apps.Deployment;
 import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
+import pt.uc.sob.defektor.server.api.data.WorkLoadData;
 import pt.uc.sob.defektor.server.kubernetes.KubernetesController;
 import pt.uc.sob.defektor.server.model.WorkLoad;
 import pt.uc.sob.defektor.server.utils.Utils;
@@ -12,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
-public class WorkloadGenerator extends WorkLoad {
+public class WorkloadGenerator extends WorkLoadData {
 
     public WorkloadGenerator() {
         super();
