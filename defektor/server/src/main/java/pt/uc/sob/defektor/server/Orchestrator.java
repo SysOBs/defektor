@@ -6,11 +6,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
-import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.api.data.InjektionData;
+import pt.uc.sob.defektor.server.api.data.KeyValueData;
+import pt.uc.sob.defektor.server.api.data.PlanData;
+import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.service.SystemService;
-import pt.uc.sob.defektor.server.model.*;
 import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
-import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class Orchestrator {
         List<SystemPlug> systemPlugs = new ArrayList<>();
 
         //TODO IMPROVE EXCEPTION
-        if(sysConfigList.size() == 0) throw new RuntimeException("No systems configured");
+        if (sysConfigList.size() == 0) throw new RuntimeException("No systems configured");
 
         for (SystemConfig sysConfig : sysConfigList) {
             SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance(systemName, sysConfig);

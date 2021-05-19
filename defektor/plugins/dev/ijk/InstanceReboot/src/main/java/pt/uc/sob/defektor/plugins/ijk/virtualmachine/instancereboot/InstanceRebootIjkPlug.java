@@ -22,23 +22,31 @@ public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
 
-    @SneakyThrows
     @Override
     public void performInjection(IjkParam param) {
 
         Integer interval = Integer.parseInt(
                 (String) param.getJsonIjkParam().get("interval"));
 
-        injectionStatus = InjectionStatus.RUNNING;
-        while (true) {
-            if (injectionStatus == InjectionStatus.STOPPING) {
-                injectionStatus = InjectionStatus.STOPPED;
-                break;
-            }
-            system.sendSSHCommand(REBOOT_COMMAND);
-            Thread.sleep(interval * 1000);
-        }
-        injectionStatus = InjectionStatus.STOPPING;
+        new Thread(
+                () -> {
+                    injectionStatus = InjectionStatus.RUNNING;
+                    while (true) {
+                        if (injectionStatus == InjectionStatus.STOPPING) {
+                            injectionStatus = InjectionStatus.STOPPED;
+                            break;
+                        }
+                        system.sendSSHCommand(REBOOT_COMMAND);
+                        sleep(interval);
+                    }
+                    injectionStatus = InjectionStatus.STOPPING;
+                }
+        );
+    }
+
+    @SneakyThrows
+    private void sleep(Integer interval) {
+        Thread.sleep(interval * 1000);
     }
 
     @Override
