@@ -8,4 +8,5 @@ import lombok.Data;
 public class Param {
     private String pid;
     private String processName;
+    private Integer interval;
 }

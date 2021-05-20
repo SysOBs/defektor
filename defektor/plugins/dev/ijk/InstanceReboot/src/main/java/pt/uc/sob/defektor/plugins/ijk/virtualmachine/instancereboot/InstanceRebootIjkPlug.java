@@ -21,15 +21,12 @@ public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
         super(system);
     }
 
-
     @Override
     public void performInjection(IjkParam param) {
-
-        Integer interval = Integer.parseInt(
-                (String) param.getJsonIjkParam().get("interval"));
-
         new Thread(
                 () -> {
+                    Integer interval = Integer.parseInt(
+                            (String) param.getJsonIjkParam().get("interval"));
                     injectionStatus = InjectionStatus.RUNNING;
                     while (true) {
                         if (injectionStatus == InjectionStatus.STOPPING) {
@@ -41,7 +38,7 @@ public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
                     }
                     injectionStatus = InjectionStatus.STOPPING;
                 }
-        );
+        ).start();
     }
 
     @SneakyThrows

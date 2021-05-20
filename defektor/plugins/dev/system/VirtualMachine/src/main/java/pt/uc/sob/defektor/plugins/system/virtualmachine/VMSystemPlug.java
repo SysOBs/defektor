@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 public class VMSystemPlug extends SystemPlug {
 
     protected Session session = null;
 
     public VMSystemPlug(SystemConfig configuration) {
         super(configuration);
-        configure();
     }
 
     @Override
@@ -55,8 +55,8 @@ public class VMSystemPlug extends SystemPlug {
     }
 
     public void sendSSHCommand(String command) {
+        configure();
         if (this.session == null) throw new RuntimeException("session not defined");
-        closeConnectedSession();
 
         ChannelExec channel = null;
         try {
@@ -66,7 +66,6 @@ public class VMSystemPlug extends SystemPlug {
             channel.setPty(false);
             channel.connect();
         } catch (JSchException e) {
-            configure();
             e.printStackTrace();
         } finally {
             closeConnectedSession();

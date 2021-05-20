@@ -37,9 +37,8 @@ public class InjektionController extends InjektionData {
 
     private IjkParam buildIjkParams(List<KeyValueData> params) {
         JSONObject jsonObject = new JSONObject();
-        for (KeyValueData keyValue : params) {
+        for (KeyValueData keyValue : params)
             jsonObject.put(keyValue.getKey(), keyValue.getValue());
-        }
         return new IjkParam(jsonObject);
     }
 
@@ -50,11 +49,10 @@ public class InjektionController extends InjektionData {
 
     public void applyWorkload() {
         System.out.println(new Date() + " - STARTED WORKLOAD");
-        sleep(10);
+        sleep(60);
     }
 
     public void startCampaign() {
-
         new Thread(
                 () -> {
                     applyWorkload();

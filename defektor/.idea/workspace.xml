@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b55f0ba0-0195-4d54-aa4a-e2b352f44142" name="Default Changelist" comment="Orchestrator improvement and some async task adding">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b55f0ba0-0195-4d54-aa4a-e2b352f44142" name="Default Changelist" comment="Mainly refactoring">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/InstanceRebootIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/InstanceRebootIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Param.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/InjektionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/InjektionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/state/plan.db" beforeDir="false" afterPath="$PROJECT_DIR$/state/plan.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +24,53 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Defektor" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.uc.sob.defektor.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pt.uc.sob.defektor.server.Defektor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Defektor" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <servers />
@@ -36,9 +85,18 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Orchestrator improvement and some async task adding" />
     <option name="LAST_COMMIT_MESSAGE" value="Orchestrator improvement and some async task adding" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="pt.uc.sob.defektor.server.api.data.SystemConfigData" memberName="systemType" />
+        <PinnedItemInfo parentTag="pt.uc.sob.defektor.common.plugins.system.virtualmachine.VMSystemPlug" memberName="session" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

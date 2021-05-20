@@ -1,10 +1,12 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 
 
+import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
-import pt.uc.sob.defektor.common.com.Target;
-import pt.uc.sob.defektor.common.com.TargetType;
+import pt.uc.sob.defektor.common.com.data.InjectionStatus;
+import pt.uc.sob.defektor.common.com.data.Target;
+import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
@@ -19,22 +21,44 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
 
     @Override
     public void performInjection(IjkParam ijkParam) {
-        Param param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
+        new Thread(
+                () -> {
+                    Param param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
+                    String command = getCommand(param);
+                    if (command == null)
+                        throw new RuntimeException("NO INSTRUCTION TO WHAT PROCESS THE INJEKTOR SHOULD TARGET");//TODO PROPER EXCEPTION
+                    injectionStatus = InjectionStatus.RUNNING;
+                    while (true) {
+                        if (injectionStatus == InjectionStatus.STOPPING) {
+                            injectionStatus = InjectionStatus.STOPPED;
+                            break;
+                        }
+                        system.sendSSHCommand(command);
+                        sleep(param.getInterval());
+                    }
+                    injectionStatus = InjectionStatus.STOPPING;
+                }
+        ).start();
 
-        String command = null;
+    }
 
-        if(param.getPid() != null)
-            command = "kill -9 " + param.getPid();
-        else if(param.getProcessName() != null)
-            command = "killall " + param.getProcessName();
+    private String getCommand(Param param) {
+        if (param.getPid() != null)
+            return "kill -9 " + param.getPid();
+        else if (param.getProcessName() != null)
+            return "killall " + param.getProcessName();
+        else
+            return null;
+    }
 
-        //TODO if diferente de null
-        this.system.sendSSHCommand(command);
+    @SneakyThrows
+    private void sleep(Integer interval) {
+        Thread.sleep(interval * 1000);
     }
 
     @Override
     public void stopInjection() {
-        
+        injectionStatus = InjectionStatus.STOPPING;
     }
 
     @Override
