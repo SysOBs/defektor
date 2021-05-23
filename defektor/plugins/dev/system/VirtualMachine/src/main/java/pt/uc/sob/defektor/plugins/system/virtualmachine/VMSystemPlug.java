@@ -11,7 +11,6 @@ import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 
 public class VMSystemPlug extends SystemPlug {

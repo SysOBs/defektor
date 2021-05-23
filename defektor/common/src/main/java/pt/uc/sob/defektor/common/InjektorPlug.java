@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class InjektorPlug <S extends SystemPlug>{
 
     protected S system;
-    protected InjectionStatus injectionStatus = InjectionStatus.STOPPED;
+    protected volatile InjectionStatus injectionStatus = InjectionStatus.STOPPED;
 
     public InjektorPlug(SystemPlug system) {
         this.system = (S) system;

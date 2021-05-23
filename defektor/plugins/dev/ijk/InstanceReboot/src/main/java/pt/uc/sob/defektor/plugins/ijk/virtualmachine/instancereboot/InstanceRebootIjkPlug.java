@@ -36,7 +36,6 @@ public class InstanceRebootIjkPlug extends InjektorPlug<VMSystemPlug> {
                         system.sendSSHCommand(REBOOT_COMMAND);
                         sleep(interval);
                     }
-                    injectionStatus = InjectionStatus.STOPPING;
                 }
         ).start();
     }
