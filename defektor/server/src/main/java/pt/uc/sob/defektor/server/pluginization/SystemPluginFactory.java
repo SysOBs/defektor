@@ -40,6 +40,7 @@ public class SystemPluginFactory extends AbstractPluginFactory {
         Class clazz;
         classMap.clear();
 
+        if(pluginPaths == null) return;
         for (String path : pluginPaths) {
             try {
                 file = new File(path);

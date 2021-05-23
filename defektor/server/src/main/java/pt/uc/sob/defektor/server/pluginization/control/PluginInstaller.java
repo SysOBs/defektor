@@ -20,7 +20,10 @@ public class PluginInstaller {
     }
 
     protected List<String> getPluginList() {
-        return Stream.of(new File(this.pluginPath).listFiles())
+        File[] fileList = new File(this.pluginPath).listFiles();
+        if(fileList == null) return null;
+
+        return Stream.of(fileList)
                 .filter(file -> !file.isDirectory())
                 .map(f -> this.pluginPath + File.separator + f.getName())
                 .filter(f -> f.endsWith(".jar"))
