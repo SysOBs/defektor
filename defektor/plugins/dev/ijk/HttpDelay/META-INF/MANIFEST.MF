@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Command: http-delay
-PluginClass: pt.uc.sob.defektor.common.plugins.ijk.httpdelay.HttpDelay
+PluginName: httpdelay
+PluginClass: pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay.HttpDelayIjkPlug

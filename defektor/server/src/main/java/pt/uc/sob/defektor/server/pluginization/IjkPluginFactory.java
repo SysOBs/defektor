@@ -55,19 +55,11 @@ public class IjkPluginFactory extends AbstractPluginFactory {
                 pluginClassName = man.getMainAttributes().getValue("PluginClass");
                 jar.close();
                 urls = new URL[]{ new URL("jar:file:" + file.getPath() + "!/") };
-
                 Map<String, URLClassLoader> systemsClassLoaders = SystemPluginFactory.getInstance().getClassLoaderMap();
-                String systemName;
-                if(pluginClassName.contains(Strings.Systems.VIRTUAL_MACHINE))
-                    systemName = Strings.Systems.VIRTUAL_MACHINE;
-                else if (pluginClassName.contains(Strings.Systems.KUBERNETES))
-                    systemName = Strings.Systems.KUBERNETES;
-                else {
-                    throw new RuntimeException("Couldn't find the matching system");
-                }
 
+                String systemName = Utils.getSystemNameFromClassName(pluginClassName);
+                System.out.println(systemName);
                 ClassLoader parentClassLoader = systemsClassLoaders.get(systemName);
-
                 cl = URLClassLoader.newInstance(urls, parentClassLoader);
                 classLoaderMap.put(pluginName, cl);
                 clazz = cl.loadClass(pluginClassName);

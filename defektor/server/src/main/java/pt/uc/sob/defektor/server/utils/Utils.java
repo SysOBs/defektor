@@ -1,14 +1,11 @@
 package pt.uc.sob.defektor.server.utils;
 
-import io.fabric8.kubernetes.api.model.EnvVar;
 import pt.uc.sob.defektor.server.Orchestrator;
 
-import java.io.File;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,15 +19,15 @@ public class Utils {
         return true;
     }
 
-    public static List<EnvVar> stringEnvToObject(List<String> stringList){
-        List<EnvVar> envVars = new ArrayList<>();
-
-        for(String stringElement : stringList){
-            String[] splicedString = stringElement.split("=");
-            envVars.add(new EnvVar(splicedString[0], splicedString[1], null));
-        }
-        return envVars;
-    }
+//    public static List<EnvVar> stringEnvToObject(List<String> stringList){
+//        List<EnvVar> envVars = new ArrayList<>();
+//
+//        for(String stringElement : stringList){
+//            String[] splicedString = stringElement.split("=");
+//            envVars.add(new EnvVar(splicedString[0], splicedString[1], null));
+//        }
+//        return envVars;
+//    }
 
     public static String getStringedCurrentDate() {
         String pattern = "MM/dd/yyyy HH:mm:ss";
@@ -49,5 +46,9 @@ public class Utils {
              */
             return null;
         }
+    }
+
+    public static String getSystemNameFromClassName(String pluginClassName) {
+        return pluginClassName.split(".ijk.")[1].split("\\.")[0];
     }
 }

@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Command: http-abort
-PluginClass: pt.uc.sob.defektor.common.plugins.ijk.httpabort.Server
+PluginName: httpabort
+PluginClass: pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort.HttpAbortIjkPlug

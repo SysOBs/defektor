@@ -14,7 +14,7 @@ import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
 public class TestController {
 
     @Test
-    public void performInjection() {
+    public void instanceReboot() {
         new SpringApplication(Defektor.class).run(new String[]{});
 
         JSONObject configJson = new JSONObject();
