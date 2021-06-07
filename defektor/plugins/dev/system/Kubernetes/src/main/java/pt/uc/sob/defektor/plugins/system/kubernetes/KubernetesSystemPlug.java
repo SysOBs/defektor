@@ -1,18 +1,17 @@
 package pt.uc.sob.defektor.plugins.system.kubernetes;
 
-import io.fabric8.kubernetes.api.model.apiextensions.v1.CustomResourceDefinition;
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class KubernetesSystemPlug extends SystemPlug {
 
@@ -46,29 +45,23 @@ public class KubernetesSystemPlug extends SystemPlug {
         kubernetesClient = new DefaultKubernetesClient();
     }
 
-    public void createOrReplaceResourceList(InputStream inputStream, String namespace) {
+    public void createOrReplaceCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, InputStream yamlFileStream, String namespace) {
         try (KubernetesClient client = new DefaultKubernetesClient()) {
-            CustomResourceDefinition crd = client.apiextensions().v1().customResourceDefinitions()
-                    .load(new FileInputStream("/tmp/http-abort16180032887145986177.yaml"))
-                    .get();
-            client.apiextensions().v1().customResourceDefinitions().createOrReplace(crd);
-        } catch (FileNotFoundException e) {
+            Map<String, Object> cr = client
+                    .customResource(customResourceDefinitionContext)
+                    .load(yamlFileStream);
+            client.customResource(customResourceDefinitionContext).create(namespace, cr);
+        } catch (IOException e) {
+            //TODO SOMETHING
             e.printStackTrace();
         }
     }
 
-    public void applyDeployment(String filePath) {
-        try {
-            Runtime.getRuntime().exec("kubectl apply -f " + filePath);
+    public void deleteCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, String namespace, String name) {
+        try (KubernetesClient client = new DefaultKubernetesClient()) {
+            client.customResource(customResourceDefinitionContext).delete(namespace, name);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteDeployment(String filePath) {
-        try {
-            Runtime.getRuntime().exec("kubectl delete -f " + filePath);
-        } catch (IOException e) {
+            //TODO SOMETHING
             e.printStackTrace();
         }
     }

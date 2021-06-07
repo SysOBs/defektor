@@ -27,10 +27,18 @@ public class TestController {
         SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("virtualmachine", config);
 
         JSONObject paramJson = new JSONObject();
+        paramJson.put("interval", "10");
+
         IjkParam param = new IjkParam(paramJson);
 
         InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("instancereboot", systemPlug);
         injektorPlug.performInjection(param);
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        injektorPlug.stopInjection();
     }
 
     @Test
