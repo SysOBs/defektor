@@ -1,30 +1,46 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
-import org.apache.commons.io.IOUtils;
+import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
 
 import java.io.*;
 
 public class Utils {
 
-    public static File streamToTempFile(InputStream in, String prefix, String suffix) throws IOException {
+    public static File stringBuilderToTempFile(StringBuilder stringBuilder, String prefix, String suffix) throws IOException {
         final File tempFile = File.createTempFile(prefix, suffix);
-        //TODO MUST UNCOMMENT
-//        tempFile.deleteOnExit();
-        try (FileOutputStream out = new FileOutputStream(tempFile)) {
-            IOUtils.copy(in, out);
+        tempFile.deleteOnExit();
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(tempFile));
+            writer.write(stringBuilder.toString());
+        } finally {
+            if (writer != null) writer.close();
         }
         return tempFile;
     }
 
-    public static InputStream changeYAMLManifest(File file, Param param) {
+    public static StringBuilder changedYAMLManifest(InputStream inputStream, Param param) {
+        StringBuilder stringBuilder = new StringBuilder();
         try {
-            InputStream inputStream = new FileInputStream(file);
             MyReader myReader = new MyReader(new InputStreamReader(inputStream), param);
-            while (myReader.readLine() != null) ;
-            return inputStream;
+            String buffer;
+            while ((buffer = myReader.readLine()) != null) {
+                stringBuilder.append(buffer + System.lineSeparator());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return stringBuilder;
+    }
+
+    public static CustomResourceDefinitionContext buildCustomResourceDefinitionContext() {
+        return new CustomResourceDefinitionContext
+                .Builder()
+                .withGroup("networking.istio.io")
+                .withKind("VirtualService")
+                .withVersion("v1beta1")
+                .withScope("Namespaced")
+                .withPlural("virtualservices")
+                .build();
     }
 }

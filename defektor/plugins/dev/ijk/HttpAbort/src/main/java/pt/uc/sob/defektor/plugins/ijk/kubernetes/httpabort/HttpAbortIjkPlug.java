@@ -1,5 +1,6 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
+import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.data.Target;
@@ -8,10 +9,13 @@ import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort.Utils.*;
 
 public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
@@ -19,39 +23,45 @@ public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     private static final String SUFFIX = ".yaml";
     private static final String MANIFEST_NAME = "virtual-service-http-abort.yaml";
     private File yamlFile = null;
+    private Param param;
 
     public HttpAbortIjkPlug(SystemPlug system) {
         super(system);
     }
 
+    @SneakyThrows
     @Override
     public void performInjection(IjkParam ijkParam) {
-        Param param = new Param("uc1", "web","web.uc-1.svc.cluster.local","500", "100");
+        param = new Param("uc1", "web", "web.uc-1.svc.cluster.local", "500", "100");
         InputStream in = HttpAbortIjkPlug.class.getClassLoader().getResourceAsStream(MANIFEST_NAME);
-
         try {
-            yamlFile = Utils.streamToTempFile(in, PREFIX, SUFFIX);
+            this.yamlFile =
+                    stringBuilderToTempFile(
+                            changedYAMLManifest(in, param),
+                            PREFIX,
+                            SUFFIX
+                    );
+
+            this.system.createOrReplaceCustomResource(
+                    buildCustomResourceDefinitionContext(),
+                    new FileInputStream(yamlFile),
+                    param.getNamespace()
+            );
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Utils.changeYAMLManifest(yamlFile, param);
-        this.system.applyDeployment(yamlFile.getAbsolutePath());
     }
-
 
     @Override
     public void stopInjection() {
-        System.out.println(yamlFile.getAbsolutePath());
-        this.system.deleteDeployment(yamlFile.getAbsolutePath());
+        this.system.deleteCustomResource(buildCustomResourceDefinitionContext(), param.getNamespace(), param.getService() + "-http-abort");
     }
-
 
     @Override
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                //TODO POD NETWORK??
-                add(TargetType.POD);
+                add(TargetType.SERVICE);
             }
         };
     }
