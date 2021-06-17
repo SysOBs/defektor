@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pt.uc.sob.defektor.server.Orchestrator;
+import pt.uc.sob.defektor.server.campaign.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;

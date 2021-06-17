@@ -1,6 +1,5 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
-import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemPlug;
 import pt.uc.sob.defektor.common.com.data.Target;
@@ -17,6 +16,7 @@ import java.util.List;
 
 import static pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort.Utils.*;
 
+
 public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
     private static final String PREFIX = "http-abort";
@@ -29,10 +29,9 @@ public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
         super(system);
     }
 
-    @SneakyThrows
     @Override
     public void performInjection(IjkParam ijkParam) {
-        param = new Param("uc1", "web", "web.uc-1.svc.cluster.local", "500", "100");
+        param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
         InputStream in = HttpAbortIjkPlug.class.getClassLoader().getResourceAsStream(MANIFEST_NAME);
         try {
             this.yamlFile =

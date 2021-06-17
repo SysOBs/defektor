@@ -13,7 +13,7 @@ import java.util.List;
 public class WorkLoadData implements Serializable {
   private DockerImageData image;
   private String cmd;
-  private List<String> env;
+  private List<KeyValueData> env;
   private Integer replicas;
   private Integer slaves;
   private Integer duration;

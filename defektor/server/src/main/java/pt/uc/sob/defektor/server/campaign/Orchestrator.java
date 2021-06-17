@@ -1,6 +1,6 @@
-package pt.uc.sob.defektor.server;
+package pt.uc.sob.defektor.server.campaign;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,18 @@ import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.service.SystemService;
+import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Orchestrator {
 
     private final SystemService systemService;
+    private final WorkloadGenerator workloadGenerator;
 
     @Async
     public void conductProcess(PlanData plan) {
@@ -31,7 +33,9 @@ public class Orchestrator {
                     injektion.getIjk(),
                     injektion.getWorkLoad(),
                     injektion.getTarget(),
-                    getCompatibleSystemList(plan.getSystem().getName())
+                    getCompatibleSystemList(plan.getSystem().getName()),
+                    workloadGenerator,
+                    plan.getId()
             );
             injektionController.startCampaign();
         }

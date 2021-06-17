@@ -10,7 +10,8 @@ spec:
     - fault:
         abort:
           httpStatus: <httpStatus>
-          percent: <percentage>
+          percentage:
+            value: <percentage>
       route:
         - destination:
             host: <host>

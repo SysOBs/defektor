@@ -1,10 +1,15 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
+import com.google.gson.Gson;
 import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
 
 import java.io.*;
 
 public class Utils {
+
+    public static Param jsonToObject(String json) {
+        return new Gson().fromJson(json, Param.class);
+    }
 
     public static File stringBuilderToTempFile(StringBuilder stringBuilder, String prefix, String suffix) throws IOException {
         final File tempFile = File.createTempFile(prefix, suffix);

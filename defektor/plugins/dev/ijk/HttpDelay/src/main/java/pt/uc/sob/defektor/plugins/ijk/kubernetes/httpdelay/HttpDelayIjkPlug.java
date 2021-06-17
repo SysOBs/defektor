@@ -50,7 +50,7 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
             e.printStackTrace();
         }
     }
-e
+
     @Override
     public void stopInjection() {
         this.system.deleteCustomResource(buildCustomResourceDefinitionContext(), param.getNamespace(), param.getService() + "-http-delay");
