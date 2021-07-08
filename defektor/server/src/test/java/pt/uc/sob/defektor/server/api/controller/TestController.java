@@ -4,12 +4,12 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import pt.uc.sob.defektor.server.Defektor;
-import pt.uc.sob.defektor.server.pluginization.IjkPluginFactory;
-import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.SystemConnectorPluginFactory;
 
 public class TestController {
 
@@ -24,14 +24,14 @@ public class TestController {
         configJson.put("privateKey", "~/.ssh/id_rsa");
 
         SystemConfig config = new SystemConfig(configJson);
-        SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("virtualmachine", config);
+        SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) SystemConnectorPluginFactory.getInstance().getPluginInstance("virtualmachine", config);
 
         JSONObject paramJson = new JSONObject();
         paramJson.put("interval", "10");
 
         IjkParam param = new IjkParam(paramJson);
 
-        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("instancereboot", systemPlug);
+        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("instancereboot", systemConnectorPlug);
         injektorPlug.performInjection(param);
         try {
             Thread.sleep(15000);

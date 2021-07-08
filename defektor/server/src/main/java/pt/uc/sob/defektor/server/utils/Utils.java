@@ -3,6 +3,7 @@ package pt.uc.sob.defektor.server.utils;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Utils {
 
@@ -24,5 +25,9 @@ public class Utils {
             returnedString += " -e " + keyValue.getKey() + "=" + keyValue.getValue();
         }
         return returnedString;
+    }
+
+    public static UUID generateUUID() {
+        return UUID.randomUUID();
     }
 }

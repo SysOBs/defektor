@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.api.SlaveApi;
+import pt.uc.sob.defektor.server.api.data.SlaveData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.mapper.SlaveMapper;
@@ -36,8 +37,8 @@ public class SlaveController implements SlaveApi {
     @Override
     public ResponseEntity<Slave> slaveAdd(@Valid Slave slave) {
         try {
-            slaveService.slaveAdd(SlaveMapper.convertToDAO(slave));
-            return new ResponseEntity<>(slave, HttpStatus.CREATED);
+            SlaveData slaveData = slaveService.slaveAdd(SlaveMapper.convertToDAO(slave));
+            return new ResponseEntity<>(SlaveMapper.convertToDTO(slaveData), HttpStatus.CREATED);
         } catch (DuplicateEntryException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

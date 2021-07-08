@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface SlaveService {
 
-    void slaveAdd(SlaveData slave) throws DuplicateEntryException;
+    SlaveData slaveAdd(SlaveData slave) throws DuplicateEntryException;
 
     SlaveData slaveGet(UUID uuid) throws EntityNotFoundException;
 

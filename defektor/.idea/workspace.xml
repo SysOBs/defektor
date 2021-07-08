@@ -4,33 +4,261 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b55f0ba0-0195-4d54-aa4a-e2b352f44142" name="Default Changelist" comment="Misc">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/workloadgen/SSHConnectionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/workloadgen/WorkloadGenerator.java" afterDir="false" />
+    <list default="true" id="b55f0ba0-0195-4d54-aa4a-e2b352f44142" name="Default Changelist" comment="Lot of work done. Slave machines are working">
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/pt/uc/sob/defektor/common/DataCollectorPlug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/PodDelete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Param.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/PodDelete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/PodDelete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_projectlombok_lombok_1_18_18.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/factories/DataCollectorPluginFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/factories/SystemConnectorPluginFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/HttpAbortIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/HttpAbortIjkPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Param.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/resources/virtual-service-http-abort.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/resources/virtual-service-http-abort.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/HttpDelayIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/HttpDelayIjkPlug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/InjektionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/InjektionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/Orchestrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/WorkloadGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/pt/uc/sob/defektor/common/InjektorPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/pt/uc/sob/defektor/common/SystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/pt/uc/sob/defektor/common/SystemConnectorPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/FindTerminator/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/PodDelete.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/HttpAbortIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/HttpAbortIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/MyReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/MyReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Param.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpabort/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpAbort/src/main/resources/virtual-service-http-abort.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/src/main/resources/virtual-service-http-abort.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/PodDelete.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/HttpDelayIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/HttpDelayIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/MyReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/MyReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/Param.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/src/main/java/pt/uc/sob/defektor/plugins/ijk/kubernetes/httpdelay/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/HttpDelay/src/main/resources/virtual-service-http-delay.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/src/main/resources/virtual-service-http-delay.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/InstanceReboot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/MachineShutdown.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_json_json_20210307.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_projectlombok_lombok_1_18_18.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/libraries/Maven__pt_uc_sob_defektor_common_1_0_0_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/PodDelete.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpAbort/PodDelete.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/InstanceRebootIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/MachineShutdownIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Param.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/InstanceReboot/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/instancereboot/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/PodDelete.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/pod-delete.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/pod-delete.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDeleteIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/src/main/java/pt/uc/sob/defektor/common/plugins/ijk/poddelete/PodDeleteIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/PodDelete/src/main/resources/pod_delete.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/src/main/resources/pod_delete.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/libraries/Maven__org_json_json_20210307.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/PodDelete.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/HttpDelay/PodDelete.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/processterminator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/processterminator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Param.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/ProcessTerminatorIjkPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/ijk/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/src/main/java/pt/uc/sob/defektor/plugins/ijk/virtualmachine/processterminator/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_11_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_11_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_google_code_gson_gson_2_8_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_google_code_gson_gson_2_8_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_squareup_okhttp3_logging_interceptor_3_12_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_squareup_okhttp3_logging_interceptor_3_12_12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_12_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_12_12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__com_squareup_okio_okio_1_15_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__com_squareup_okio_okio_1_15_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_client_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_client_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_admissionregistration_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_admissionregistration_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_apiextensions_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_apiextensions_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_apps_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_apps_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_autoscaling_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_autoscaling_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_batch_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_batch_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_certificates_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_certificates_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_common_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_common_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_coordination_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_coordination_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_core_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_core_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_discovery_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_discovery_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_events_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_events_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_extensions_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_extensions_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_flowcontrol_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_flowcontrol_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_metrics_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_metrics_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_networking_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_networking_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_node_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_node_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_policy_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_policy_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_rbac_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_rbac_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_scheduling_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_scheduling_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_storageclass_5_4_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_kubernetes_model_storageclass_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__io_fabric8_zjsonpatch_0_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__io_fabric8_zjsonpatch_0_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_json_json_20210307.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__org_yaml_snakeyaml_1_26.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__org_yaml_snakeyaml_1_26.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/libraries/Maven__pt_uc_sob_defektor_common_1_0_0_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/PodDelete/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/kubernetes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/kubernetes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/KubernetesSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/KubernetesSystemPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/Kubernetes/src/main/java/pt/uc/sob/defektor/plugins/system/kubernetes/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/VirtualMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/VirtualMachine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_aether_provider_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_aether_provider_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_archiver_3_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_archiver_3_5_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_artifact_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_artifact_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_compat_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_compat_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_core_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_core_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_model_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_model_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_model_builder_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_model_builder_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_plugin_api_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_plugin_api_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_repository_metadata_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_repository_metadata_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_settings_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_settings_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_settings_builder_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_maven_settings_builder_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_plugins_maven_assembly_plugin_maven_plugin_3_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_plugins_maven_assembly_plugin_maven_plugin_3_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_file_management_3_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_file_management_3_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_artifact_transfer_0_11_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_artifact_transfer_0_11_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_common_artifact_filters_3_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_common_artifact_filters_3_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_filtering_3_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_filtering_3_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_io_3_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_io_3_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_utils_3_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_utils_3_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_apache_maven_wagon_wagon_provider_api_2_10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_apache_maven_wagon_wagon_provider_api_2_10.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_archiver_4_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_archiver_4_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_classworlds_2_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_classworlds_2_2_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_component_annotations_1_5_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_component_annotations_1_5_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_interpolation_1_25.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_interpolation_1_25.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_io_3_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_io_3_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_3_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_iq80_snappy_snappy_0_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_iq80_snappy_snappy_0_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_json_json_20210307.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/Kubernetes/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_projectlombok_lombok_1_18_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/libraries/Maven__org_projectlombok_lombok_1_18_18.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_api_1_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_api_1_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_impl_1_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_impl_1_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_spi_1_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_spi_1_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_util_1_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_aether_aether_util_1_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_build_api_0_0_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_build_api_0_0_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_cipher_1_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_cipher_1_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_sec_dispatcher_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_plexus_plexus_sec_dispatcher_1_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_guice_noaop_2_1_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_guice_noaop_2_1_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_bean_1_4_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_bean_1_4_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_plexus_1_4_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_plexus_1_4_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/libraries/Maven__org_tukaani_xz_1_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/libraries/Maven__org_tukaani_xz_1_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/MachineShutdown/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/kubernetes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/kubernetes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/dev/system/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/dev/system connector/VirtualMachine/src/main/java/pt/uc/sob/defektor/plugins/system/virtualmachine/VMSystemPlug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/bootsrap/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/bootsrap/Bootstrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/IjkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/IjkController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/PlanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/SlaveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/controller/SlaveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/data/WorkLoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/data/WorkLoadData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/mapper/WorkLoadMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/mapper/WorkLoadMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/data/InjektionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/data/InjektionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/repository/DefektorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/repository/DefektorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/repository/impl/DefektorRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/repository/impl/DefektorRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/PlanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/SlaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/SlaveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/PlanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/PlanServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SlaveServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/api/service/impl/SlaveServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/InjektionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/InjektionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/Orchestrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/AbstractPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/AbstractPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/IjkPluginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/factories/IjkPluginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/pluginization/SystemPluginFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/resources/defektorOpenAPISpec" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/defektorOpenAPISpec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/resources/defektorOpenAPISpec/defektorOpenAPISpec.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/defektorOpenAPISpec/defektorOpenAPISpec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/KubernetesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/KubernetesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/PluginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/PluginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/pt/uc/sob/defektor/server/api/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/state/plan.db" beforeDir="false" afterPath="$PROJECT_DIR$/state/plan.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/state/slave.db" beforeDir="false" afterPath="$PROJECT_DIR$/state/slave.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/state/sysconfig.db" beforeDir="false" afterPath="$PROJECT_DIR$/state/sysconfig.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +302,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/plugins/dev/injektor/ProcessTerminator" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -87,8 +315,23 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="pt.uc.sob.defektor.server" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pt.uc.sob.defektor.server.pluginization" />
+      <recent name="pt.uc.sob.defektor.common" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Defektor">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KubernetesTest.applyDeploymentHttpAbort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -208,8 +451,19 @@
       <workItem from="1623078634491" duration="40000" />
       <workItem from="1623343888028" duration="438000" />
       <workItem from="1623366898778" duration="17278000" />
-      <workItem from="1623871640523" duration="3022000" />
+      <workItem from="1623871640523" duration="12383000" />
+      <workItem from="1625756950319" duration="64000" />
+      <workItem from="1625757046094" duration="837000" />
+      <workItem from="1625757931874" duration="1027000" />
     </task>
+    <task id="LOCAL-00001" summary="Lot of work done. Slave machines are working">
+      <created>1623893068023</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623893068023</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,15 +483,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Orchestrator improvement and some async task adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Orchestrator improvement and some async task adding" />
+    <MESSAGE value="Lot of work done. Slave machines are working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lot of work done. Slave machines are working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/utils/Utils.java</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/pt/uc/sob/defektor/server/campaign/workloadgen/WorkloadGenerator.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -51,9 +51,15 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
     public void delete(T plan, String dbFilePath) {
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
-
         tList.remove(plan);
+        db.close();
+    }
 
+    @Override
+    public void deleteAll(String dbFilePath) {
+        DB db = DBMaker.fileDB(dbFilePath).make();
+        List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
+        tList.clear();
         db.close();
     }
 

@@ -13,5 +13,7 @@ public interface DefektorRepository<T> {
 
     void delete(T plan, String dbFilePath);
 
+    void deleteAll(String dbFilePath);
+
     List<T> findAll(String dbFilePath);
 }

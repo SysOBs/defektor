@@ -10,6 +10,7 @@ import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.model.Slave;
+import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,8 +25,10 @@ public class SlaveServiceImpl implements SlaveService {
 
 
     @Override
-    public void slaveAdd(SlaveData slave) throws DuplicateEntryException {
+    public SlaveData slaveAdd(SlaveData slave) throws DuplicateEntryException {
+        slave.setId(Utils.generateUUID());
         defektorRepository.save(slave, slaveDBPath);
+        return slave;
     }
 
     @Override

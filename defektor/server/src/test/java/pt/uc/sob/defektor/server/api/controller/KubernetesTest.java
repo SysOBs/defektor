@@ -4,12 +4,12 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import pt.uc.sob.defektor.server.Defektor;
-import pt.uc.sob.defektor.server.pluginization.IjkPluginFactory;
-import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.SystemConnectorPluginFactory;
 
 public class KubernetesTest {
 
@@ -18,12 +18,12 @@ public class KubernetesTest {
         new SpringApplication(Defektor.class).run(new String[]{});
 
         SystemConfig config = new SystemConfig(new JSONObject());
-        SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("kubernetes", config);
+        SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) SystemConnectorPluginFactory.getInstance().getPluginInstance("kubernetes", config);
 
         JSONObject paramJson = new JSONObject();
         IjkParam param = new IjkParam(paramJson);
 
-        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("httpdelay", systemPlug);
+        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("httpdelay", systemConnectorPlug);
         injektorPlug.performInjection(param);
         try {
             Thread.sleep(15000);
@@ -38,12 +38,12 @@ public class KubernetesTest {
         new SpringApplication(Defektor.class).run(new String[]{});
 
         SystemConfig config = new SystemConfig(new JSONObject());
-        SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance("kubernetes", config);
+        SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) SystemConnectorPluginFactory.getInstance().getPluginInstance("kubernetes", config);
 
         JSONObject paramJson = new JSONObject();
         IjkParam param = new IjkParam(paramJson);
 
-        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("httpabort", systemPlug);
+        InjektorPlug injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance("httpabort", systemConnectorPlug);
         injektorPlug.performInjection(param);
         try {
             Thread.sleep(15000);

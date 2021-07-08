@@ -7,14 +7,16 @@ import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 
 import java.util.List;
 
-public abstract class InjektorPlug <S extends SystemPlug>{
+public abstract class InjektorPlug <S extends SystemConnectorPlug>{
 
     protected S system;
     protected volatile InjectionStatus injectionStatus = InjectionStatus.STOPPED;
 
-    public InjektorPlug(SystemPlug system) {
+    public InjektorPlug(SystemConnectorPlug system) {
         this.system = (S) system;
     }
+
+    public abstract void help();
 
     public abstract void performInjection(IjkParam param);
 
@@ -25,11 +27,5 @@ public abstract class InjektorPlug <S extends SystemPlug>{
     public abstract List<Target> getTargetInstancesByType(TargetType targetType);
 
     public InjectionStatus getInjectionStatus() { return injectionStatus; };
-
-    public abstract Class getTheNameOfTheClass();
-
-
-    //TODO os ijks plugin têm de "conhecer" os system types plugs
-    //TODO O injektor plug tem que conhecer que system type é que interopera
 
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface PlanService {
 
-    void planAdd(PlanData plan) throws IOException, DuplicateEntryException;
+    PlanData planAdd(PlanData plan) throws IOException, DuplicateEntryException;
 
     PlanData planGet(UUID uuid) throws EntityNotFoundException;
 
@@ -20,4 +20,6 @@ public interface PlanService {
     void planValidate(PlanData plan) throws InvalidPlanException;
 
     void planDelete(UUID id) throws EntityNotFoundException;
+
+    void allPlansDelete();
 }

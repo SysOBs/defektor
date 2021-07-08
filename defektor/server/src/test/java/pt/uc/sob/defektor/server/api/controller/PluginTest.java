@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.api.controller;
 import org.json.JSONObject;
 import org.junit.Test;
 import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 
 import java.io.File;
@@ -33,7 +33,7 @@ public class PluginTest {
         object.put("privateKey", "~/.ssh/id_rsa");
 
         SystemConfig config = new SystemConfig(object);
-        SystemPlug systemPlug = (SystemPlug) vmClass.getConstructor(SystemConfig.class).newInstance(config);
+        SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) vmClass.getConstructor(SystemConfig.class).newInstance(config);
 
 
         String ijkPath = DESKTOP_DIR + "/defektor/defektor/plugins/libs/ijk/instancereboot.jar";
@@ -42,7 +42,7 @@ public class PluginTest {
         ClassLoader ijkClassLoader = URLClassLoader.newInstance(ijkUrls);
         String className = "pt.uc.sob.defektor.plugins.ijk.instancereboot.InstanceRebootIjkPlug";
         Class ijkClass = ijkClassLoader.loadClass(className);
-        InjektorPlug injektorPlug = (InjektorPlug) ijkClass.getConstructor(SystemPlug.class).newInstance(systemPlug);
+        InjektorPlug injektorPlug = (InjektorPlug) ijkClass.getConstructor(SystemConnectorPlug.class).newInstance(systemConnectorPlug);
         System.out.println(injektorPlug.getTargetTypes());
 
     }

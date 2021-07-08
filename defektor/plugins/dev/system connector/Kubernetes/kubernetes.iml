@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Maven: pt.uc.sob.defektor:common:1.0.0-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../common/target/common-1.0.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-client:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-core:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-common:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-rbac:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-admissionregistration:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-apps:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-autoscaling:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-apiextensions:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-batch:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-certificates:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-coordination:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-discovery:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-events:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-extensions:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-flowcontrol:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-networking:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-metrics:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-policy:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-scheduling:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-storageclass:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:kubernetes-model-node:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.12.12" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.15.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:logging-interceptor:3.12.12" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.26" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: io.fabric8:zjsonpatch:0.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.mifmif:generex:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: dk.brics.automaton:automaton:1.11-8" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20210307" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.7" level="project" />
+  </component>
+</module>

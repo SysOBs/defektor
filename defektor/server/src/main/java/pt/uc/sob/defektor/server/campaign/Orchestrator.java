@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.SystemPlug;
+import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import pt.uc.sob.defektor.server.api.data.InjektionData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
@@ -12,7 +12,7 @@ import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.data.SystemConfigData;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
-import pt.uc.sob.defektor.server.pluginization.SystemPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.SystemConnectorPluginFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,18 +41,18 @@ public class Orchestrator {
         }
     }
 
-    private List<SystemPlug> getCompatibleSystemList(String systemName) {
+    private List<SystemConnectorPlug> getCompatibleSystemList(String systemName) {
         List<SystemConfig> sysConfigList = buildSysConfigList(systemName);
-        List<SystemPlug> systemPlugs = new ArrayList<>();
+        List<SystemConnectorPlug> systemConnectorPlugs = new ArrayList<>();
 
         //TODO IMPROVE EXCEPTION
         if (sysConfigList.size() == 0) throw new RuntimeException("No systems configured");
 
         for (SystemConfig sysConfig : sysConfigList) {
-            SystemPlug systemPlug = (SystemPlug) SystemPluginFactory.getInstance().getPluginInstance(systemName, sysConfig);
-            systemPlugs.add(systemPlug);
+            SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) SystemConnectorPluginFactory.getInstance().getPluginInstance(systemName, sysConfig);
+            systemConnectorPlugs.add(systemConnectorPlug);
         }
-        return systemPlugs;
+        return systemConnectorPlugs;
     }
 
 

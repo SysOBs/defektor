@@ -9,7 +9,9 @@ import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
+import pt.uc.sob.defektor.server.model.Plan;
 import pt.uc.sob.defektor.server.utils.Strings;
+import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +24,10 @@ public class PlanServiceImpl implements PlanService {
     private final String planDBPath = Strings.DB.PLAN_DB_PATH;
 
     @Override
-    public void planAdd(PlanData plan) throws DuplicateEntryException {
+    public PlanData planAdd(PlanData plan) throws DuplicateEntryException {
+        plan.setId(Utils.generateUUID());
         defektorRepository.save(plan, planDBPath);
+        return plan;
     }
 
     @Override
@@ -48,5 +52,10 @@ public class PlanServiceImpl implements PlanService {
         PlanData plan = defektorRepository.findById(id, planDBPath);
         if(plan == null) throw new EntityNotFoundException("Plan not found");
         defektorRepository.delete(plan, planDBPath);
+    }
+
+    @Override
+    public void allPlansDelete() {
+        defektorRepository.deleteAll(planDBPath);
     }
 }
