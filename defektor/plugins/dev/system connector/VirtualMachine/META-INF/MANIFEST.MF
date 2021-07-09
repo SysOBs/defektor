@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-PluginName: virtualmachine
-PluginClass: pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug
-

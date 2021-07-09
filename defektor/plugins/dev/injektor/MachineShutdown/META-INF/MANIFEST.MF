@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-PluginName: instancereboot
-PluginClass: pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot.MachineShutdownIjkPlug

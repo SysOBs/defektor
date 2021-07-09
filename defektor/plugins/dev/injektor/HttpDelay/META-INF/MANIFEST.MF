@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-PluginName: httpdelay
-PluginClass: pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay.HttpDelayIjkPlug
