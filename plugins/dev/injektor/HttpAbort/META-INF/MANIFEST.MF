@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+PluginName: httpabort
+PluginClass: pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort.HttpAbortIjkPlug

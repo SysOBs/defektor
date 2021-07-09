@@ -381,6 +381,9 @@ acs-*.bib
 *.tikz
 *-tikzDictionary
 
+#.iml
+*.iml
+
 # listings
 *.lol
 

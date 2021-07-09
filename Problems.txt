@@ -1,0 +1,81 @@
+19/10 MEETING
+ - ROBOT-SHOP'S LOAD GEN NOT WORKING ✔️
+ - HOW COULD YAML INTERPRETER BE IMPROVED (NOT GENERIC ENOUGH) ✔️
+ - HOW SHOULD I DEFINE WHAT BACK-END STORAGE SHOULD BE USED TO STORE INJECTION PLANS? ✔️
+ - OPENAPI DOCUMENT STRUCTURE (TARGET NAMESPACE) ✔️
+ - WHERE SHOULD STACK TRACES/LOGS BE STORED OR DISPLAYED ✔️
+
+
+ 26/10
+  - EVERY WORKLOAD GEN POD MUST HAVE THE SAME TAG NAME ✔️
+
+  11/11
+    MVP:
+        - HOW TO DEAL WITH EACH SPECIFIC ENV VARIABLES REGARDING TO EACH FAILURE INJECTION (MAKE IJK COMPOSED OBJECT? THE USER SHOULD READ LITMUS DOC THOUGH) ✔️
+        TO-DO: TURN IJK IN A COMPOSED OBJECT
+    REPORT:
+        background - conhecimentos que nao competem com a solução (docker, kubernetes). O QUE É QUE EU TENHO QUE EXPLICAR AO LEITOR PARA ELE PERCEBER O QUE EU ESTOU A DIZER?
+        state of the art - SOLUÇÕES SEMELHANTES
+                        |
+                        V                        |
+        - WHAT IS MAIN DIFFERENCE BETWEEN BACKGROUND AND STATE OF THE ART? ✔️
+        - IS THIS STRUCTURE ADEQUATE? ✔️
+        - REQUIREMENTS:
+            . IS MoSCoW A GOOD METHOD? IF SO, IS THERE ANY THRESHOLD OF SUCCESS THAT SHOULD BE PRESENTED IN THE INTERMEDIATE PRESENTATION?
+            . DO USE CASES FIT INSIDE A THESIS REPORT?
+
+        - ARCHITECTURE:
+            . IS THIS CHAPTER EXTENSIVE ENOUGH TO BE ONE? COULDN'T IT BE INSIDE REQUIREMENTS' CHAPTER? ✔️
+            - use c4
+            - considerações que fiz para garantir que a arq
+
+
+
+
+
+
+
+
+## 2NDO SEMESTRE
+
+
+25/02: look for mongodb, reddis (in storage)
+
+Problems:
+    - The performance looks horrible with MapDB (Well, maybe not)
+
+ 04/03: start doing UML diagrams
+
+ 11/03:
+  - Start developing system type plugins
+
+18/03:
+  - Could not be present in the meeting
+
+25/03:
+  Questions:
+    - Configure SystemType: This could be achieved by either turning the API stateful (which is not exactly the purpose of a REST API)
+      OR saving this information in the client-side (dfk) and using it everytime a request needs it.
+      In this last case, this information should be wrapped inside the Plan object. -> Submit de um systemconfig/systemtype
+    - What is the exact purpose of a SystemType object? Should it act as intermediary for ijk plugin instructions. So, if the pod delete ijk need to perform instructions on a
+    k8, should the system plugin be an intermediary? -> Criar nova entity SystemConfig que faz parte do SystemType ; - look for client config
+    SystemType recebe um SystemConfig
+
+    - What should be stored in the SystemType object? It was discussed that it would be mandatory the name of the system and an array of commands. For instance with Kubernetes,
+    as long as there is .kube/config file there should be no additional configs for the kubernetes plugin.
+    - In the SystemTarget object it is described the multiple target type (i.e. node, pod,...). Should it be described which Ijks are capable of target every single TargetType?
+
+    Suggestions:
+        - Compare gant's diagram with the current work.
+        - gbaptist@student.dei.uc.pt
+
+
+22/04:
+    Questions:
+      - Should the injektions be parameterized. If yes, how so? Can it be JSON flexible?
+      - Still not quite sure what's the best approach to define system types. Should it be done separately from the rest of the plan?
+      - Some problems raised in Orchestrator.java
+
+27/04:
+    Obs:
+      - Mostrar com uma experiência o

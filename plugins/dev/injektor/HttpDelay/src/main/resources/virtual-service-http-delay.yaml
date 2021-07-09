@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: <svc-name>-http-delay
+  namespace: <namespace>
+spec:
+  hosts:
+    - <host>
+  http:
+    - fault:
+        delay:
+          fixedDelay: <seconds>s
+          percent: <percentage>
+      route:
+        - destination:
+            host: <host>

@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: <svc-name>-http-abort
+  namespace: <namespace>
+spec:
+  hosts:
+    - <host>
+  http:
+    - fault:
+        abort:
+          httpStatus: <httpStatus>
+          percentage:
+            value: <percentage>
+      route:
+        - destination:
+            host: <host>
