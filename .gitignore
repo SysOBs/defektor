@@ -522,3 +522,7 @@ TSWLatexianTemp*
 
 # target folders
 target
+
+#User Files
+Problems.txt
+TODO.md
