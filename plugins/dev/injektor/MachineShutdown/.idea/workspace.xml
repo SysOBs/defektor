@@ -6,17 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="458fc3bb-be6a-45c2-99f8-be6d1f47d4cf" name="Default Changelist" comment="InstanceReboot plug is finished">
       <change beforePath="$PROJECT_DIR$/../../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../defektor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../defektor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HttpAbort/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HttpAbort/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HttpDelay/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HttpDelay/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProcessTerminator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcessTerminator/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../server/server.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +96,7 @@
       <workItem from="1625757922186" duration="296000" />
       <workItem from="1625758458358" duration="80000" />
       <workItem from="1625758730648" duration="90000" />
-      <workItem from="1625859174450" duration="381000" />
+      <workItem from="1625859174450" duration="646000" />
     </task>
     <task id="LOCAL-00001" summary="InstanceReboot plug is finished">
       <created>1619670658600</created>

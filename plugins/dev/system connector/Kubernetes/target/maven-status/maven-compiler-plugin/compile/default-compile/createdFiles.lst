@@ -1,0 +1,4 @@
+pt/uc/sob/defektor/plugins/system/kubernetes/Config.class
+pt/uc/sob/defektor/plugins/system/kubernetes/Utils.class
+pt/uc/sob/defektor/plugins/system/kubernetes/KubernetesSystemPlug.class
+pt/uc/sob/defektor/plugins/system/kubernetes/KubernetesSystemPlug$1.class
