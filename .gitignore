@@ -83,3 +83,14 @@ fabric.properties
 
 Problems.txt
 TODO.md
+
+.idea/
+defektor.iml
+/*.classpath
+/.classpath
+/.springBeans
+*.DS_Store
+*.iml
+/build
+/local.properties
+target/
