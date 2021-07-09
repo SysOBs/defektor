@@ -81,9 +81,6 @@ fabric.properties
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
 
-Problems.txt
-TODO.md
-
 .idea/
 defektor.iml
 /*.classpath
@@ -94,3 +91,13 @@ defektor.iml
 /build
 /local.properties
 target/
+
+#User
+/state/
+/defektor.sublime-project
+Problems.txt
+TODO.md
+
+/plugins/dev/**/.idea/
+/plugins/dev/**/**/target/
+
