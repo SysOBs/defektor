@@ -1,0 +1,13 @@
+---
+basePackage: pt.uc.sob.defektor.server
+apiPackage: pt.uc.sob.defektor.server.api
+invokerPackage: pt.uc.sob.defektor.server.invoker
+configPackage: pt.uc.sob.defektor.server.config
+modelPackage: pt.uc.sob.defektor.server.model
+artifactId: server
+groupId: pt.uc.sob.defektor
+dateLibrary: java8
+hideGenerationTimestamp: false
+interfaceOnly: true
+java8: true
+library: spring-boot
