@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MachineShutdown" />
+        <module name="instancereboot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="instancereboot" target="14" />
       <module name="MachineShutdown" target="14" />
     </bytecodeTargetLevel>
   </component>

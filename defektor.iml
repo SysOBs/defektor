@@ -5,14 +5,6 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/injektor/HttpAbort/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/injektor/HttpDelay/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/injektor/MachineShutdown/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/injektor/PodDelete/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/injektor/ProcessTerminator/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/system connector/Kubernetes/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/dev/system connector/VirtualMachine/target" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins/libs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

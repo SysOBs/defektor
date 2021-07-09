@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MachineShutdown.iml" filepath="$PROJECT_DIR$/.idea/MachineShutdown.iml" />
+      <module fileurl="file://$PROJECT_DIR$/instancereboot.iml" filepath="$PROJECT_DIR$/instancereboot.iml" />
     </modules>
   </component>
 </project>
