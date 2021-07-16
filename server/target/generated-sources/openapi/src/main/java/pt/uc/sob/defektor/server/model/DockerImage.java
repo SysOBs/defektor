@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * DockerImage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:09:39.110699252+01:00[Europe/Lisbon]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-14T01:05:44.936626131+01:00[Europe/Lisbon]")
 
 public class DockerImage   {
   @JsonProperty("user")

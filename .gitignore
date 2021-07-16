@@ -1,4 +1,5 @@
-**/.idea/
+.idea/
+target/
 /*.classpath
 /.classpath
 /.springBeans
@@ -7,13 +8,13 @@
 *.sublime-project
 /build
 /local.properties
-target/
-**.jar
 
 #User
 /state/
 Problems.txt
 TODO.md
+plugins/libs
+#/plugins/libs
 
 
 

@@ -1,14 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: pt.uc.sob.defektor.server.api.controller.PluginTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.017 sec <<< FAILURE!
-loadPlugins(pt.uc.sob.defektor.server.api.controller.PluginTest)  Time elapsed: 0.017 sec  <<< ERROR!
-java.lang.ClassNotFoundException: pt.uc.sob.defektor.plugins.ijk.instancereboot.InstanceRebootIjkPlug
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
+loadPlugins(pt.uc.sob.defektor.server.api.controller.PluginTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.ClassNotFoundException: pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug
 	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:435)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
 	at java.base/java.net.FactoryURLClassLoader.loadClass(URLClassLoader.java:855)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
-	at pt.uc.sob.defektor.server.api.controller.PluginTest.loadPlugins(PluginTest.java:44)
+	at pt.uc.sob.defektor.server.api.controller.PluginTest.loadPlugins(PluginTest.java:27)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

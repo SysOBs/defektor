@@ -15,9 +15,12 @@ import javax.validation.constraints.*;
 /**
  * Injektion
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:09:39.110699252+01:00[Europe/Lisbon]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-14T01:05:44.936626131+01:00[Europe/Lisbon]")
 
 public class Injektion   {
+  @JsonProperty("totalRuns")
+  private Integer totalRuns;
+
   @JsonProperty("ijk")
   private Ijk ijk;
 
@@ -26,6 +29,26 @@ public class Injektion   {
 
   @JsonProperty("target")
   private Target target;
+
+  public Injektion totalRuns(Integer totalRuns) {
+    this.totalRuns = totalRuns;
+    return this;
+  }
+
+  /**
+   * Get totalRuns
+   * @return totalRuns
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getTotalRuns() {
+    return totalRuns;
+  }
+
+  public void setTotalRuns(Integer totalRuns) {
+    this.totalRuns = totalRuns;
+  }
 
   public Injektion ijk(Ijk ijk) {
     this.ijk = ijk;
@@ -102,14 +125,15 @@ public class Injektion   {
       return false;
     }
     Injektion injektion = (Injektion) o;
-    return Objects.equals(this.ijk, injektion.ijk) &&
+    return Objects.equals(this.totalRuns, injektion.totalRuns) &&
+        Objects.equals(this.ijk, injektion.ijk) &&
         Objects.equals(this.workLoad, injektion.workLoad) &&
         Objects.equals(this.target, injektion.target);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ijk, workLoad, target);
+    return Objects.hash(totalRuns, ijk, workLoad, target);
   }
 
   @Override
@@ -117,6 +141,7 @@ public class Injektion   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Injektion {\n");
     
+    sb.append("    totalRuns: ").append(toIndentedString(totalRuns)).append("\n");
     sb.append("    ijk: ").append(toIndentedString(ijk)).append("\n");
     sb.append("    workLoad: ").append(toIndentedString(workLoad)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");

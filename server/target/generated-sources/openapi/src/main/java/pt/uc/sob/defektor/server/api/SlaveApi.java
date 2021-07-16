@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:09:39.110699252+01:00[Europe/Lisbon]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-14T01:05:44.936626131+01:00[Europe/Lisbon]")
 
 @Validated
 @Api(value = "slave", description = "the slave API")
@@ -37,6 +37,23 @@ public interface SlaveApi {
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    /**
+     * DELETE /slave : delete all slaves
+     * Delete all slaves
+     *
+     * @return all slaves deleted (status code 200)
+     */
+    @ApiOperation(value = "delete all slaves", nickname = "allSlavesDelete", notes = "Delete all slaves", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "all slaves deleted") })
+    @RequestMapping(value = "/slave",
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Void> allSlavesDelete() {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * POST /slave : add slave machine

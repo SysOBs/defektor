@@ -6,10 +6,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
-import pt.uc.sob.defektor.server.api.data.InjektionData;
-import pt.uc.sob.defektor.server.api.data.KeyValueData;
-import pt.uc.sob.defektor.server.api.data.PlanData;
-import pt.uc.sob.defektor.server.api.data.SystemConfigData;
+import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.SystemConnectorPluginFactory;
@@ -29,15 +26,15 @@ public class Orchestrator {
 
         for (InjektionData injektion : plan.getInjektions()) {
 
-            InjektionController injektionController = new InjektionController(
+            new CampaignController(
+                    plan.getId(),
+                    injektion.getTotalRuns(),
                     injektion.getIjk(),
                     injektion.getWorkLoad(),
                     injektion.getTarget(),
                     getCompatibleSystemList(plan.getSystem().getName()),
-                    workloadGenerator,
-                    plan.getId()
-            );
-            injektionController.startCampaign();
+                    workloadGenerator
+            ).startCampaign();
         }
     }
 

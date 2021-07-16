@@ -71,12 +71,12 @@
         }
       },
       "delete": {
-        "summary": "delete all plans",
-        "operationId": "allPlansDelete",
-        "description": "Delete all plan",
+        "summary": "delete all slaves",
+        "operationId": "allSlavesDelete",
+        "description": "Delete all slaves",
         "responses": {
           "200": {
-            "description": "all plan deleted"
+            "description": "all slaves deleted"
           }
         }
       }
@@ -574,12 +574,28 @@
           }
         }
       },
+      "DataCollector": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "configs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValue"
+            }
+          }
+        }
+      },
       "Injektion": {
         "required": [
           "ijk",
           "target"
         ],
         "properties": {
+          "totalRuns": {
+            "type": "integer"
+          },
           "ijk": {
             "$ref": "#/components/schemas/Ijk"
           },
@@ -663,6 +679,23 @@
             "type": "string"
           },
           "value": {
+            "type": "string"
+          }
+        }
+      },
+      "Campaign": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "UUID"
+          },
+          "currentRun": {
+            "type": "integer"
+          },
+          "totalRuns": {
+            "type": "integer"
+          },
+          "status": {
             "type": "string"
           }
         }

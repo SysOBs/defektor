@@ -10,6 +10,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InjektionData implements Serializable {
+  private Integer totalRuns;
   private IjkData ijk;
   private WorkLoadData workLoad;
   private TargetData target;

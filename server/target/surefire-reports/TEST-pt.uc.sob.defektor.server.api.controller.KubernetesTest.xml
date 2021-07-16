@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="pt.uc.sob.defektor.server.api.controller.KubernetesTest" time="2.068" errors="2" skipped="0">
+<testsuite tests="2" failures="0" name="pt.uc.sob.defektor.server.api.controller.KubernetesTest" time="1.961" errors="2" skipped="0">
   <properties>
-    <property name="idea.version" value="2021.1.2"/>
+    <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="15.0.2+7"/>
     <property name="sun.boot.library.path" value="/home/goncalo/.jdks/corretto-15.0.2/lib"/>
     <property name="user.country.format" value="PT"/>
-    <property name="maven.multiModuleProjectDirectory" value="/home/goncalo/Desktop/defektor/defektor/server"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/goncalo/Desktop/defektor"/>
     <property name="java.vm.vendor" value="Amazon.com Inc."/>
     <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/goncalo/Desktop/defektor/defektor/server"/>
+    <property name="user.dir" value="/home/goncalo/Desktop/defektor"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="java.runtime.version" value="15.0.2+7"/>
     <property name="os.arch" value="amd64"/>
@@ -24,25 +24,25 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="maven.ext.class.path" value="/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven-event-listener.jar"/>
-    <property name="classworlds.conf" value="/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven3/bin/m2.conf"/>
+    <property name="maven.ext.class.path" value="/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven-event-listener.jar"/>
+    <property name="classworlds.conf" value="/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven3/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
-    <property name="maven.conf" value="/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven3/conf"/>
+    <property name="maven.conf" value="/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven3/conf"/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="59.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.4.0-74-generic"/>
+    <property name="os.version" value="5.4.0-77-generic"/>
     <property name="user.home" value="/home/goncalo"/>
     <property name="user.timezone" value="Europe/Lisbon"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="15"/>
     <property name="user.name" value="goncalo"/>
-    <property name="java.class.path" value="/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar:/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven3/boot/plexus-classworlds.license"/>
+    <property name="java.class.path" value="/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar:/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven3/boot/plexus-classworlds.license"/>
     <property name="java.vm.specification.version" value="15"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2021.1.2 clean install"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2021.1.3 clean install"/>
     <property name="java.home" value="/home/goncalo/.jdks/corretto-15.0.2"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -51,7 +51,7 @@
     <property name="java.version" value="15.0.2"/>
     <property name="securerandom.source" value="file:/dev/./urandom"/>
     <property name="java.vendor" value="Amazon.com Inc."/>
-    <property name="maven.home" value="/snap/intellij-idea-ultimate/298/plugins/maven/lib/maven3"/>
+    <property name="maven.home" value="/snap/intellij-idea-ultimate/306/plugins/maven/lib/maven3"/>
     <property name="file.separator" value="/"/>
     <property name="java.version.date" value="2021-01-19"/>
     <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-jdk/issues/"/>
@@ -59,22 +59,9 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="Corretto-15.0.2.7.1"/>
   </properties>
-  <testcase classname="pt.uc.sob.defektor.server.api.controller.KubernetesTest" name="applyDeploymentHttpAbort" time="1.819">
-    <error message="Port 8080 is already in use" type="org.springframework.boot.web.server.PortInUseException">org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
-	at org.springframework.boot.web.server.PortInUseException.lambda$throwIfPortBindingException$0(PortInUseException.java:70)
-	at org.springframework.boot.web.server.PortInUseException.lambda$ifPortBindingException$1(PortInUseException.java:85)
-	at org.springframework.boot.web.server.PortInUseException.ifCausedBy(PortInUseException.java:103)
-	at org.springframework.boot.web.server.PortInUseException.ifPortBindingException(PortInUseException.java:82)
-	at org.springframework.boot.web.server.PortInUseException.throwIfPortBindingException(PortInUseException.java:69)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:211)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:297)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:163)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:553)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at pt.uc.sob.defektor.server.api.controller.KubernetesTest.applyDeploymentHttpAbort(KubernetesTest.java:38)
+  <testcase classname="pt.uc.sob.defektor.server.api.controller.KubernetesTest" name="applyDeploymentHttpAbort" time="1.704">
+    <error message="Cannot invoke &quot;pt.uc.sob.defektor.common.InjektorPlug.performInjection(pt.uc.sob.defektor.common.com.ijkparams.IjkParam)&quot; because &quot;injektorPlug&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;pt.uc.sob.defektor.common.InjektorPlug.performInjection(pt.uc.sob.defektor.common.com.ijkparams.IjkParam)&quot; because &quot;injektorPlug&quot; is null
+	at pt.uc.sob.defektor.server.api.controller.KubernetesTest.applyDeploymentHttpAbort(KubernetesTest.java:47)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -107,28 +94,6 @@
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:231)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:265)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:196)
-	... 40 more
-Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1066)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
-	... 42 more
-Caused by: java.net.BindException: Address already in use
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:550)
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249)
-	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88)
-	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:228)
-	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:211)
-	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1141)
-	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1227)
-	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:592)
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1063)
-	... 44 more
 </error>
     <system-out>
   .   ____          _            __ _ _
@@ -139,34 +104,19 @@ Caused by: java.net.BindException: Address already in use
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2021-06-17 12:09:42.841  INFO 25286 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Starting ForkedBooter v2.12.4 on goncalo-VirtualBox with PID 25286 (started by goncalo in /home/goncalo/Desktop/defektor/defektor/server)
-2021-06-17 12:09:42.843  INFO 25286 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : No active profile set, falling back to default profiles: default
-2021-06-17 12:09:42.978  WARN 25286 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add &quot;com.fasterxml.jackson.module:jackson-module-kotlin&quot; to the classpath
-2021-06-17 12:09:43.798  INFO 25286 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-06-17 12:09:43.814  INFO 25286 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-06-17 12:09:43.814  INFO 25286 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.34]
-2021-06-17 12:09:43.956  INFO 25286 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-06-17 12:09:43.956  INFO 25286 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1080 ms
-2021-06-17 12:09:44.125  INFO 25286 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &apos;applicationTaskExecutor&apos;
-2021-06-17 12:09:44.266  INFO 25286 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2021-06-17 12:09:44.273  INFO 25286 --- [           main] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with &apos;debug&apos; enabled.
-2021-06-17 12:09:44.276 ERROR 25286 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that&apos;s listening on port 8080 or configure this application to listen on another port.
-
-2021-06-17 12:09:44.277  INFO 25286 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService &apos;applicationTaskExecutor&apos;
+2021-07-14 01:05:48.343  INFO 5698 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Starting ForkedBooter v2.12.4 on goncalo-VirtualBox with PID 5698 (started by goncalo in /home/goncalo/Desktop/defektor/server)
+2021-07-14 01:05:48.345  INFO 5698 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : No active profile set, falling back to default profiles: default
+2021-07-14 01:05:48.460  WARN 5698 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add &quot;com.fasterxml.jackson.module:jackson-module-kotlin&quot; to the classpath
+2021-07-14 01:05:49.153  INFO 5698 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-14 01:05:49.164  INFO 5698 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-14 01:05:49.165  INFO 5698 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2021-07-14 01:05:49.277  INFO 5698 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-14 01:05:49.278  INFO 5698 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 898 ms
+2021-07-14 01:05:49.451  INFO 5698 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &apos;applicationTaskExecutor&apos;
+2021-07-14 01:05:49.603  INFO 5698 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path &apos;&apos;
+2021-07-14 01:05:49.605  INFO 5698 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Started ForkedBooter in 1.535 seconds (JVM running for 1.976)
+NO CLASS :D
+NO CLASS :D
 </system-out>
     <system-err>SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/home/goncalo/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -175,7 +125,7 @@ SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
 </system-err>
   </testcase>
-  <testcase classname="pt.uc.sob.defektor.server.api.controller.KubernetesTest" name="applyDeploymentHttpDelay" time="0.249">
+  <testcase classname="pt.uc.sob.defektor.server.api.controller.KubernetesTest" name="applyDeploymentHttpDelay" time="0.257">
     <error message="Port 8080 is already in use" type="org.springframework.boot.web.server.PortInUseException">org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
 	at org.springframework.boot.web.server.PortInUseException.lambda$throwIfPortBindingException$0(PortInUseException.java:70)
 	at org.springframework.boot.web.server.PortInUseException.lambda$ifPortBindingException$1(PortInUseException.java:85)
@@ -255,19 +205,19 @@ Caused by: java.net.BindException: Address already in use
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2021-06-17 12:09:44.304  INFO 25286 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Starting ForkedBooter v2.12.4 on goncalo-VirtualBox with PID 25286 (started by goncalo in /home/goncalo/Desktop/defektor/defektor/server)
-2021-06-17 12:09:44.304  INFO 25286 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : No active profile set, falling back to default profiles: default
-2021-06-17 12:09:44.421  INFO 25286 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-06-17 12:09:44.422  INFO 25286 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-06-17 12:09:44.422  INFO 25286 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.34]
-2021-06-17 12:09:44.437  INFO 25286 --- [           main] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2021-06-17 12:09:44.438  INFO 25286 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 133 ms
-2021-06-17 12:09:44.490  INFO 25286 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &apos;applicationTaskExecutor&apos;
-2021-06-17 12:09:44.530  INFO 25286 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2021-06-17 12:09:44.531  INFO 25286 --- [           main] ConditionEvaluationReportLoggingListener : 
+2021-07-14 01:05:49.624  INFO 5698 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Starting ForkedBooter v2.12.4 on goncalo-VirtualBox with PID 5698 (started by goncalo in /home/goncalo/Desktop/defektor/server)
+2021-07-14 01:05:49.625  INFO 5698 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : No active profile set, falling back to default profiles: default
+2021-07-14 01:05:49.748  INFO 5698 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-14 01:05:49.749  INFO 5698 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-14 01:05:49.749  INFO 5698 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2021-07-14 01:05:49.764  INFO 5698 --- [           main] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-07-14 01:05:49.764  INFO 5698 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 137 ms
+2021-07-14 01:05:49.816  INFO 5698 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &apos;applicationTaskExecutor&apos;
+2021-07-14 01:05:49.859  INFO 5698 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-07-14 01:05:49.865  INFO 5698 --- [           main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with &apos;debug&apos; enabled.
-2021-06-17 12:09:44.532 ERROR 25286 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2021-07-14 01:05:49.866 ERROR 5698 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -281,7 +231,7 @@ Action:
 
 Identify and stop the process that&apos;s listening on port 8080 or configure this application to listen on another port.
 
-2021-06-17 12:09:44.533  INFO 25286 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService &apos;applicationTaskExecutor&apos;
+2021-07-14 01:05:49.868  INFO 5698 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService &apos;applicationTaskExecutor&apos;
 </system-out>
   </testcase>
 </testsuite>

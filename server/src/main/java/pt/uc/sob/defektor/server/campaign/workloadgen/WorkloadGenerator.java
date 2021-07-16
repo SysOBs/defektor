@@ -13,6 +13,7 @@ import pt.uc.sob.defektor.server.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +23,17 @@ public class WorkloadGenerator {
 
     public void performWorkloadGen(WorkLoadData workload, UUID campaignID) {
         List<SlaveData> slavesList = slaveService.slavesList();
+        Integer numberOfReplicas = workload.getReplicas();
 
-        for (SlaveData slaveData : slavesList) {
+        List<SlaveData> slaveMachineReplicas = slavesList
+                .stream()
+                .limit(numberOfReplicas)
+                .collect(Collectors.toList());
+
+        if(slaveMachineReplicas.size() != numberOfReplicas)
+            //TODO EXCEPTION -> NOT ENOUGH SLAVES
+
+        for (SlaveData slaveData : slaveMachineReplicas) {
 
             List<String> commands = new ArrayList<>();
             List<KeyValueData> env = workload.getEnv();
@@ -66,6 +76,7 @@ public class WorkloadGenerator {
         final String COMMAND = " " + workload.getCmd();
         final String DOCKER_NAME = " --name workload_gen_" + campaignID;
         final String OPTIONS = " -d -t -i" + DOCKER_NAME + ENV_VARS ;
+
         return "docker run" + OPTIONS + IMAGE + COMMAND;
     }
 }

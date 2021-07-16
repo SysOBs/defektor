@@ -2,11 +2,14 @@ package pt.uc.sob.defektor.server.campaign;
 
 import lombok.SneakyThrows;
 import org.json.JSONObject;
+import pt.uc.sob.defektor.common.DataCollectorPlug;
 import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
+import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
 import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
 
 import java.util.Date;
@@ -14,19 +17,19 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class InjektionController extends InjektionData {
+public class CampaignController extends InjektionData {
 
     private List<SystemConnectorPlug> systemConnectorPlugs;
     private InjektorPlug injektorPlug = null;
+    private DataCollectorPlug dataCollectorPlug = null;
     private final WorkloadGenerator workloadGenerator;
-    private final UUID campaignID;
+    private CampaignData campaignData;
 
-
-    public InjektionController(IjkData ijk, WorkLoadData workLoad, TargetData target, List<SystemConnectorPlug> systemConnectorPlugs, WorkloadGenerator workloadGenerator, UUID campaignID) {
-        super(ijk, workLoad, target);
+    public CampaignController(UUID campaignID, Integer totalRuns, IjkData ijk, WorkLoadData workLoad, TargetData target, List<SystemConnectorPlug> systemConnectorPlugs, WorkloadGenerator workloadGenerator) {
+        super(totalRuns, ijk, workLoad, target);
         this.systemConnectorPlugs = systemConnectorPlugs;
         this.workloadGenerator = workloadGenerator;
-        this.campaignID = campaignID;
+        this.campaignData = new CampaignData(campaignID, totalRuns);
     }
 
     public void performInjektion() {
@@ -51,18 +54,22 @@ public class InjektionController extends InjektionData {
 
     private void applyWorkload() {
         System.out.println(new Date() + " - STARTED WORKLOAD");
-        workloadGenerator.performWorkloadGen(this.getWorkLoad(), campaignID);
+        workloadGenerator.performWorkloadGen(this.getWorkLoad(), campaignData.getId());
         sleep(this.getWorkLoad().getDuration());
     }
 
     private void stopWorkload() {
         System.out.println(new Date() + " - STOPPED WORKLOAD");
-        workloadGenerator.stopWorkloadGen(campaignID);
+        workloadGenerator.stopWorkloadGen(campaignData.getId());
         sleep(1);
     }
 
     private void collectData() {
         System.out.println(new Date() + " - COLLECTED DATA");
+        dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory.getInstance().getPluginInstance(this.getIjk().getName());
+        dataCollectorPlug.getData();
+
+        //TODO JAEGER COMMAND PF -> kubectl -n jaeger port-forward jaeger-query-5f9f96c564-6lxkq 16686:16686
         sleep(5);
     }
 
@@ -74,14 +81,25 @@ public class InjektionController extends InjektionData {
     public void startCampaign() {
         new Thread(
                 () -> {
-                    applyWorkload();
-                    stopWorkload();
-                    collectData();
-                    performInjektion();
-                    applyWorkload();
-                    stopWorkload();
-                    stopInjektion();
-                    collectData();
+                    while (campaignData.getCurrentRun() <= campaignData.getTotalRuns()) {
+
+                        //GOLDEN RUN
+                        campaignData.setStatus(CampaignStatus.RUNNING_GOLDEN_RUN);
+                        applyWorkload();
+                        stopWorkload();
+                        collectData();
+
+                        //FAULT INJECTION RUN
+                        campaignData.setStatus(CampaignStatus.RUNNING_FAULT_INJECTION_RUN);
+                        applyWorkload();
+                        performInjektion();
+                        stopWorkload();
+                        stopInjektion();
+                        collectData();
+
+                        campaignData.incrementCurrentRun();
+                    }
+                    campaignData.setStatus(CampaignStatus.FINISHED);
                 }
         ).start();
     }

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: pt.uc.sob.defektor.server.api.controller.TestController
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.2 sec <<< FAILURE!
-instanceReboot(pt.uc.sob.defektor.server.api.controller.TestController)  Time elapsed: 0.2 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.27 sec <<< FAILURE!
+instanceReboot(pt.uc.sob.defektor.server.api.controller.TestController)  Time elapsed: 0.269 sec  <<< ERROR!
 org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
 	at org.springframework.boot.web.server.PortInUseException.lambda$throwIfPortBindingException$0(PortInUseException.java:70)
 	at org.springframework.boot.web.server.PortInUseException.lambda$ifPortBindingException$1(PortInUseException.java:85)
