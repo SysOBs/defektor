@@ -7,8 +7,8 @@ import lombok.ToString;
 @ToString
 public enum CampaignStatus {
     STOPPED("stopped"),
-    RUNNING_GOLDEN_RUN("running a golden run"),
-    RUNNING_FAULT_INJECTION_RUN("running a fault injection run"),
+    RUNNING_GOLDEN_RUN("running golden run"),
+    RUNNING_FAULT_INJECTION_RUN("running fault injection run"),
     FINISHED("finished");
 
     private final String status;

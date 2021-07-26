@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+PluginName: jaeger
+PluginClass: pt.uc.sob.defektor.plugins.datacollector.jaeger.JaegerDataCollectorPlug

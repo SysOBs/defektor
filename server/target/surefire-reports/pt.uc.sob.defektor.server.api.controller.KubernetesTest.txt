@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: pt.uc.sob.defektor.server.api.controller.KubernetesTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 2.029 sec <<< FAILURE!
-applyDeploymentHttpAbort(pt.uc.sob.defektor.server.api.controller.KubernetesTest)  Time elapsed: 1.704 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 4.047 sec <<< FAILURE!
+applyDeploymentHttpAbort(pt.uc.sob.defektor.server.api.controller.KubernetesTest)  Time elapsed: 3.494 sec  <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "pt.uc.sob.defektor.common.InjektorPlug.performInjection(pt.uc.sob.defektor.common.com.ijkparams.IjkParam)" because "injektorPlug" is null
 	at pt.uc.sob.defektor.server.api.controller.KubernetesTest.applyDeploymentHttpAbort(KubernetesTest.java:47)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -38,7 +38,7 @@ java.lang.NullPointerException: Cannot invoke "pt.uc.sob.defektor.common.Injekto
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-applyDeploymentHttpDelay(pt.uc.sob.defektor.server.api.controller.KubernetesTest)  Time elapsed: 0.257 sec  <<< ERROR!
+applyDeploymentHttpDelay(pt.uc.sob.defektor.server.api.controller.KubernetesTest)  Time elapsed: 0.459 sec  <<< ERROR!
 org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
 	at org.springframework.boot.web.server.PortInUseException.lambda$throwIfPortBindingException$0(PortInUseException.java:70)
 	at org.springframework.boot.web.server.PortInUseException.lambda$ifPortBindingException$1(PortInUseException.java:85)
@@ -96,7 +96,7 @@ Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
 	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
 	... 42 more
-Caused by: java.net.BindException: Address already in use
+Caused by: java.net.BindException: Address already in use: bind
 	at java.base/sun.nio.ch.Net.bind0(Native Method)
 	at java.base/sun.nio.ch.Net.bind(Net.java:550)
 	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249)

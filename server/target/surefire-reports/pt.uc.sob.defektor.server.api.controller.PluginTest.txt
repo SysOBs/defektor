@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: pt.uc.sob.defektor.server.api.controller.PluginTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 sec <<< FAILURE!
 loadPlugins(pt.uc.sob.defektor.server.api.controller.PluginTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.ClassNotFoundException: pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug
 	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:435)

@@ -1,0 +1,655 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://virtserver.swaggerhub.com/jaimelive/defektorOpenAPISpec/1.0.0"
+    }
+  ],
+  "info": {
+    "description": "defektor controll aplication interface",
+    "version": "1.0.0",
+    "title": "defektor OpenAPI Specification",
+    "contact": {
+      "email": "sob@dei.uc.pt"
+    }
+  },
+  "paths": {
+    "/slave": {
+      "get": {
+        "summary": "list slave machines",
+        "operationId": "slaveList",
+        "description": "List available slave machines",
+        "responses": {
+          "200": {
+            "description": "slaves listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Slave"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "add slave machine",
+        "operationId": "slaveAdd",
+        "description": "Add slave machine",
+        "responses": {
+          "201": {
+            "description": "slave created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Slave"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          },
+          "409": {
+            "description": "slave already exists"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Slave"
+              }
+            }
+          },
+          "description": "Added Slave"
+        }
+      }
+    },
+    "/slave/{slaveId}": {
+      "get": {
+        "summary": "slave machine info",
+        "operationId": "slaveGet",
+        "description": "Get slave machine information",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slaveId",
+            "description": "Slave machine identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID",
+              "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "slave information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Slave"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "slave does not exist"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete slave machine",
+        "operationId": "slaveDelete",
+        "description": "Delete slave machine",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slaveId",
+            "description": "Slave machine identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID",
+              "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "slave deleted"
+          },
+          "400": {
+            "description": "slave does not exist"
+          }
+        }
+      }
+    },
+    "/target": {
+      "get": {
+        "summary": "list targets",
+        "operationId": "targetList",
+        "description": "List available targets",
+        "responses": {
+          "200": {
+            "description": "slaves listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TargetType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/target/{target}": {
+      "get": {
+        "summary": "list target instances",
+        "operationId": "targetGet",
+        "description": "List available targets",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "target",
+            "description": "target type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "slaves listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Target"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ijk": {
+      "get": {
+        "summary": "list ijk (injektors)",
+        "operationId": "ijkList",
+        "description": "List available injektors",
+        "responses": {
+          "200": {
+            "description": "list of injektors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ijk"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan": {
+      "get": {
+        "summary": "list plans",
+        "operationId": "planList",
+        "description": "List plans",
+        "responses": {
+          "200": {
+            "description": "list of plans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plan"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "add plan",
+        "operationId": "planAdd",
+        "description": "Add plan",
+        "responses": {
+          "201": {
+            "description": "plan created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          },
+          "409": {
+            "description": "plan already exists"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            }
+          },
+          "description": "Added Plan"
+        }
+      }
+    },
+    "/plan/validate": {
+      "post": {
+        "summary": "validate plan",
+        "operationId": "planValidate",
+        "description": "Validate plan",
+        "responses": {
+          "200": {
+            "description": "plan is valid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            }
+          },
+          "description": "Validated Plan"
+        }
+      }
+    },
+    "/plan/{planId}": {
+      "get": {
+        "summary": "plan info",
+        "operationId": "planGet",
+        "description": "Get plan information",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "planId",
+            "description": "Plan identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID",
+              "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "plan information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "plan does not exist"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete plan",
+        "operationId": "planDelete",
+        "description": "Delete plan",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "planId",
+            "description": "Plan identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID",
+              "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "plan deleted"
+          },
+          "400": {
+            "description": "plan does not exist"
+          }
+        }
+      }
+    },
+    "/system/config": {
+      "get": {
+        "summary": "list system configs",
+        "operationId": "systemConfigList",
+        "description": "List available system configs",
+        "responses": {
+          "200": {
+            "description": "list of system configs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Submit system and its configurations",
+        "operationId": "systemTypeConfigure",
+        "description": "Submits a system type and its configuration",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemConfig"
+              }
+            }
+          },
+          "description": "Configure system"
+        },
+        "responses": {
+          "200": {
+            "description": "submits a system type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemConfig"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TargetType": {
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "container"
+          }
+        }
+      },
+      "Target": {
+        "required": [
+          "type",
+          "name"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TargetType"
+          },
+          "name": {
+            "type": "string",
+            "example": "istio_ingress_2314234h21345"
+          }
+        }
+      },
+      "SSHCredentials": {
+        "required": [
+          "username",
+          "key"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "debian"
+          },
+          "key": {
+            "type": "string",
+            "example": "ooooohhhh this is a super secret private key... 🔑"
+          }
+        }
+      },
+      "Slave": {
+        "required": [
+          "id",
+          "address",
+          "port",
+          "credentials"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "UUID",
+            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "address": {
+            "type": "string",
+            "example": "example.org"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int32",
+            "default": 22,
+            "example": 22
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/SSHCredentials"
+          }
+        }
+      },
+      "Ijk": {
+        "required": [
+          "name",
+          "params"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "HoleyBoat"
+          },
+          "params": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValue"
+            }
+          }
+        }
+      },
+      "DockerImage": {
+        "properties": {
+          "user": {
+            "type": "string",
+            "example": "sob"
+          },
+          "name": {
+            "type": "string",
+            "example": "mangodb"
+          },
+          "tag": {
+            "type": "string",
+            "example": "latest"
+          }
+        }
+      },
+      "WorkLoad": {
+        "required": [
+          "image"
+        ],
+        "properties": {
+          "image": {
+            "$ref": "#/components/schemas/DockerImage"
+          },
+          "cmd": {
+            "type": "string",
+            "example": "sh shesellsshellsbytheseashore.sh"
+          },
+          "env": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "VAR=value"
+            }
+          },
+          "replicas": {
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "example": 1
+          },
+          "slaves": {
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "example": 1
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32",
+            "default": 120,
+            "example": 120,
+            "description": "Duration of the workload in seconds. If the container terminates earlier it gets restarted."
+          }
+        }
+      },
+      "Injektion": {
+        "required": [
+          "ijk",
+          "target"
+        ],
+        "properties": {
+          "ijk": {
+            "$ref": "#/components/schemas/Ijk"
+          },
+          "workLoad": {
+            "$ref": "#/components/schemas/WorkLoad"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          }
+        }
+      },
+      "Plan": {
+        "required": [
+          "name",
+          "system",
+          "injektions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "UUID",
+            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name": {
+            "type": "string",
+            "example": "Order 66"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemType"
+          },
+          "injektions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Injektion"
+            }
+          }
+        }
+      },
+      "SystemType": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "kubernetes"
+          }
+        }
+      },
+      "SystemConfig": {
+        "properties": {
+          "configs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValue"
+            }
+          },
+          "systemType": {
+            "$ref": "#/components/schemas/SystemType"
+          }
+        }
+      },
+      "SystemTarget": {
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "kubernetes"
+          },
+          "targetTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TargetType"
+            }
+          }
+        }
+      },
+      "KeyValue": {
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+

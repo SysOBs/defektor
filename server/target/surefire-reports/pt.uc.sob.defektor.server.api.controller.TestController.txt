@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: pt.uc.sob.defektor.server.api.controller.TestController
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.27 sec <<< FAILURE!
-instanceReboot(pt.uc.sob.defektor.server.api.controller.TestController)  Time elapsed: 0.269 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.49 sec <<< FAILURE!
+instanceReboot(pt.uc.sob.defektor.server.api.controller.TestController)  Time elapsed: 0.49 sec  <<< ERROR!
 org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
 	at org.springframework.boot.web.server.PortInUseException.lambda$throwIfPortBindingException$0(PortInUseException.java:70)
 	at org.springframework.boot.web.server.PortInUseException.lambda$ifPortBindingException$1(PortInUseException.java:85)
@@ -60,7 +60,7 @@ Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
 	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
 	... 42 more
-Caused by: java.net.BindException: Address already in use
+Caused by: java.net.BindException: Address already in use: bind
 	at java.base/sun.nio.ch.Net.bind0(Native Method)
 	at java.base/sun.nio.ch.Net.bind(Net.java:550)
 	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249)
