@@ -1,0 +1,11 @@
+pt/uc/sob/defektor/common/plugins/interfaces/InjektorsManagerInterface.class
+pt/uc/sob/defektor/common/SystemConnectorPlug.class
+pt/uc/sob/defektor/common/com/ijkparams/IjkParam.class
+pt/uc/sob/defektor/common/com/data/InjectionStatus.class
+pt/uc/sob/defektor/common/plugins/interfaces/SystemsManagerInterface.class
+pt/uc/sob/defektor/common/com/data/TargetType.class
+pt/uc/sob/defektor/common/InjektorPlug.class
+pt/uc/sob/defektor/common/com/data/Target.class
+pt/uc/sob/defektor/common/utils/JsonUtils.class
+pt/uc/sob/defektor/common/DataCollectorPlug.class
+pt/uc/sob/defektor/common/com/sysconfigs/SystemConfig.class

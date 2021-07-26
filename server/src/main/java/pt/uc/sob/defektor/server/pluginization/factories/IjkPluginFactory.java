@@ -58,7 +58,6 @@ public class IjkPluginFactory extends AbstractPluginFactory {
                 Map<String, URLClassLoader> systemsClassLoaders = SystemConnectorPluginFactory.getInstance().getClassLoaderMap();
 
                 String systemName = Utils.getSystemNameFromClassName(pluginClassName);
-                System.out.println(systemName);
                 ClassLoader parentClassLoader = systemsClassLoaders.get(systemName);
                 cl = URLClassLoader.newInstance(urls, parentClassLoader);
                 classLoaderMap.put(pluginName, cl);
