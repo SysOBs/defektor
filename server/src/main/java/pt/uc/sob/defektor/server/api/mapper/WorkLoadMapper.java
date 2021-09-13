@@ -12,6 +12,8 @@ public class WorkLoadMapper {
         workLoad.setImage(DockerImageMapper.convertToDAO(workLoadData.getImage()));
         workLoad.setCmd(workLoadData.getCmd());
         workLoad.setDuration(workLoadData.getDuration());
+        workLoad.setReplicas(workLoadData.getReplicas());
+        workLoad.setSlaves(workLoadData.getSlaves());
         workLoad.setEnv(
                 workLoadData.getEnv()
                 .stream()
@@ -28,6 +30,8 @@ public class WorkLoadMapper {
         workLoadData.setImage(DockerImageMapper.convertToDTO(workLoad.getImage()));
         workLoadData.setCmd(workLoad.getCmd());
         workLoadData.setDuration(workLoad.getDuration());
+        workLoadData.setReplicas(workLoad.getReplicas());
+        workLoadData.setSlaves(workLoad.getSlaves());
         workLoadData.setEnv(
                 workLoad.getEnv()
                         .stream()
