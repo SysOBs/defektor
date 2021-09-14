@@ -18,4 +18,6 @@ public interface SlaveService {
     List<SlaveData> slavesList();
 
     void slaveDelete(UUID id) throws EntityNotFoundException;
+
+    void slaveDeleteAll();
 }

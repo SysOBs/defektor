@@ -21,5 +21,5 @@ public interface PlanService {
 
     void planDelete(UUID id) throws EntityNotFoundException;
 
-    void allPlansDelete();
+    void planDeleteAll();
 }

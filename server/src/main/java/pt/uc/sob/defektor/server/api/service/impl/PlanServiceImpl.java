@@ -55,7 +55,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void allPlansDelete() {
+    public void planDeleteAll() {
         defektorRepository.deleteAll(planDBPath);
     }
 }

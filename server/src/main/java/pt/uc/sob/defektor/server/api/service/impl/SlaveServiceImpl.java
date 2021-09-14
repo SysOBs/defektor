@@ -49,4 +49,9 @@ public class SlaveServiceImpl implements SlaveService {
         if(slave == null) throw new EntityNotFoundException(Strings.Errors.SLAVE_NOT_FOUND);
         defektorRepository.delete(slave, slaveDBPath);
     }
+
+    @Override
+    public void slaveDeleteAll() {
+        defektorRepository.deleteAll(slaveDBPath);
+    }
 }
