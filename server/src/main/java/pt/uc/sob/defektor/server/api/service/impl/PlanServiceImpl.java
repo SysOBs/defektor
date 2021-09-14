@@ -21,25 +21,24 @@ import java.util.UUID;
 public class PlanServiceImpl implements PlanService {
 
     private final DefektorRepository<PlanData> defektorRepository;
-    private final String planDBPath = Strings.DB.PLAN_DB_PATH;
 
     @Override
     public PlanData planAdd(PlanData plan) throws DuplicateEntryException {
         plan.setId(Utils.generateUUID());
-        defektorRepository.save(plan, planDBPath);
+        defektorRepository.save(plan, Strings.DB.PLAN_DB_PATH);
         return plan;
     }
 
     @Override
     public PlanData planGet(UUID id) throws EntityNotFoundException {
-        PlanData plan = defektorRepository.findById(id, planDBPath);
-        if(plan == null) throw new EntityNotFoundException("Plan not found");
+        PlanData plan = defektorRepository.findById(id, Strings.DB.PLAN_DB_PATH);
+        if(plan == null) throw new EntityNotFoundException(Strings.Errors.PLAN_NOT_FOUND);
         return plan;
     }
 
     @Override
     public List<PlanData> plansList() {
-        return defektorRepository.findAll(planDBPath);
+        return defektorRepository.findAll(Strings.DB.PLAN_DB_PATH);
     }
 
     @Override
@@ -49,13 +48,13 @@ public class PlanServiceImpl implements PlanService {
 
     @Override
     public void planDelete(UUID id) throws EntityNotFoundException {
-        PlanData plan = defektorRepository.findById(id, planDBPath);
-        if(plan == null) throw new EntityNotFoundException("Plan not found");
-        defektorRepository.delete(plan, planDBPath);
+        PlanData plan = defektorRepository.findById(id, Strings.DB.PLAN_DB_PATH);
+        if(plan == null) throw new EntityNotFoundException(Strings.Errors.PLAN_NOT_FOUND);
+        defektorRepository.delete(plan, Strings.DB.PLAN_DB_PATH);
     }
 
     @Override
     public void planDeleteAll() {
-        defektorRepository.deleteAll(planDBPath);
+        defektorRepository.deleteAll(Strings.DB.PLAN_DB_PATH);
     }
 }

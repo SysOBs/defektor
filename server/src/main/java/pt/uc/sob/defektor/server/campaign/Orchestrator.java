@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
 import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.SystemConnectorPluginFactory;
+import pt.uc.sob.defektor.server.utils.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +23,8 @@ public class Orchestrator {
     private final SystemService systemService;
     private final WorkloadGenerator workloadGenerator;
 
-    @Async
-    public void conductProcess(PlanData plan) {
+//    @Async
+    public void conductProcess(PlanData plan) throws InvalidSystemException {
 
         for (InjektionData injektion : plan.getInjektions()) {
             new CampaignController(
@@ -37,12 +39,12 @@ public class Orchestrator {
         }
     }
 
-    private List<SystemConnectorPlug> getCompatibleSystemList(String systemName) {
+    private List<SystemConnectorPlug> getCompatibleSystemList(String systemName) throws InvalidSystemException {
         List<SystemConfig> sysConfigList = buildSysConfigList(systemName);
         List<SystemConnectorPlug> systemConnectorPlugs = new ArrayList<>();
 
-        //TODO IMPROVE EXCEPTION
-        if (sysConfigList.size() == 0) throw new RuntimeException("No systems configured");
+        if (sysConfigList.size() == 0)
+            throw new InvalidSystemException(Strings.Errors.NO_SYSTEMS_CONFIGURED);
 
         for (SystemConfig sysConfig : sysConfigList) {
             SystemConnectorPlug systemConnectorPlug = (SystemConnectorPlug) SystemConnectorPluginFactory.getInstance().getPluginInstance(systemName, sysConfig);

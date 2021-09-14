@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
+import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.campaign.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.data.PlanData;
@@ -46,15 +48,15 @@ public class PlanController implements PlanApi {
             planService.planAdd(planData);
             orchestrator.conductProcess(planData);
             return new ResponseEntity<>(plan, HttpStatus.CREATED);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
         catch (DuplicateEntryException e) {
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
         }
-        catch (InvalidPlanException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        catch (InvalidPlanException | InvalidSystemException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 

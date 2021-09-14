@@ -7,7 +7,7 @@ import pt.uc.sob.defektor.server.api.data.DockerImageData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.SlaveData;
 import pt.uc.sob.defektor.server.api.data.WorkLoadData;
-import pt.uc.sob.defektor.server.api.expection.CampaignException;
+import pt.uc.sob.defektor.server.campaign.exception.CampaignException;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.utils.Utils;
 
@@ -32,11 +32,10 @@ public class WorkloadGenerator {
                 .collect(Collectors.toList());
 
         if(slaveMachineReplicas.size() != desiredNumberOfSlaves)
-            //TODO EXCEPTION -> NOT ENOUGH SLAVES
-            throw new RuntimeException();
+            throw new CampaignException("not enough slave machines available");
 
         for (SlaveData slaveData : slaveMachineReplicas) {
-            List<String> commands = new ArrayList<>();
+            List<String> commands = null;
             List<KeyValueData> env = workload.getEnv();
             DockerImageData image = workload.getImage();
 

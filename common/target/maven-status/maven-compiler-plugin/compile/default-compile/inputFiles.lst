@@ -4,8 +4,8 @@
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/SystemConnectorPlug.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/com/ijkparams/IjkParam.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/plugins/interfaces/SystemsManagerInterface.java
-/home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/com/data/InjectionStatus.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/plugins/interfaces/InjektorsManagerInterface.java
+/home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/com/data/InjectionStatus.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/com/data/Target.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/utils/JsonUtils.java
 /home/goncalo/Desktop/defektor/common/src/main/java/pt/uc/sob/defektor/common/com/data/TargetType.java

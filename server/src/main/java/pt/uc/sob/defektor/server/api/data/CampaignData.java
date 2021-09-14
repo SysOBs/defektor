@@ -15,6 +15,7 @@ public class CampaignData {
     private Integer currentRun = 1;
     private Integer totalRuns;
     private CampaignStatus status = CampaignStatus.STOPPED;
+    private String message;
 
     public CampaignData(UUID id, Integer totalRuns) {
         this.id = id;

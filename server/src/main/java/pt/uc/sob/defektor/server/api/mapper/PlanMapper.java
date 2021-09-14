@@ -24,7 +24,6 @@ public class PlanMapper {
         Plan plan = new Plan();
         plan.setId(planData.getId());
         plan.setName(planData.getName());
-        //TODO FINISH SYSTEM DAO/DTO MAPPING
         plan.setSystem(SystemTypeMapper.convertToDTO(planData.getSystem()));
         plan.setInjektions(
                 planData.getInjektions().stream()

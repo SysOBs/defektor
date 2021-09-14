@@ -10,12 +10,9 @@ target/
 /local.properties
 
 #User
-/state/
-Problems.txt
+state/*
 TODO.md
 plugins/libs
-#/plugins/libs
-
-
-
-
+/ToDiscuss.txt
+/state/
+/state/

@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.api.expection;
+package pt.uc.sob.defektor.server.campaign.exception;
 
 public class CampaignException extends Exception {
 

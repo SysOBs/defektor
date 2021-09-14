@@ -7,11 +7,12 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.server.api.data.*;
-import pt.uc.sob.defektor.server.api.expection.CampaignException;
+import pt.uc.sob.defektor.server.campaign.exception.CampaignException;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
 import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
+import pt.uc.sob.defektor.server.utils.Strings;
 
 import java.util.Date;
 import java.util.List;
@@ -100,11 +101,12 @@ public class CampaignController extends InjektionData {
 
     private void handleCampaignAbnormallyInterruption(CampaignException e) {
         campaignData.setStatus(CampaignStatus.ABNORMALLY_INTERRUPTED);
-        System.out.printf(e.getMessage());
+        campaignData.setMessage(e.getMessage());
     }
 
     private void performFaultInjectionRun() throws CampaignException {
         campaignData.setStatus(CampaignStatus.RUNNING_GOLDEN_RUN);
+        campaignData.setMessage(Strings.Campaign.RUNNING_GOLDEN_RUN);
         applyWorkload();
         performInjektion();
         stopWorkload();
@@ -114,6 +116,7 @@ public class CampaignController extends InjektionData {
 
     private void performGoldenRun() throws CampaignException {
         campaignData.setStatus(CampaignStatus.RUNNING_FAULT_INJECTION_RUN);
+        campaignData.setMessage(Strings.Campaign.RUNNING_FAULT_INJECTION_RUN);
         applyWorkload();
         stopWorkload();
         collectData();

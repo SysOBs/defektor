@@ -40,10 +40,4 @@ public class TestController {
         }
         injektorPlug.stopInjection();
     }
-
-    @Test
-    public void performInjection1() {
-        //TODO Mudar as config classes para dentro dos plugins
-//        IjkTaskHandler ijkTaskHandler = new IjkTaskHandler("process-terminator", systemPlug);
-    }
 }

@@ -15,8 +15,7 @@ import javax.validation.constraints.*;
 /**
  * SystemTarget
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-27T00:19:23.752696+01:00[Europe/Lisbon]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-09-14T17:54:31.910834+01:00[Europe/Lisbon]")
 public class SystemTarget   {
   @JsonProperty("name")
   private String name;
@@ -77,7 +76,7 @@ public class SystemTarget   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -109,7 +108,7 @@ public class SystemTarget   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
