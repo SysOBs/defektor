@@ -7,6 +7,7 @@ import pt.uc.sob.defektor.common.InjektorPlug;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
 import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.api.expection.CampaignException;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
@@ -52,13 +53,13 @@ public class CampaignController extends InjektionData {
         return new IjkParam(jsonObject);
     }
 
-    private void applyWorkload() {
+    private void applyWorkload() throws CampaignException {
         System.out.println(new Date() + " - STARTED WORKLOAD");
         workloadGenerator.performWorkloadGen(this.getWorkLoad(), campaignData.getId());
         sleep(this.getWorkLoad().getDuration());
     }
 
-    private void stopWorkload() {
+    private void stopWorkload() throws CampaignException {
         System.out.println(new Date() + " - STOPPED WORKLOAD");
         workloadGenerator.stopWorkloadGen(campaignData.getId());
         sleep(1);
@@ -82,25 +83,39 @@ public class CampaignController extends InjektionData {
         new Thread(
                 () -> {
                     while (campaignData.getCurrentRun() <= campaignData.getTotalRuns()) {
-
-                        //GOLDEN RUN
-                        campaignData.setStatus(CampaignStatus.RUNNING_GOLDEN_RUN);
-                        applyWorkload();
-                        stopWorkload();
-                        collectData();
-
-                        //FAULT INJECTION RUN
-                        campaignData.setStatus(CampaignStatus.RUNNING_FAULT_INJECTION_RUN);
-                        applyWorkload();
-                        performInjektion();
-                        stopWorkload();
-                        stopInjektion();
-                        collectData();
-
-                        campaignData.incrementCurrentRun();
+                        try {
+                            performGoldenRun();
+                            performFaultInjectionRun();
+                        } catch (CampaignException e) {
+                            handleCampaignAbnormallyInterruption(e);
+                        }
+                        finally {
+                            campaignData.incrementCurrentRun();
+                        }
                     }
                     campaignData.setStatus(CampaignStatus.FINISHED);
                 }
         ).start();
+    }
+
+    private void handleCampaignAbnormallyInterruption(CampaignException e) {
+        campaignData.setStatus(CampaignStatus.ABNORMALLY_INTERRUPTED);
+        System.out.printf(e.getMessage());
+    }
+
+    private void performFaultInjectionRun() throws CampaignException {
+        campaignData.setStatus(CampaignStatus.RUNNING_GOLDEN_RUN);
+        applyWorkload();
+        performInjektion();
+        stopWorkload();
+        stopInjektion();
+        collectData();
+    }
+
+    private void performGoldenRun() throws CampaignException {
+        campaignData.setStatus(CampaignStatus.RUNNING_FAULT_INJECTION_RUN);
+        applyWorkload();
+        stopWorkload();
+        collectData();
     }
 }

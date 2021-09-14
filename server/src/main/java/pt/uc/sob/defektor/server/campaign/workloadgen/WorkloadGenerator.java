@@ -7,6 +7,7 @@ import pt.uc.sob.defektor.server.api.data.DockerImageData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.SlaveData;
 import pt.uc.sob.defektor.server.api.data.WorkLoadData;
+import pt.uc.sob.defektor.server.api.expection.CampaignException;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.utils.Utils;
 
@@ -21,20 +22,20 @@ public class WorkloadGenerator {
 
     private final SlaveService slaveService;
 
-    public void performWorkloadGen(WorkLoadData workload, UUID campaignID) {
+    public void performWorkloadGen(WorkLoadData workload, UUID campaignID) throws CampaignException {
         List<SlaveData> slavesList = slaveService.slavesList();
-        Integer numberOfReplicas = workload.getReplicas();
+        Integer desiredNumberOfSlaves = workload.getSlaves();
 
         List<SlaveData> slaveMachineReplicas = slavesList
                 .stream()
-                .limit(numberOfReplicas)
+                .limit(desiredNumberOfSlaves)
                 .collect(Collectors.toList());
 
-        if(slaveMachineReplicas.size() != numberOfReplicas)
+        if(slaveMachineReplicas.size() != desiredNumberOfSlaves)
             //TODO EXCEPTION -> NOT ENOUGH SLAVES
+            throw new RuntimeException();
 
         for (SlaveData slaveData : slaveMachineReplicas) {
-
             List<String> commands = new ArrayList<>();
             List<KeyValueData> env = workload.getEnv();
             DockerImageData image = workload.getImage();
@@ -52,7 +53,7 @@ public class WorkloadGenerator {
         }
     }
 
-    public void stopWorkloadGen(UUID campaignID) {
+    public void stopWorkloadGen(UUID campaignID) throws CampaignException {
         List<String> commands = new ArrayList<>();
         List<SlaveData> slavesList = slaveService.slavesList();
 

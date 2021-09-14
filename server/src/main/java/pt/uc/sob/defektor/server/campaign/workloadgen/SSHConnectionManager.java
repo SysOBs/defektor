@@ -4,7 +4,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelShell;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-import pt.uc.sob.defektor.server.api.data.SlaveData;
+import pt.uc.sob.defektor.server.api.expection.CampaignException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -28,14 +28,14 @@ public class SSHConnectionManager {
     }
 
 
-    private Session getSession() {
+    private Session getSession() throws CampaignException {
         if (session == null || !session.isConnected()) {
             session = connect();
         }
         return session;
     }
 
-    private Channel getChannel() {
+    private Channel getChannel() throws CampaignException {
         if (channel == null || !channel.isConnected()) {
             try {
                 channel = (ChannelShell) getSession().openChannel("shell");
@@ -43,13 +43,13 @@ public class SSHConnectionManager {
                 channel.connect();
 
             } catch (Exception e) {
-                System.out.println("Error while opening channel: " + e);
+                throw new CampaignException("Error while opening channel: " + e);
             }
         }
         return channel;
     }
 
-    private Session connect() {
+    private Session connect() throws CampaignException {
 
         JSch jSch = new JSch();
 
@@ -65,17 +65,19 @@ public class SSHConnectionManager {
             session.connect();
             System.out.println("Connected!");
         } catch (Exception e) {
-            System.out.println("An error occurred while connecting to " + host + ": " + e);
+            throw new CampaignException("An error occurred while connecting to " + host + ": " + e);
         }
 
         return session;
 
     }
 
-    public void executeCommands(List<String> commands) {
+    public void executeCommands(List<String> commands) throws CampaignException {
 
         try {
             Channel channel = getChannel();
+            if (channel == null)
+                return;
 
             System.out.println("Sending commands...");
             sendCommands(channel, commands);
@@ -84,11 +86,12 @@ public class SSHConnectionManager {
             System.out.println("Finished sending commands!");
 
         } catch (Exception e) {
-            System.out.println("An error ocurred during executeCommands: " + e);
+            e.printStackTrace();
+            throw new CampaignException("An error ocurred during executeCommands: " + e);
         }
     }
 
-    private void sendCommands(Channel channel, List<String> commands) {
+    private void sendCommands(Channel channel, List<String> commands) throws CampaignException {
 
         try {
             PrintStream out = new PrintStream(channel.getOutputStream());
@@ -101,12 +104,12 @@ public class SSHConnectionManager {
 
             out.flush();
         } catch (Exception e) {
-            System.out.println("Error while sending commands: " + e);
+            throw new CampaignException("Error while sending commands: " + e);
         }
 
     }
 
-    private void readChannelOutput(Channel channel) {
+    private void readChannelOutput(Channel channel) throws CampaignException {
 
         byte[] buffer = new byte[1024];
 
@@ -136,14 +139,16 @@ public class SSHConnectionManager {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error while reading channel output: " + e);
+            throw new CampaignException("Error while reading channel output: " + e);
         }
 
     }
 
     public void close() {
-        channel.disconnect();
-        session.disconnect();
+        if(channel != null)
+            channel.disconnect();
+        if (session != null)
+            session.disconnect();
         System.out.println("Disconnected channel and session");
     }
 }

@@ -25,7 +25,6 @@ public class Orchestrator {
     public void conductProcess(PlanData plan) {
 
         for (InjektionData injektion : plan.getInjektions()) {
-
             new CampaignController(
                     plan.getId(),
                     injektion.getTotalRuns(),
