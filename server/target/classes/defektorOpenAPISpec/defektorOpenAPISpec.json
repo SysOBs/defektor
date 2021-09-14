@@ -72,7 +72,7 @@
       },
       "delete": {
         "summary": "delete all slaves",
-        "operationId": "allSlavesDelete",
+        "operationId": "slaveDeleteAll",
         "description": "Delete all slaves",
         "responses": {
           "200": {
@@ -276,7 +276,7 @@
       },
       "delete": {
         "summary": "delete all plans",
-        "operationId": "allPlansDelete",
+        "operationId": "planDeleteAll",
         "description": "Delete all plan",
         "responses": {
           "200": {
