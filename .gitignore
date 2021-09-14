@@ -10,9 +10,9 @@ target/
 /local.properties
 
 #User
-state/*
 TODO.md
 plugins/libs
 /ToDiscuss.txt
-/state/
-/state/
+/state/plan.db
+/state/slave.db
+/state/sysconfig.db
