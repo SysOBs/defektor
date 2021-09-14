@@ -62,4 +62,10 @@ public class SlaveController implements SlaveApi {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @Override
+    public ResponseEntity<Void> slaveDeleteAll() {
+        slaveService.slaveDeleteAll();
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }

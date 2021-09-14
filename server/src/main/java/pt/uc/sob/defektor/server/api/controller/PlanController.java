@@ -85,8 +85,8 @@ public class PlanController implements PlanApi {
     }
 
     @Override
-    public ResponseEntity<Void> allPlansDelete(){
-        planService.allPlansDelete();
+    public ResponseEntity<Void> planDeleteAll(){
+        planService.planDeleteAll();
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
