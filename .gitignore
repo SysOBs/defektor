@@ -1,5 +1,5 @@
 .idea/
-*/target/
+target/
 /*.classpath
 /.classpath
 /.springBeans
@@ -13,4 +13,4 @@
 TODO.md
 plugins/libs
 /ToDiscuss.txt
-/state/
+state/
