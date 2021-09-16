@@ -6,7 +6,7 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     protected Session session = null;
 
-    public VMSystemPlug(SystemConfig configuration) {
+    public VMSystemPlug(SystemConfigs configuration) {
         super(configuration);
     }
 
@@ -38,7 +38,7 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     @Override
     public void configure() {
-        Config config = Utils.jsonToObject(configuration.getJsonSysConfig().toString());
+        Config config = Utils.jsonToObject(configuration.getJsonSysConfigs().toString());
         JSch jSch = new JSch();
 
         try {

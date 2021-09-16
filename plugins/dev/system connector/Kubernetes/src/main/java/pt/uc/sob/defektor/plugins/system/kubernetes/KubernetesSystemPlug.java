@@ -5,7 +5,7 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
 import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class KubernetesSystemPlug extends SystemConnectorPlug {
     
-    public KubernetesSystemPlug(SystemConfig configuration) {
-        super(configuration);
+    public KubernetesSystemPlug(SystemConfigs configs) {
+        super(configs);
         configure();
     }
 
