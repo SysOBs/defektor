@@ -7,7 +7,9 @@ import java.util.UUID;
 
 public interface DefektorRepository<T> {
 
-    void save(T t, String dbFilePath) throws DuplicateEntryException;
+    void save(T t, String dbFilePath);
+
+    void update(T t, String dbFilePath);
 
     T findById(UUID id, String dbFilePath);
 

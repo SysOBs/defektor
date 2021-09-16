@@ -6,6 +6,6 @@ import org.json.JSONObject;
 
 @Data
 @AllArgsConstructor
-public class IjkParam {
-    JSONObject jsonIjkParam;
+public class IjkParams {
+    JSONObject jsonIjkParams;
 }

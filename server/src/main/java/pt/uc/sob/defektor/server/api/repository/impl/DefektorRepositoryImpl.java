@@ -17,16 +17,33 @@ import java.util.UUID;
 public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
-    public void save(T t, String dbFilePath) throws DuplicateEntryException {
+    public void save(T t, String dbFilePath) {
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
 
-        if(Utils.isUnique(t, tList) == false) {
-            db.close();
-            throw new DuplicateEntryException("Test");
-        }
+//        if(Utils.isUnique(t, tList) == false) {
+//            db.close();
+//            throw new DuplicateEntryException("Test");
+//        }
 
         tList.add(t);
+
+        db.commit();
+        db.close();
+    }
+
+    @Override
+    public void update(T t, String dbFilePath) {
+
+        DB db = DBMaker.fileDB(dbFilePath).make();
+        List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
+
+        for (T tElement : tList) {
+            if (tElement.hashCode() == t.hashCode()) {
+                int index = tList.indexOf(tElement);
+                tList.set(index, t);
+            }
+        }
 
         db.commit();
         db.close();

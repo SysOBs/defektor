@@ -35,7 +35,7 @@ public class WorkloadGenerator {
             throw new CampaignException("not enough slave machines available");
 
         for (SlaveData slaveData : slaveMachineReplicas) {
-            List<String> commands = null;
+            List<String> commands = new ArrayList<>();
             List<KeyValueData> env = workload.getEnv();
             DockerImageData image = workload.getImage();
 

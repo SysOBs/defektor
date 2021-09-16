@@ -6,11 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
 
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class CampaignData {
+@AllArgsConstructor
+public class CampaignData implements Serializable {
     private UUID id;
     private Integer currentRun = 1;
     private Integer totalRuns;
@@ -24,5 +27,18 @@ public class CampaignData {
 
     public void incrementCurrentRun() {
         this.currentRun += 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CampaignData that = (CampaignData) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

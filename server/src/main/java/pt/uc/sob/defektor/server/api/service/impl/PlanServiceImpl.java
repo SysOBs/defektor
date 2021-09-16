@@ -6,10 +6,10 @@ import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
-import pt.uc.sob.defektor.server.api.mapper.Mapper;
+import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
-import pt.uc.sob.defektor.server.model.Plan;
+import pt.uc.sob.defektor.server.campaign.Orchestrator;
 import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
@@ -21,11 +21,14 @@ import java.util.UUID;
 public class PlanServiceImpl implements PlanService {
 
     private final DefektorRepository<PlanData> defektorRepository;
+    private final Orchestrator orchestrator;
+
 
     @Override
-    public PlanData planAdd(PlanData plan) throws DuplicateEntryException {
+    public PlanData planAdd(PlanData plan) throws InvalidSystemException {
         plan.setId(Utils.generateUUID());
         defektorRepository.save(plan, Strings.DB.PLAN_DB_PATH);
+        orchestrator.conductProcess(plan);
         return plan;
     }
 
@@ -42,7 +45,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void planValidate(PlanData plan) throws InvalidPlanException {
+    public void planValidate(PlanData plan) {
         //TODO To implement
     }
 

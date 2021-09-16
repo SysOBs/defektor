@@ -13,6 +13,7 @@ public class InjektionData implements Serializable {
   private Integer totalRuns;
   private IjkData ijk;
   private WorkLoadData workLoad;
+  private DataCollectorData dataCollector;
   private TargetData target;
 }
 

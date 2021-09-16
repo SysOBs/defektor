@@ -8,8 +8,9 @@ public class InjektionMapper {
         Injektion injektion = new Injektion();
         injektion.setTotalRuns(injektionData.getTotalRuns());
         injektion.setIjk(IjkMapper.convertToDTO(injektionData.getIjk()));
-        injektion.setTarget(TargetMapper.convertToDTO(injektionData.getTarget()));
+//        injektion.setTarget(TargetMapper.convertToDTO(injektionData.getTarget()));
         injektion.setWorkLoad(WorkLoadMapper.convertToDTO(injektionData.getWorkLoad()));
+        injektion.setDataCollector(DataCollectorMapper.convertToDTO(injektionData.getDataCollector()));
 
         return injektion;
 
@@ -19,8 +20,9 @@ public class InjektionMapper {
         InjektionData injektionData = new InjektionData();
         injektionData.setTotalRuns(injektion.getTotalRuns());
         injektionData.setIjk(IjkMapper.convertToDAO(injektion.getIjk()));
-        injektionData.setTarget(TargetMapper.convertToDAO(injektion.getTarget()));
+//        injektionData.setTarget(TargetMapper.convertToDAO(injektion.getTarget()));
         injektionData.setWorkLoad(WorkLoadMapper.convertToDAO(injektion.getWorkLoad()));
+        injektionData.setDataCollector(DataCollectorMapper.convertToDAO(injektion.getDataCollector()));
 
         return injektionData;
     }

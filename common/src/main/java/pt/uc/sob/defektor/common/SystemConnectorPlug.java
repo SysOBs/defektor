@@ -1,15 +1,15 @@
 package pt.uc.sob.defektor.common;
 
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfig;
+import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 
 import java.util.List;
 
 public abstract class SystemConnectorPlug {
 
-    protected SystemConfig configuration;
+    protected SystemConfigs configuration;
 
-    public SystemConnectorPlug(SystemConfig systemConfiguration) {
+    public SystemConnectorPlug(SystemConfigs systemConfiguration) {
         configuration = systemConfiguration;
     }
 

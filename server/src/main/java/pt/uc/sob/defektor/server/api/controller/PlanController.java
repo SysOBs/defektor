@@ -45,12 +45,8 @@ public class PlanController implements PlanApi {
         PlanData planData = PlanMapper.convertToDAO(plan);
         try {
             planService.planValidate(planData);
-            planService.planAdd(planData);
-            orchestrator.conductProcess(planData);
-            return new ResponseEntity<>(plan, HttpStatus.CREATED);
-        }
-        catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+            planData = planService.planAdd(planData);
+            return new ResponseEntity<>(PlanMapper.convertToDTO(planData), HttpStatus.CREATED);
         }
         catch (DuplicateEntryException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);

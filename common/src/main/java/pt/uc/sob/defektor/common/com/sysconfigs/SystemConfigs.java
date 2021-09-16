@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 @Data
 @AllArgsConstructor
-public class SystemConfig {
-    JSONObject jsonSysConfig;
+public class SystemConfigs {
+    JSONObject jsonSysConfigs;
 }
 

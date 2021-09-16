@@ -12,6 +12,7 @@ public class CampaignMapper {
         campaignData.setCurrentRun(campaign.getCurrentRun());
         campaignData.setTotalRuns(campaign.getTotalRuns());
         campaignData.setStatus(CampaignStatus.valueOf(campaign.getStatus()));
+        campaignData.setMessage(campaign.getMessage());
         return campaignData;
     }
 
@@ -21,7 +22,8 @@ public class CampaignMapper {
         campaign.setId(campaignData.getId());
         campaign.setCurrentRun(campaignData.getCurrentRun());
         campaign.setTotalRuns(campaignData.getTotalRuns());
-        campaign.setStatus(campaign.getStatus());
+        campaign.setStatus(campaignData.getStatus().toString());
+        campaign.setMessage(campaignData.getMessage());
         return campaign;
     }
 }
