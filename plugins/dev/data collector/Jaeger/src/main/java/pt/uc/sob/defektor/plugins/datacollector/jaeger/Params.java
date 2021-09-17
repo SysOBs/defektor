@@ -11,5 +11,4 @@ public class Params {
     private String host;
     private String startTimestamp;
     private String endTimestamp;
-    private String service;
 }

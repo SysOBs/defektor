@@ -1,15 +1,13 @@
 package pt.uc.sob.defektor.plugins.datacollector.jaeger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import pt.uc.sob.defektor.common.DataCollectorPlug;
 import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JaegerDataCollectorPlug extends DataCollectorPlug {
 
@@ -32,17 +30,60 @@ public class JaegerDataCollectorPlug extends DataCollectorPlug {
     @Override
     public byte[] getData() {
         configure();
-        String URI = serializedParams.getHost() +
-                "?start=" + serializedParams.getStartTimestamp() +
-                "&end=" + serializedParams.getEndTimestamp() +
-                "&service=" + serializedParams.getService();
+        String URI;
+        StringBuilder content = new StringBuilder();
+        String returnedString;
 
-        byte[] byteArray = null;
+        List<String> servicesList = getServiceList();
+
+        for (String service : servicesList) {
+            URI = serializedParams.getHost() +
+                    "?start=" + serializedParams.getStartTimestamp() +
+                    "&end=" + serializedParams.getEndTimestamp() +
+                    "&service=" + service;
+
+            System.out.println(URI);
+
+            String serviceJsonString = fetchServiceJson(servicesList, service, URI);
+            System.out.println(service);
+            System.out.println(serviceJsonString);
+            if(serviceJsonString != null) {
+                content.append(serviceJsonString);
+            }
+        }
+        returnedString = "[" + content + "]";
+        return returnedString.getBytes(StandardCharsets.UTF_8);
+    }
+
+    private List<String> getServiceList() {
+        List<String> serviceList = new ArrayList<>();
+        String URI;
+        URI = serializedParams.getHost().split("traces")[0] + "services";
         try {
-            byteArray = Utils.httpGet(URI).getBytes(StandardCharsets.UTF_8);
+            String fetchedJSON = Utils.httpGet(URI);
+            JSONObject jsonObject = new JSONObject(fetchedJSON);
+            var jsonArray = jsonObject.getJSONArray("data");
+            for(int i=0; i< jsonArray.length(); i++){
+                serviceList.add(jsonArray.getString(i));
+            }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        return byteArray;
+
+        return serviceList;
+    }
+
+    private String fetchServiceJson(List<String> servicesList, String service, String URI) {
+        String fetchedJSON = null;
+        try {
+            fetchedJSON = Utils.httpGet(URI);
+            if (servicesList.indexOf(service) != (servicesList.size() - 1)) {
+                fetchedJSON += ",";
+            }
+            JSONObject jsonObject = new JSONObject(fetchedJSON);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return fetchedJSON;
     }
 }
