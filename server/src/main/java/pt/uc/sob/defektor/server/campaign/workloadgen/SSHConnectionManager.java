@@ -61,9 +61,9 @@ public class SSHConnectionManager {
             config.put("StrictHostKeyChecking", "no");
             config.put("PreferredAuthentications", "publickey,keyboard-interactive,password");
             session.setConfig(config);
-            System.out.println("Connecting SSH to " + host + " - Please wait for few seconds... ");
+//            System.out.println("Connecting SSH to " + host + " - Please wait for few seconds... ");
             session.connect();
-            System.out.println("Connected!");
+//            System.out.println("Connected!");
         } catch (Exception e) {
             throw new CampaignException("An error occurred while connecting to " + host + ": " + e);
         }
@@ -79,11 +79,11 @@ public class SSHConnectionManager {
             if (channel == null)
                 return;
 
-            System.out.println("Sending commands...");
+//            System.out.println("Sending commands...");
             sendCommands(channel, commands);
 
             readChannelOutput(channel);
-            System.out.println("Finished sending commands!");
+//            System.out.println("Finished sending commands!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,7 +106,6 @@ public class SSHConnectionManager {
         } catch (Exception e) {
             throw new CampaignException("Error while sending commands: " + e);
         }
-
     }
 
     private void readChannelOutput(Channel channel) throws CampaignException {
@@ -149,6 +148,6 @@ public class SSHConnectionManager {
             channel.disconnect();
         if (session != null)
             session.disconnect();
-        System.out.println("Disconnected channel and session");
+//        System.out.println("Disconnected channel and session");
     }
 }

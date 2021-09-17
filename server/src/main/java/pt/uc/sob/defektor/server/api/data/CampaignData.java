@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
+import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,6 +21,8 @@ public class CampaignData implements Serializable {
     private Integer totalRuns;
     private CampaignStatus status = CampaignStatus.STOPPED;
     private String message;
+    private final String startTimestamp = Utils.Time.getCurrentTimestamp();
+    private String endTimestamp;
 
     public CampaignData(UUID id, Integer totalRuns) {
         this.id = id;

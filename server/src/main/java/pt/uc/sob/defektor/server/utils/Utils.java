@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,6 @@ public class Utils {
         }
     }
 
-
     public static String getSystemNameFromClassName(String pluginClassName) {
         return pluginClassName.split(".ijk.")[1].split("\\.")[0];
     }
@@ -45,5 +45,12 @@ public class Utils {
 
     public static UUID generateUUID() {
         return UUID.randomUUID();
+    }
+
+    public static class Time {
+
+        public static String getCurrentTimestamp() {
+            return new Timestamp(System.currentTimeMillis()).getTime() + "000";
+        }
     }
 }

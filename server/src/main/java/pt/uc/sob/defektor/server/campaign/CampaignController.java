@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -75,7 +76,7 @@ public class CampaignController extends InjektionData {
     private void stopWorkload() throws CampaignException {
         System.out.println(new Date() + " - STOPPED WORKLOAD");
         workloadGenerator.stopWorkloadGen(campaignData.getId());
-        sleep(1);
+        sleep(30);
     }
 
     private void collectData() {
@@ -103,6 +104,8 @@ public class CampaignController extends InjektionData {
         for (KeyValueData keyData : params) {
             jsonObject.put(keyData.getKey(), keyData.getValue());
         }
+        jsonObject.put("startTimestamp", campaignData.getStartTimestamp());
+        jsonObject.put("endTimestamp", Utils.Time.getCurrentTimestamp());
         return new DataCollectorParams(jsonObject);
     }
 
