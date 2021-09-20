@@ -11,6 +11,7 @@ public class RunMapper {
         runData.setMessage(run.getMessage());
         runData.setStatus(RunStatus.valueOf(run.getStatus()));
         runData.setRunNumber(run.getRunNumber());
+        runData.setDataOutputURI(DataOutputMapper.convertToDAO(run.getDataOutputURI()));
         runData.setStartTimestamp(run.getStartTimestamp());
         runData.setEndTimestamp(run.getEndTimestamp());
         return runData;
@@ -21,10 +22,9 @@ public class RunMapper {
         run.setMessage(runData.getMessage());
         run.setStatus(runData.getStatus().toString());
         run.setRunNumber(runData.getRunNumber());
+        run.setDataOutputURI(DataOutputMapper.convertToDTO(runData.getDataOutputURI()));
         run.setStartTimestamp(runData.getStartTimestamp());
         run.setEndTimestamp(runData.getEndTimestamp());
         return run;
     }
-    
-    
 }
