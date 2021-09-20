@@ -69,6 +69,7 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         tList.remove(plan);
+        db.commit();
         db.close();
     }
 
@@ -77,6 +78,7 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         tList.clear();
+        db.commit();
         db.close();
     }
 

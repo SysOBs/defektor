@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.uc.sob.defektor.server.api.SystemApi;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
-import pt.uc.sob.defektor.server.api.mapper.PlanMapper;
 import pt.uc.sob.defektor.server.api.mapper.SystemConfigMapper;
 import pt.uc.sob.defektor.server.api.service.SystemService;
 import pt.uc.sob.defektor.server.model.SystemConfig;

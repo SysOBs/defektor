@@ -42,11 +42,8 @@ public class JaegerDataCollectorPlug extends DataCollectorPlug {
                     "&end=" + serializedParams.getEndTimestamp() +
                     "&service=" + service;
 
-            System.out.println(URI);
 
             String serviceJsonString = fetchServiceJson(servicesList, service, URI);
-            System.out.println(service);
-            System.out.println(serviceJsonString);
             if(serviceJsonString != null) {
                 content.append(serviceJsonString);
             }

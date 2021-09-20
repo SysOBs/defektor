@@ -4,6 +4,8 @@ import pt.uc.sob.defektor.server.api.data.CampaignData;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
 import pt.uc.sob.defektor.server.model.Campaign;
 
+import java.util.stream.Collectors;
+
 public class CampaignMapper {
 
     public static CampaignData convertToDAO(Campaign campaign) {
@@ -12,7 +14,13 @@ public class CampaignMapper {
         campaignData.setCurrentRun(campaign.getCurrentRun());
         campaignData.setTotalRuns(campaign.getTotalRuns());
         campaignData.setStatus(CampaignStatus.valueOf(campaign.getStatus()));
-        campaignData.setMessage(campaign.getMessage());
+        campaignData.setStartTimestamp(campaign.getStartTimestamp());
+        campaignData.setEndTimestamp(campaign.getEndTimestamp());
+        campaignData.setRuns(
+                campaign.getRuns().stream()
+                        .map(RunMapper::convertToDAO)
+                        .collect(Collectors.toList())
+        );
         return campaignData;
     }
 
@@ -23,7 +31,13 @@ public class CampaignMapper {
         campaign.setCurrentRun(campaignData.getCurrentRun());
         campaign.setTotalRuns(campaignData.getTotalRuns());
         campaign.setStatus(campaignData.getStatus().toString());
-        campaign.setMessage(campaignData.getMessage());
+        campaign.setStartTimestamp(campaignData.getStartTimestamp());
+        campaign.setEndTimestamp(campaignData.getEndTimestamp());
+        campaign.setRuns(
+                campaignData.getRuns().stream()
+                        .map(RunMapper::convertToDTO)
+                        .collect(Collectors.toList())
+        );
         return campaign;
     }
 }

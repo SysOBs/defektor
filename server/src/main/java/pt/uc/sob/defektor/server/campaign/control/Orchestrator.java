@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.campaign;
+package pt.uc.sob.defektor.server.campaign.control;
 
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -24,20 +24,15 @@ public class Orchestrator {
     private final CampaignService campaignService;
     private final WorkloadGenerator workloadGenerator;
 
-//    @Async
     public void conductProcess(PlanData plan) throws InvalidSystemException {
 
-        for (InjektionData injektion : plan.getInjektions()) {
+        for (InjektionData injektionData : plan.getInjektions()) {
             new CampaignController(
-                    plan.getId(),
-                    injektion.getTotalRuns(),
-                    injektion.getIjk(),
-                    injektion.getWorkLoad(),
-                    injektion.getDataCollector(),
-                    injektion.getTarget(),
+                    new CampaignData(plan.getId(), injektionData.getTotalRuns()),
                     getCompatibleSystemList(plan.getSystem().getName()),
                     workloadGenerator,
-                    campaignService
+                    campaignService,
+                    injektionData
             ).startCampaign();
         }
     }

@@ -1,0 +1,176 @@
+package pt.uc.sob.defektor.server.campaign.run.data;
+
+import lombok.SneakyThrows;
+import org.json.JSONObject;
+import pt.uc.sob.defektor.common.DataCollectorPlug;
+import pt.uc.sob.defektor.common.InjektorPlug;
+import pt.uc.sob.defektor.common.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
+import pt.uc.sob.defektor.server.api.data.CampaignData;
+import pt.uc.sob.defektor.server.api.data.InjektionData;
+import pt.uc.sob.defektor.server.api.data.KeyValueData;
+import pt.uc.sob.defektor.server.api.data.RunData;
+import pt.uc.sob.defektor.server.api.service.CampaignService;
+import pt.uc.sob.defektor.server.campaign.exception.CampaignException;
+import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
+import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
+import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
+import pt.uc.sob.defektor.server.utils.Strings;
+import pt.uc.sob.defektor.server.utils.Utils;
+
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+public class RunController {
+
+    private final RunData runData;
+    private CampaignData campaignData;
+    private final InjektionData injektionData;
+    private InjektorPlug injektorPlug;
+    private WorkloadGenerator workloadGenerator;
+    private CampaignService campaignService;
+    private List<SystemConnectorPlug> systemConnectorPlugs;
+
+    public RunController(RunData runData, CampaignData campaignData, InjektionData injektionData, WorkloadGenerator workloadGenerator, CampaignService campaignService, List<SystemConnectorPlug> systemConnectorPlugs) {
+        this.runData = runData;
+        this.campaignData = campaignData;
+        this.injektionData = injektionData;
+        this.workloadGenerator = workloadGenerator;
+        this.campaignService = campaignService;
+        this.systemConnectorPlugs = systemConnectorPlugs;
+    }
+
+    public RunData getRunData() {
+        return runData;
+    }
+
+    public void performRun() {
+        handleRunStart();
+        try {
+            performGoldenRun();
+            performFaultInjectionRun();
+            handleRunFinish();
+        } catch (CampaignException e) {
+            handleAbnormallyInterruptedRun();
+        }
+    }
+
+    private void handleRunStart() {
+        runData.setStartTimestamp(Utils.Time.getCurrentTimestamp());
+    }
+
+    private void handleRunFinish() {
+        runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
+        updateRunState(
+                RunStatus.FINISHED,
+                Strings.Run.FINISHED
+        );
+    }
+
+    public void performGoldenRun() throws CampaignException {
+        updateRunState(
+                RunStatus.RUNNING_GOLDEN_RUN,
+                Strings.Run.RUNNING_GOLDEN_RUN
+        );
+
+        applyWorkload();
+        stopWorkload();
+        collectData();
+    }
+
+    public void performFaultInjectionRun() throws CampaignException {
+        updateRunState(
+                RunStatus.RUNNING_FAULT_INJECTION_RUN,
+                Strings.Run.RUNNING_FAULT_INJECTION_RUN
+        );
+
+        performInjektion();
+        applyWorkload();
+        stopWorkload();
+        stopInjektion();
+        collectData();
+    }
+
+    private void handleAbnormallyInterruptedRun() {
+
+    }
+
+    public void performInjektion() {
+        System.out.println(new Date() + " - PERFORMED INJEKTION");
+        systemConnectorPlugs.forEach(systemPlug -> {
+            injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(injektionData.getIjk().getName(), systemPlug);
+            injektorPlug.performInjection(buildIjkParams(injektionData.getIjk().getParams()));
+        });
+    }
+
+    public void stopInjektion() {
+        System.out.println(new Date() + " - STOPPED INJEKTION");
+        injektorPlug.stopInjection();
+    }
+
+    private void applyWorkload() throws CampaignException {
+        System.out.println(new Date() + " - STARTED WORKLOAD");
+        workloadGenerator.performWorkloadGen(injektionData.getWorkLoad(), campaignData.getId());
+        sleep(injektionData.getWorkLoad().getDuration());
+    }
+
+    private void stopWorkload() throws CampaignException {
+        System.out.println(new Date() + " - STOPPED WORKLOAD");
+        workloadGenerator.stopWorkloadGen(campaignData.getId());
+        sleep(30);
+    }
+
+    private void collectData() {
+        System.out.println(new Date() + " - COLLECTED DATA");
+
+        DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory.getInstance().getPluginInstance(injektionData.getDataCollector().getName(), buildDataCollectorParams(injektionData.getDataCollector().getParams()));
+        byte[] byteArray = dataCollectorPlug.getData();
+
+        String fileName = "results" + File.separator + campaignData.getId().toString();
+        if (runData.getStatus() == RunStatus.RUNNING_GOLDEN_RUN) {
+            fileName += ".GOLDEN_RUN";
+        } else if (runData.getStatus() == RunStatus.RUNNING_FAULT_INJECTION_RUN) {
+            fileName += ".FAULT_INJECTION_RUN";
+        }
+
+        Utils.writeStringToFile(fileName, new String(byteArray, StandardCharsets.UTF_8));
+
+        //TODO JAEGER COMMAND PF -> kubectl -n jaeger port-forward jaeger-query-5f9f96c564-6lxkq 16686:16686
+        sleep(5);
+    }
+
+    private Object buildDataCollectorParams(List<KeyValueData> params) {
+        JSONObject jsonObject = new JSONObject();
+        for (KeyValueData keyData : params) {
+            jsonObject.put(keyData.getKey(), keyData.getValue());
+        }
+        jsonObject.put("startTimestamp", runData.getStartTimestamp());
+        jsonObject.put("endTimestamp", Utils.Time.getCurrentTimestamp());
+        return new DataCollectorParams(jsonObject);
+    }
+
+    @SneakyThrows
+    private void sleep(int seconds) {
+        TimeUnit.SECONDS.sleep(seconds);
+    }
+
+    private void updateRunState(RunStatus runStatus, String message) {
+        runData.setStatus(runStatus);
+        runData.setMessage(message);
+        campaignService.campaignUpdate(campaignData);
+    }
+    //TODO Utils
+
+    private IjkParams buildIjkParams(List<KeyValueData> params) {
+        JSONObject jsonObject = new JSONObject();
+        for (KeyValueData keyValue : params)
+            jsonObject.put(keyValue.getKey(), keyValue.getValue());
+
+        return new IjkParams(jsonObject);
+    }
+}

@@ -1,14 +1,15 @@
 package pt.uc.sob.defektor.server.api.data;
 
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
+import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -17,16 +18,21 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CampaignData implements Serializable {
     private UUID id;
-    private Integer currentRun = 1;
+    private Integer currentRun;
     private Integer totalRuns;
-    private CampaignStatus status = CampaignStatus.STOPPED;
-    private String message;
-    private final String startTimestamp = Utils.Time.getCurrentTimestamp();
+    private CampaignStatus status;
+    private String startTimestamp;
     private String endTimestamp;
+    private List<RunData> runs;
 
     public CampaignData(UUID id, Integer totalRuns) {
         this.id = id;
         this.totalRuns = totalRuns;
+        this.currentRun = 0;
+        this.status = CampaignStatus.RUNNING;
+        this.startTimestamp = Utils.Time.getCurrentTimestamp();
+        this.endTimestamp = "";
+        this.runs = new ArrayList<>();
     }
 
     public void incrementCurrentRun() {

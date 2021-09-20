@@ -122,7 +122,6 @@ public class SSHConnectionManager {
                         break;
                     }
                     line = new String(buffer, 0, i);
-                    System.out.println(line);
                 }
 
                 if (line.contains("logout")) {

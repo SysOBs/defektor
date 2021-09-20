@@ -1,4 +1,3 @@
-
 #DATA COLLECTOR
 mvn -f '../plugins/dev/data collector/Jaeger/pom.xml' clean package -DskipTests -U
 

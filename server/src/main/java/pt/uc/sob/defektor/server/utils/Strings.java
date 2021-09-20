@@ -22,9 +22,10 @@ public class Strings {
         public static final String NO_SYSTEMS_CONFIGURED = "No valid system configured";
     }
 
-    public class Campaign {
+    public class Run {
         public static final String RUNNING_GOLDEN_RUN = "Running golden run";
         public static final String RUNNING_FAULT_INJECTION_RUN = "Running fault injection run";
-        public static final String FINISHED = "Finished campaign";
+        public static final String FINISHED = "Finished run";
+        public static final String WAITING_TO_START = "Waiting to start";
     }
 }

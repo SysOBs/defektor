@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
-import pt.uc.sob.defektor.server.campaign.Orchestrator;
+import pt.uc.sob.defektor.server.campaign.control.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
@@ -18,7 +18,6 @@ import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
