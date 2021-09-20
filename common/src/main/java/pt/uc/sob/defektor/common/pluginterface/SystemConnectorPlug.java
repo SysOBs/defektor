@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.common;
+package pt.uc.sob.defektor.common.pluginterface;
 
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 import pt.uc.sob.defektor.common.com.data.TargetType;
