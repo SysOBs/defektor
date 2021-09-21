@@ -1,11 +1,10 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay;
 
-import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
+import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.io.File;
@@ -15,7 +14,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay.Utils.*;
 
 public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
@@ -23,7 +21,7 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     private static final String SUFFIX = ".yaml";
     private static final String MANIFEST_NAME = "virtual-service-http-delay.yaml";
     private File yamlFile = null;
-    private Param param;
+    private Params params;
 
     public HttpDelayIjkPlug(SystemConnectorPlug system) {
         super(system);
@@ -35,21 +33,21 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParam ijkParam) {
-        param = new Param("uc-1", "web", "web.uc-1.svc.cluster.local", "100", "5");
+    public void performInjection(IjkParams ijkParam) {
+        params = new Params("uc-1", "web", "web.uc-1.svc.cluster.local", "100", "5");
         InputStream in = HttpDelayIjkPlug.class.getClassLoader().getResourceAsStream(MANIFEST_NAME);
         try {
             this.yamlFile =
-                    stringBuilderToTempFile(
-                            changedYAMLManifest(in, param),
+                    Utils.stringBuilderToTempFile(
+                            Utils.changedYAMLManifest(in, params),
                             PREFIX,
                             SUFFIX
                     );
 
             this.system.createOrReplaceCustomResource(
-                    buildCustomResourceDefinitionContext(),
+                    Utils.buildCustomResourceDefinitionContext(),
                     new FileInputStream(yamlFile),
-                    param.getNamespace()
+                    params.getNamespace()
             );
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,7 +56,7 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
     @Override
     public void stopInjection() {
-        this.system.deleteCustomResource(buildCustomResourceDefinitionContext(), param.getNamespace(), param.getService() + "-http-delay");
+        this.system.deleteCustomResource(Utils.buildCustomResourceDefinitionContext(), params.getNamespace(), params.getService() + "-http-delay");
     }
 
     @Override

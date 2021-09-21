@@ -2,8 +2,8 @@
 //
 //import org.json.JSONObject;
 //import org.junit.Test;
-//import pt.uc.sob.defektor.common.InjektorPlug;
-//import pt.uc.sob.defektor.common.SystemConnectorPlug;
+//import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+//import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 //import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 //
 //import java.io.File;

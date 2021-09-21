@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
 import pt.uc.sob.defektor.server.utils.Strings;
-import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.Serializable;
 
@@ -18,12 +17,14 @@ public class RunData implements Serializable {
     private String message;
     private String startTimestamp;
     private String endTimestamp;
+    private DataOutputURIData dataOutputURI;
 
     public RunData(Integer runNumber) {
         this.runNumber = runNumber;
         this.status = RunStatus.WAITING_TO_START;
         this.message = Strings.Run.WAITING_TO_START;
-        this.startTimestamp = Utils.Time.getCurrentTimestamp();
+        this.startTimestamp = "";
         this.endTimestamp = "";
+        this.dataOutputURI = new DataOutputURIData();
     }
 }

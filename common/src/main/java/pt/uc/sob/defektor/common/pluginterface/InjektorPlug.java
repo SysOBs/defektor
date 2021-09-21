@@ -21,7 +21,7 @@ public abstract class InjektorPlug <S extends SystemConnectorPlug>{
 
     public abstract void performInjection(IjkParams param) throws CampaignException;
 
-    public abstract void stopInjection();
+    public abstract void stopInjection() throws CampaignException;
 
     public abstract List<TargetType> getTargetTypes();
 

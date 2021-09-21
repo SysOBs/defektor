@@ -19,7 +19,7 @@ public class Utils {
         return tempFile;
     }
 
-    public static StringBuilder changedYAMLManifest(InputStream inputStream, Param param) {
+    public static StringBuilder changedYAMLManifest(InputStream inputStream, Params param) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             MyReader myReader = new MyReader(new InputStreamReader(inputStream), param);

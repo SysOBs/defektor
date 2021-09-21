@@ -1,27 +1,26 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Reader;
 
 public class MyReader extends BufferedReader {
-    Param param;
+    Params params;
 
-    public MyReader(Reader in, Param param) {
+    public MyReader(Reader in, Params params) {
         super(in);
-        this.param = param;
+        this.params = params;
     }
 
     @Override
     public String readLine() throws IOException {
         String lBuf = super.readLine();
         if(lBuf == null) return null;
-        lBuf = lBuf.replace("<namespace>", param.getNamespace());
-        lBuf = lBuf.replace("<svc-name>", param.getService());
-        lBuf = lBuf.replace("<host>", param.getHost());
-        lBuf = lBuf.replace("<percentage>", param.getFaultOccurrence());
-        lBuf = lBuf.replace("<httpStatus>", param.getHttpStatus());
+        lBuf = lBuf.replace("<namespace>", params.getNamespace());
+        lBuf = lBuf.replace("<svc-name>", params.getService());
+        lBuf = lBuf.replace("<host>", params.getHost());
+        lBuf = lBuf.replace("<percentage>", params.getFaultOccurrence());
+        lBuf = lBuf.replace("<httpStatus>", params.getHttpStatus());
         return lBuf;
     }
 }

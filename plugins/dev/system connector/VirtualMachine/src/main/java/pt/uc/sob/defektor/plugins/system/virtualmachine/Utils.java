@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 
 public class Utils {
 
-    public static Config jsonToObject(String json) {
-        return new Gson().fromJson(json, Config.class);
+    public static Configs jsonToObject(String json) {
+        return new Gson().fromJson(json, Configs.class);
     }
 }

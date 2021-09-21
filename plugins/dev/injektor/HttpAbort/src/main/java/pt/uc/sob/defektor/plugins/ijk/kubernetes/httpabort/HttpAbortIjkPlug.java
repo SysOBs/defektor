@@ -1,7 +1,8 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
-import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
@@ -14,15 +15,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort.Utils.*;
-
 public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
     private static final String PREFIX = "http-abort";
     private static final String SUFFIX = ".yaml";
     private static final String MANIFEST_NAME = "virtual-service-http-abort.yaml";
     private File yamlFile = null;
-    private Param param;
+    private Params params;
 
     public HttpAbortIjkPlug(SystemConnectorPlug system) {
         super(system);
@@ -34,30 +33,30 @@ public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParams ijkParam) {
-        param = Utils.jsonToObject(ijkParam.getJsonIjkParams().toString());
+    public void performInjection(IjkParams ijkParam) throws CampaignException {
+        params = Utils.jsonToObject(ijkParam.getJsonIjkParams().toString());
         InputStream in = HttpAbortIjkPlug.class.getClassLoader().getResourceAsStream(MANIFEST_NAME);
         try {
             this.yamlFile =
-                    stringBuilderToTempFile(
-                            changedYAMLManifest(in, param),
+                    Utils.stringBuilderToTempFile(
+                            Utils.changedYAMLManifest(in, params),
                             PREFIX,
                             SUFFIX
                     );
 
             this.system.createOrReplaceCustomResource(
-                    buildCustomResourceDefinitionContext(),
+                    Utils.buildCustomResourceDefinitionContext(),
                     new FileInputStream(yamlFile),
-                    param.getNamespace()
+                    params.getNamespace()
             );
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | CampaignException e) {
+            throw new CampaignException(e.getMessage());
         }
     }
 
     @Override
-    public void stopInjection() {
-        this.system.deleteCustomResource(buildCustomResourceDefinitionContext(), param.getNamespace(), param.getService() + "-http-abort");
+    public void stopInjection() throws CampaignException {
+        this.system.deleteCustomResource(Utils.buildCustomResourceDefinitionContext(), params.getNamespace(), params.getService() + "-http-abort");
     }
 
     @Override

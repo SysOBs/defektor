@@ -2,9 +2,10 @@ package pt.uc.sob.defektor.server.campaign.run.data;
 
 import lombok.SneakyThrows;
 import org.json.JSONObject;
-import pt.uc.sob.defektor.common.DataCollectorPlug;
-import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.pluginterface.DataCollectorPlug;
+import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 import pt.uc.sob.defektor.server.api.data.CampaignData;
@@ -12,7 +13,6 @@ import pt.uc.sob.defektor.server.api.data.InjektionData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.RunData;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
-import pt.uc.sob.defektor.server.campaign.exception.CampaignException;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
 import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
@@ -23,18 +23,18 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
 
 public class RunController {
 
     private final RunData runData;
-    private CampaignData campaignData;
+    private final CampaignData campaignData;
     private final InjektionData injektionData;
+    private final WorkloadGenerator workloadGenerator;
+    private final CampaignService campaignService;
+    private final List<SystemConnectorPlug> systemConnectorPlugs;
     private InjektorPlug injektorPlug;
-    private WorkloadGenerator workloadGenerator;
-    private CampaignService campaignService;
-    private List<SystemConnectorPlug> systemConnectorPlugs;
 
     public RunController(RunData runData, CampaignData campaignData, InjektionData injektionData, WorkloadGenerator workloadGenerator, CampaignService campaignService, List<SystemConnectorPlug> systemConnectorPlugs) {
         this.runData = runData;
@@ -56,7 +56,7 @@ public class RunController {
             performFaultInjectionRun();
             handleRunFinish();
         } catch (CampaignException e) {
-            handleAbnormallyInterruptedRun();
+            handleAbnormallyInterruptedRun(e);
         }
     }
 
@@ -96,53 +96,58 @@ public class RunController {
         collectData();
     }
 
-    private void handleAbnormallyInterruptedRun() {
-
+    private void handleAbnormallyInterruptedRun(CampaignException e) {
+        runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
+        updateRunState(
+                RunStatus.ABNORMALLY_INTERRUPTED,
+                e.getMessage()
+        );
     }
 
-    public void performInjektion() {
-        System.out.println(new Date() + " - PERFORMED INJEKTION");
-        systemConnectorPlugs.forEach(systemPlug -> {
-            injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(injektionData.getIjk().getName(), systemPlug);
+    public void performInjektion() throws CampaignException {
+        System.out.println(new Date() + " - PERFORMING INJEKTION");
+        for(SystemConnectorPlug plug : systemConnectorPlugs) {
+            injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(injektionData.getIjk().getName(), plug);
             injektorPlug.performInjection(buildIjkParams(injektionData.getIjk().getParams()));
-        });
+        }
     }
 
-    public void stopInjektion() {
-        System.out.println(new Date() + " - STOPPED INJEKTION");
+    public void stopInjektion() throws CampaignException {
+        System.out.println(new Date() + " - STOPPING INJEKTION");
         injektorPlug.stopInjection();
     }
 
     private void applyWorkload() throws CampaignException {
-        System.out.println(new Date() + " - STARTED WORKLOAD");
+        System.out.println(new Date() + " - STARTING WORKLOAD");
         workloadGenerator.performWorkloadGen(injektionData.getWorkLoad(), campaignData.getId());
         sleep(injektionData.getWorkLoad().getDuration());
     }
 
     private void stopWorkload() throws CampaignException {
-        System.out.println(new Date() + " - STOPPED WORKLOAD");
+        System.out.println(new Date() + " - STOPPING WORKLOAD");
         workloadGenerator.stopWorkloadGen(campaignData.getId());
         sleep(30);
     }
 
-    private void collectData() {
-        System.out.println(new Date() + " - COLLECTED DATA");
+    private void collectData() throws CampaignException {
+        System.out.println(new Date() + " - COLLECTING DATA");
 
         DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory.getInstance().getPluginInstance(injektionData.getDataCollector().getName(), buildDataCollectorParams(injektionData.getDataCollector().getParams()));
         byte[] byteArray = dataCollectorPlug.getData();
 
-        String fileName = "results" + File.separator + campaignData.getId().toString();
-        if (runData.getStatus() == RunStatus.RUNNING_GOLDEN_RUN) {
-            fileName += ".GOLDEN_RUN";
-        } else if (runData.getStatus() == RunStatus.RUNNING_FAULT_INJECTION_RUN) {
-            fileName += ".FAULT_INJECTION_RUN";
-        }
+        String fileName = Utils.DataCollector.getFileName(
+                campaignData.getId().toString(),
+                campaignData.getCurrentRun().toString(),
+                runData
+        );
+        Utils.DataCollector.writeStringToFile(fileName, new String(byteArray, StandardCharsets.UTF_8));
 
-        Utils.writeStringToFile(fileName, new String(byteArray, StandardCharsets.UTF_8));
 
         //TODO JAEGER COMMAND PF -> kubectl -n jaeger port-forward jaeger-query-5f9f96c564-6lxkq 16686:16686
         sleep(5);
     }
+
+
 
     private Object buildDataCollectorParams(List<KeyValueData> params) {
         JSONObject jsonObject = new JSONObject();

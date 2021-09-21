@@ -1,7 +1,8 @@
 package pt.uc.sob.defektor.plugins.datacollector.jaeger;
 
 import org.json.JSONObject;
-import pt.uc.sob.defektor.common.DataCollectorPlug;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.pluginterface.DataCollectorPlug;
 import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class JaegerDataCollectorPlug extends DataCollectorPlug {
     }
 
     @Override
-    public byte[] getData() {
+    public byte[] getData() throws CampaignException{
         configure();
         String URI;
         StringBuilder content = new StringBuilder();
@@ -52,7 +53,7 @@ public class JaegerDataCollectorPlug extends DataCollectorPlug {
         return returnedString.getBytes(StandardCharsets.UTF_8);
     }
 
-    private List<String> getServiceList() {
+    private List<String> getServiceList() throws CampaignException {
         List<String> serviceList = new ArrayList<>();
         String URI;
         URI = serializedParams.getHost().split("traces")[0] + "services";
@@ -64,22 +65,21 @@ public class JaegerDataCollectorPlug extends DataCollectorPlug {
                 serviceList.add(jsonArray.getString(i));
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            throw new CampaignException(e.getMessage());
         }
 
         return serviceList;
     }
 
-    private String fetchServiceJson(List<String> servicesList, String service, String URI) {
+    private String fetchServiceJson(List<String> servicesList, String service, String URI) throws CampaignException {
         String fetchedJSON = null;
         try {
             fetchedJSON = Utils.httpGet(URI);
             if (servicesList.indexOf(service) != (servicesList.size() - 1)) {
                 fetchedJSON += ",";
             }
-            JSONObject jsonObject = new JSONObject(fetchedJSON);
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            throw new CampaignException(e.getMessage());
         }
         return fetchedJSON;
     }

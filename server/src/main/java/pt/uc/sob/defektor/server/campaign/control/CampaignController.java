@@ -1,12 +1,9 @@
 package pt.uc.sob.defektor.server.campaign.control;
 
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
-import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.server.api.data.CampaignData;
 import pt.uc.sob.defektor.server.api.data.InjektionData;
-import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.RunData;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
@@ -40,8 +37,8 @@ public class CampaignController {
         new Thread(
                 () -> {
                     handleCampaignStart();
-                    for (int i = 0; i < campaignData.getTotalRuns(); ++i) {
-                        setupRunEnvironment();
+                    for (RunData run : campaignData.getRuns()) {
+                        setupRunEnvironment(run);
                         runController.performRun();
                     }
                     handleCampaignFinish();
@@ -50,18 +47,25 @@ public class CampaignController {
     }
 
     private void handleCampaignStart() {
+        allocateMemoryToAllRuns();
         campaignService.campaignAdd(campaignData);
         System.out.println(new Date() + " - STARTED CAMPAIGN");
     }
 
-    private void setupRunEnvironment() {
+    private void allocateMemoryToAllRuns() {
+        //ALLOCATE MEMORY TO ALL RUNS
+        List<RunData> runDataList = new ArrayList<>();
+        for (int i = 1; i <= campaignData.getTotalRuns(); i++) {
+            runDataList.add(new RunData(i));
+        }
+        this.campaignData.setRuns(runDataList);
+    }
+
+    private void setupRunEnvironment(RunData run) {
         campaignData.incrementCurrentRun();
 
-        RunData runData = new RunData(campaignData.getCurrentRun());
-        campaignData.getRuns().add(runData);
-
         runController = new RunController(
-                runData,
+                run,
                 campaignData,
                 injektionData,
                 workloadGenerator,
@@ -69,15 +73,14 @@ public class CampaignController {
                 systemConnectorPlugs
         );
         campaignService.campaignUpdate(campaignData);
-
     }
 
     private void handleCampaignFinish() {
+        System.out.println(new Date() + " - FINISHED CAMPAIGN");
+        campaignData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
         updateCampaignState(
                 CampaignStatus.FINISHED
         );
-        campaignData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
-        System.out.println(new Date() + " - FINISHED CAMPAIGN");
     }
 
     private void updateCampaignState(CampaignStatus campaignStatus) {

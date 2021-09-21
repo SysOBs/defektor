@@ -3,8 +3,8 @@
 //import org.json.JSONObject;
 //import org.junit.Test;
 //import org.springframework.boot.SpringApplication;
-//import pt.uc.sob.defektor.common.InjektorPlug;
-//import pt.uc.sob.defektor.common.SystemConnectorPlug;
+//import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+//import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 //import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 //import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 //import pt.uc.sob.defektor.server.Defektor;

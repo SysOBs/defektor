@@ -2,8 +2,10 @@ package pt.uc.sob.defektor.plugins.system.kubernetes;
 
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 
@@ -41,24 +43,22 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
     }
 
 
-    public void createOrReplaceCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, InputStream yamlFileStream, String namespace) {
+    public void createOrReplaceCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, InputStream yamlFileStream, String namespace) throws CampaignException {
         try (KubernetesClient client = new DefaultKubernetesClient()) {
             Map<String, Object> cr = client
                     .customResource(customResourceDefinitionContext)
                     .load(yamlFileStream);
             client.customResource(customResourceDefinitionContext).create(namespace, cr);
-        } catch (IOException e) {
-            //TODO SOMETHING
-            e.printStackTrace();
+        } catch (IOException | KubernetesClientException e) {
+            throw new CampaignException(e.getMessage());
         }
     }
 
-    public void deleteCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, String namespace, String name) {
+    public void deleteCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, String namespace, String name) throws CampaignException {
         try (KubernetesClient client = new DefaultKubernetesClient()) {
             client.customResource(customResourceDefinitionContext).delete(namespace, name);
-        } catch (IOException e) {
-            //TODO SOMETHING
-            e.printStackTrace();
+        } catch (IOException | KubernetesClientException e) {
+            throw new CampaignException(e.getMessage());
         }
     }
 }

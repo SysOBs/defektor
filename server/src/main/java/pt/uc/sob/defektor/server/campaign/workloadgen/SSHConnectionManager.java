@@ -4,7 +4,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelShell;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-import pt.uc.sob.defektor.server.campaign.exception.CampaignException;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
 
 import java.io.InputStream;
 import java.io.PrintStream;

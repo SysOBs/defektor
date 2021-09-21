@@ -7,8 +7,8 @@ import java.io.*;
 
 public class Utils {
 
-    public static Param jsonToObject(String json) {
-        return new Gson().fromJson(json, Param.class);
+    public static Params jsonToObject(String json) {
+        return new Gson().fromJson(json, Params.class);
     }
 
     public static File stringBuilderToTempFile(StringBuilder stringBuilder, String prefix, String suffix) throws IOException {
@@ -24,10 +24,10 @@ public class Utils {
         return tempFile;
     }
 
-    public static StringBuilder changedYAMLManifest(InputStream inputStream, Param param) {
+    public static StringBuilder changedYAMLManifest(InputStream inputStream, Params params) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
-            MyReader myReader = new MyReader(new InputStreamReader(inputStream), param);
+            MyReader myReader = new MyReader(new InputStreamReader(inputStream), params);
             String buffer;
             while ((buffer = myReader.readLine()) != null) {
                 stringBuilder.append(buffer + System.lineSeparator());

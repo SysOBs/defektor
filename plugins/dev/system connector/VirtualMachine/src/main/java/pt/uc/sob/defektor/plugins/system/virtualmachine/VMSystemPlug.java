@@ -4,9 +4,9 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +38,12 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     @Override
     public void configure() {
-        Config config = Utils.jsonToObject(configuration.getJsonSysConfigs().toString());
+        Configs configs = Utils.jsonToObject(configuration.getJsonSysConfigs().toString());
         JSch jSch = new JSch();
 
         try {
-            jSch.addIdentity(config.getPrivateKey());
-            session = jSch.getSession(config.getUsername(), config.getHost(), config.getPort());
+            jSch.addIdentity(configs.getPrivateKey());
+            session = jSch.getSession(configs.getUsername(), configs.getHost(), configs.getPort());
             session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
             Properties properties = new Properties();
             properties.put("StrictHostKeyChecking", "no");

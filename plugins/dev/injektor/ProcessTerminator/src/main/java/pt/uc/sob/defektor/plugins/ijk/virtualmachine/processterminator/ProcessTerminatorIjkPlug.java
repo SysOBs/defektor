@@ -2,12 +2,12 @@ package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 
 
 import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.InjectionStatus;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
+import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;
@@ -25,11 +25,11 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParam ijkParam) {
+    public void performInjection(IjkParams ijkParams) {
         new Thread(
                 () -> {
-                    Param param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
-                    String command = getCommand(param);
+                    Params params = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
+                    String command = getCommand(params);
                     if (command == null)
                         throw new RuntimeException("NO INSTRUCTION TO WHAT PROCESS THE INJEKTOR SHOULD TARGET");//TODO PROPER EXCEPTION
                     injectionStatus = InjectionStatus.RUNNING;
@@ -39,7 +39,7 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
                             break;
                         }
                         system.sendSSHCommand(command);
-                        sleep(param.getInterval());
+                        sleep(params.getInterval());
                     }
                     injectionStatus = InjectionStatus.STOPPING;
                 }
@@ -47,11 +47,11 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
 
     }
 
-    private String getCommand(Param param) {
-        if (param.getPid() != null)
-            return "kill -9 " + param.getPid();
-        else if (param.getProcessName() != null)
-            return "killall " + param.getProcessName();
+    private String getCommand(Params params) {
+        if (params.getPid() != null)
+            return "kill -9 " + params.getPid();
+        else if (params.getProcessName() != null)
+            return "killall " + params.getProcessName();
         else
             return null;
     }

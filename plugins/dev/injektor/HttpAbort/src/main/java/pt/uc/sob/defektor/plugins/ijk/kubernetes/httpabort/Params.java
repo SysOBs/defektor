@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class Param implements Serializable {
+public class Params implements Serializable {
     private String namespace;
     private String service;
     private String host;

@@ -1,12 +1,12 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
 import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.InjektorPlug;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.InjectionStatus;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParam;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
+import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParam ijkParam) {
-        Param param = Utils.jsonToObject(ijkParam.getJsonIjkParam().toString());
+    public void performInjection(IjkParams ijkParams) {
+        Param param = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
         new Thread(
                 () -> {
                     injectionStatus = InjectionStatus.RUNNING;

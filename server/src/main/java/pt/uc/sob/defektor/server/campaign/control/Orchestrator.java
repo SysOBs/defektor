@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.campaign.control;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;

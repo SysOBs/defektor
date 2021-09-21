@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Param {
+public class Params {
     private String namespace;
     private String service;
     private String host;
