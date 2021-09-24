@@ -1,0 +1,74 @@
+{
+    "name": "Order 66",
+    "system": {
+        "name": "kubernetes"
+    },
+    "injektions": [
+        {
+            "totalRuns": 1,
+            "ijk": {
+                "name": "httpabort",
+                "params": [
+                    {
+                        "key": "namespace",
+                        "value": "robot-shop"
+                    },
+                    {
+                        "key": "service",
+                        "value": "cart"
+                    },
+                    {
+                        "key": "host",
+                        "value": "cart.robot-shop.svc.cluster.local"
+                    },
+                    {
+                        "key": "httpStatus",
+                        "value": "569"
+                    },
+                    {
+                        "key": "faultOccurrence",
+                        "value": "100"
+                    }
+                ]
+            },
+            "workLoad": {
+                "image": {
+                    "user": "robotshop",
+                    "name": "rs-load",
+                    "tag": "latest"
+                },
+                "cmd": "",
+                "env": [
+                    {
+                        "key": "HOST",
+                        "value": "http://194.210.120.222:31185/"
+                    },
+                    {
+                        "key": "NUM_CLIENTS",
+                        "value": "150"
+                    },
+                    {
+                        "key": "SILENT",
+                        "value": "1"
+                    },
+                    {
+                        "key": "ERROR",
+                        "value": "1"
+                    }
+                ],
+                "replicas": 1,
+                "slaves": 1,
+                "duration": 240
+            },
+            "dataCollector": {
+                "name": "jaeger",
+                "params": [
+                    {
+                        "key": "host",
+                        "value": "http://localhost:16686/jaeger/api/traces"
+                    }
+                ]
+            }
+        }
+    ]
+}
