@@ -2,6 +2,7 @@ package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay;
 
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
 import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
@@ -17,9 +18,7 @@ import java.util.List;
 
 public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
-    private static final String PREFIX = "http-delay";
-    private static final String SUFFIX = ".yaml";
-    private static final String MANIFEST_NAME = "virtual-service-http-delay.yaml";
+
     private File yamlFile = null;
     private Params params;
 
@@ -33,29 +32,38 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParams ijkParam) {
-        params = new Params("uc-1", "web", "web.uc-1.svc.cluster.local", "100", "5");
-        InputStream in = HttpDelayIjkPlug.class.getClassLoader().getResourceAsStream(MANIFEST_NAME);
+    public void performInjection(IjkParams ijkParam) throws CampaignException {
+        this.params = Utils.JSON.jsonToObject(ijkParam.getJsonIjkParams().toString());
+
         try {
-            this.yamlFile =
-                    Utils.stringBuilderToTempFile(
-                            Utils.changedYAMLManifest(in, params),
-                            PREFIX,
-                            SUFFIX
-                    );
+            applyDetachedVirtualService();
 
             this.system.createOrReplaceCustomResource(
                     Utils.buildCustomResourceDefinitionContext(),
                     new FileInputStream(yamlFile),
-                    params.getNamespace()
+                    this.params.getNamespace()
             );
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | CampaignException e) {
+            throw new CampaignException(e.getMessage());
         }
+
+
+    }
+
+    private void applyDetachedVirtualService() throws IOException {
+        InputStream in = HttpDelayIjkPlug.class
+                .getClassLoader()
+                .getResourceAsStream(Utils.Strings.MANIFEST_NAME);
+
+        this.yamlFile = Utils.stringBuilderToTempFile(
+                Utils.changedYAMLManifest(in, this.params),
+                Utils.Strings.PREFIX,
+                Utils.Strings.SUFFIX
+        );
     }
 
     @Override
-    public void stopInjection() {
+    public void stopInjection() throws CampaignException {
         this.system.deleteCustomResource(Utils.buildCustomResourceDefinitionContext(), params.getNamespace(), params.getService() + "-http-delay");
     }
 

@@ -4,6 +4,7 @@ import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
+import org.json.JSONObject;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
 import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.data.TargetType;
@@ -48,7 +49,7 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
             Map<String, Object> cr = client
                     .customResource(customResourceDefinitionContext)
                     .load(yamlFileStream);
-            client.customResource(customResourceDefinitionContext).create(namespace, cr);
+            client.customResource(customResourceDefinitionContext).createOrReplace(namespace, cr);
         } catch (IOException | KubernetesClientException e) {
             throw new CampaignException(e.getMessage());
         }
@@ -60,6 +61,19 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
         } catch (IOException | KubernetesClientException e) {
             throw new CampaignException(e.getMessage());
         }
+    }
+
+    public JSONObject listCustomResource(CustomResourceDefinitionContext customResourceDefinitionContext, String namespace) throws CampaignException {
+        JSONObject jsonObject;
+        try (KubernetesClient client = new DefaultKubernetesClient()) {
+            jsonObject = new JSONObject(client
+                    .customResource(customResourceDefinitionContext)
+                    .list(namespace)
+            );
+        } catch (KubernetesClientException e) {
+            throw new CampaignException(e.getMessage());
+        }
+        return jsonObject;
     }
 }
 

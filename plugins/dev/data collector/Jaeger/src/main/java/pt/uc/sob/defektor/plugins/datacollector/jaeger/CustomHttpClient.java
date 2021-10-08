@@ -17,6 +17,5 @@ public class CustomHttpClient {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
         return response.body();
-
     }
 }
