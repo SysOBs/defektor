@@ -13,8 +13,8 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 public abstract class AbstractPluginFactory {
-    protected Map<String, Class> classMap = new ConcurrentHashMap<>();
-    protected Map<String, URLClassLoader> classLoaderMap = new ConcurrentHashMap<>();
+    protected final Map<String, Class> classMap = new ConcurrentHashMap<>();
+    protected final Map<String, URLClassLoader> classLoaderMap = new ConcurrentHashMap<>();
     protected List<String> pluginPaths;
 
     protected abstract Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;

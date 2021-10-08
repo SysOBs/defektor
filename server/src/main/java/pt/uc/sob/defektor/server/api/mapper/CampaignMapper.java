@@ -24,7 +24,6 @@ public class CampaignMapper {
         return campaignData;
     }
 
-
     public static Campaign convertToDTO(CampaignData campaignData) {
         Campaign campaign = new Campaign();
         campaign.setId(campaignData.getId());

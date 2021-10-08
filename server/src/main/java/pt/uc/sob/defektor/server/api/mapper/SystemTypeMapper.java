@@ -5,7 +5,9 @@ import pt.uc.sob.defektor.server.model.SystemType;
 
 public class SystemTypeMapper {
     public static SystemTypeData convertToDAO(SystemType systemType) {
-        return new SystemTypeData(systemType.getName());
+        SystemTypeData systemTypeData = new SystemTypeData();
+        systemTypeData.setName(systemType.getName());
+        return systemTypeData;
     }
 
     public static SystemType convertToDTO(SystemTypeData systemTypeData) {
@@ -13,5 +15,4 @@ public class SystemTypeMapper {
         systemType.setName(systemTypeData.getName());
         return systemType;
     }
-
 }

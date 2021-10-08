@@ -34,11 +34,7 @@ public class SystemController implements SystemApi {
 
     @Override
     public ResponseEntity<SystemConfig> systemTypeConfigure(@Valid @RequestBody SystemConfig systemConfig) {
-        try {
-            systemService.sysConfigAdd(SystemConfigMapper.convertToDAO(systemConfig));
-            return new ResponseEntity<>(systemConfig, HttpStatus.CREATED);
-        } catch (DuplicateEntryException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+        systemService.sysConfigAdd(SystemConfigMapper.convertToDAO(systemConfig));
+        return new ResponseEntity<>(systemConfig, HttpStatus.CREATED);
     }
 }

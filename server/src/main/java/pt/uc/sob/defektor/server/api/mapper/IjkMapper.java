@@ -15,20 +15,17 @@ public class IjkMapper {
                         .map(KeyValueMapper::convertToDTO)
                         .collect(Collectors.toList())
         );
-
         return ijk;
     }
 
     public static IjkData convertToDAO(Ijk ijk) {
         IjkData ijkData = new IjkData();
         ijkData.setName(ijk.getName());
-
         ijkData.setParams(
                 ijk.getParams().stream()
                         .map(KeyValueMapper::convertToDAO)
                         .collect(Collectors.toList())
         );
-
         return ijkData;
     }
 }

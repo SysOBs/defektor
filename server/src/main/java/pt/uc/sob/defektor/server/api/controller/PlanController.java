@@ -6,19 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
-import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
-import pt.uc.sob.defektor.server.campaign.control.Orchestrator;
 import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.data.PlanData;
-import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
-import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
+import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.api.mapper.PlanMapper;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,9 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlanController implements PlanApi {
 
-    private final Orchestrator orchestrator;
     private final PlanService planService;
-
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
@@ -43,14 +39,10 @@ public class PlanController implements PlanApi {
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
         PlanData planData = PlanMapper.convertToDAO(plan);
         try {
-            planService.planValidate(planData);
+//            planService.planValidate(planData);
             planData = planService.planAdd(planData);
             return new ResponseEntity<>(PlanMapper.convertToDTO(planData), HttpStatus.CREATED);
-        }
-        catch (DuplicateEntryException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
-        }
-        catch (InvalidPlanException | InvalidSystemException e) {
+        } catch (InvalidSystemException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }

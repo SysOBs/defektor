@@ -17,7 +17,6 @@ public class PlanMapper {
                         .map(InjektionMapper::convertToDAO)
                         .collect(Collectors.toList())
         );
-
         return planData;
     }
     public static Plan convertToDTO(PlanData planData) {

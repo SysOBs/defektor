@@ -1,9 +1,7 @@
 package pt.uc.sob.defektor.server.api.mapper;
 
 import pt.uc.sob.defektor.server.api.data.DataCollectorData;
-import pt.uc.sob.defektor.server.api.data.SSHCredentialsData;
 import pt.uc.sob.defektor.server.model.DataCollector;
-import pt.uc.sob.defektor.server.model.SSHCredentials;
 
 import java.util.stream.Collectors;
 
@@ -20,10 +18,9 @@ public class DataCollectorMapper {
         return dataCollectorData;
     }
 
-
     public static DataCollector convertToDTO(DataCollectorData dataCollectorData) {
         DataCollector dataCollector = new DataCollector();
-        dataCollector.setName(dataCollector.getName());
+        dataCollector.setName(dataCollectorData.getName());
         dataCollector.setParams(
                 dataCollectorData.getParams().stream()
                         .map(KeyValueMapper::convertToDTO)

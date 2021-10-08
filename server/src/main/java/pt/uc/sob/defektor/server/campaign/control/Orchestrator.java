@@ -2,6 +2,7 @@ package pt.uc.sob.defektor.server.campaign.control;
 
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+//@Async
 public class Orchestrator {
 
     private final SystemService systemService;
@@ -26,6 +28,7 @@ public class Orchestrator {
 
     public void conductProcess(PlanData plan) throws InvalidSystemException {
 
+        //TODO HANDLE MULTIPLE INJEKTIONS
         for (InjektionData injektionData : plan.getInjektions()) {
             new CampaignController(
                     new CampaignData(plan.getId(), injektionData.getTotalRuns()),

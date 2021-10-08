@@ -34,20 +34,17 @@ public class CampaignController {
     }
 
     public void startCampaign() {
-        new Thread(
-                () -> {
-                    handleCampaignStart();
-                    for (RunData run : campaignData.getRuns()) {
-                        setupRunEnvironment(run);
-                        runController.performRun();
-                    }
-                    handleCampaignFinish();
-                }
-        ).start();
+        handleCampaignStart();
+        for (RunData run : campaignData.getRuns()) {
+            setupRunEnvironment(run);
+            runController.performRun();
+        }
+        handleCampaignFinish();
     }
 
     private void handleCampaignStart() {
         allocateMemoryToAllRuns();
+        updateCampaignState(CampaignStatus.RUNNING);
         campaignService.campaignAdd(campaignData);
         System.out.println(new Date() + " - STARTED CAMPAIGN");
     }

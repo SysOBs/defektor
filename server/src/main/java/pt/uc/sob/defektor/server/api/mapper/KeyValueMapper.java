@@ -12,13 +12,10 @@ public class KeyValueMapper {
         return keyData;
     }
 
-
     public static KeyValue convertToDTO(KeyValueData keyData) {
         KeyValue key = new KeyValue();
         key.setKey(keyData.getKey());
         key.setValue(keyData.getValue());
         return key;
     }
-
-
 }

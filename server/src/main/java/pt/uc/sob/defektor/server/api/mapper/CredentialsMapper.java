@@ -19,6 +19,4 @@ public class CredentialsMapper {
         sshCredentials.setUsername(sshCredentialsData.getUsername());
         return sshCredentials;
     }
-
-
 }

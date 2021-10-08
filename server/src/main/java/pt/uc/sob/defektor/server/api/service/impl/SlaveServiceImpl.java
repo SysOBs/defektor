@@ -20,7 +20,7 @@ public class SlaveServiceImpl implements SlaveService {
     private final DefektorRepository<SlaveData> defektorRepository;
 
     @Override
-    public SlaveData slaveAdd(SlaveData slave) throws DuplicateEntryException {
+    public SlaveData slaveAdd(SlaveData slave) {
         slave.setId(Utils.generateUUID());
         defektorRepository.save(slave, Strings.DB.SLAVE_DB_PATH);
         return slave;

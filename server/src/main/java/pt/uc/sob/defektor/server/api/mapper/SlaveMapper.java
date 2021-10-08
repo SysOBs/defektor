@@ -11,7 +11,6 @@ public class SlaveMapper {
         slaveData.setAddress(slave.getAddress());
         slaveData.setPort(slave.getPort());
         slaveData.setCredentials(CredentialsMapper.convertToDAO(slave.getCredentials()));
-
         return slaveData;
     }
 
@@ -21,10 +20,6 @@ public class SlaveMapper {
         slave.setAddress(slaveData.getAddress());
         slave.setPort(slaveData.getPort());
         slave.setCredentials(CredentialsMapper.convertToDTO(slaveData.getCredentials()));
-
         return slave;
     }
-
-
-
 }

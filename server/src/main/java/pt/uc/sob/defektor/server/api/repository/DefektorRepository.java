@@ -1,7 +1,5 @@
 package pt.uc.sob.defektor.server.api.repository;
 
-import pt.uc.sob.defektor.server.api.expection.DuplicateEntryException;
-
 import java.util.List;
 import java.util.UUID;
 

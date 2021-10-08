@@ -22,10 +22,17 @@ public class Strings {
         public static final String NO_SYSTEMS_CONFIGURED = "No valid system configured";
     }
 
-    public class Run {
+    public static class Run {
         public static final String RUNNING_GOLDEN_RUN = "Running golden run";
         public static final String RUNNING_FAULT_INJECTION_RUN = "Running fault injection run";
         public static final String FINISHED = "Finished run";
         public static final String WAITING_TO_START = "Waiting to start";
+    }
+
+    public class DataCollector {
+        public static final String GOLDEN_RUN_FILE_SUFFIX = ".GOLDEN_RUN";
+        public static final String FAULT_INJECTION_RUN_FILE_SUFFIX = ".FAULT_INJECTION_RUN";
+        public static final String PARENT_DIRECTORY = "results";
+        public static final String RUN_NUMBER_PREFIX = "RUN_";
     }
 }

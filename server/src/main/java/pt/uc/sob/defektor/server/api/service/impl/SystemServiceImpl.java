@@ -18,7 +18,7 @@ public class SystemServiceImpl implements SystemService {
     private final String dbFilePath = Strings.DB.SYS_CONFIG_DB_PATH;
 
     @Override
-    public void sysConfigAdd(SystemConfigData systemConfig) throws DuplicateEntryException {
+    public void sysConfigAdd(SystemConfigData systemConfig) {
         defektorRepository.save(systemConfig, dbFilePath);
     }
 

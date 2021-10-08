@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.server.api.data.DockerImageData;
-import pt.uc.sob.defektor.server.api.data.KeyValueData;
-import pt.uc.sob.defektor.server.api.data.SlaveData;
-import pt.uc.sob.defektor.server.api.data.WorkLoadData;
+import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
+import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.ArrayList;
@@ -20,9 +18,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class WorkloadGenerator {
 
+    private static final boolean IS_TEST = true;
     private final SlaveService slaveService;
 
-    public void performWorkloadGen(WorkLoadData workload, UUID campaignID) throws CampaignException {
+    public void performWorkloadGen(WorkLoadData workload, UUID campaignID, RunData runData) throws CampaignException {
         List<SlaveData> slavesList = slaveService.slavesList();
         Integer desiredNumberOfSlaves = workload.getSlaves();
 
@@ -39,7 +38,7 @@ public class WorkloadGenerator {
             List<KeyValueData> env = workload.getEnv();
             DockerImageData image = workload.getImage();
 
-            final String DOCKER_RUN_COMMAND = buildDockerRunCommand(workload, campaignID, env, image);
+            final String DOCKER_RUN_COMMAND = buildDockerRunCommand(workload, campaignID, env, image, runData.getRunNumber(), runData.getStatus());
             commands.add(DOCKER_RUN_COMMAND);
 
             SSHConnectionManager sshConnectionManager = new SSHConnectionManager(
@@ -52,12 +51,22 @@ public class WorkloadGenerator {
         }
     }
 
-    public void stopWorkloadGen(UUID campaignID) throws CampaignException {
+    public void stopWorkloadGen(UUID campaignID, RunData runData, String faultOccurrence, Integer duration) throws CampaignException {
         List<String> commands = new ArrayList<>();
         List<SlaveData> slavesList = slaveService.slavesList();
 
+        String resultsFolderName = campaignID + ".RUN_" + runData.getRunNumber() + "." + statusToString(runData.getStatus());
+        String containerName = "workload_gen_" + resultsFolderName;
         for (SlaveData slaveData : slavesList) {
-            commands.add("docker rm --force workload_gen_" + campaignID);
+
+            //TODO TO REMOVE
+            if(IS_TEST) {
+                commands.add("docker cp " + containerName + ":/load " + resultsFolderName);
+                commands.add("scp -r ~/" + resultsFolderName + " goncalo@192.168.1.1:/home/goncalo/Desktop/defektor/locustResults/" + duration + "_MIN/" + faultOccurrence + "_FO");
+                commands.add("rm -rf " + resultsFolderName);
+            }
+            commands.add("docker stop " + containerName);
+            commands.add("docker rm " + containerName);
 
             SSHConnectionManager sshConnectionManager = new SSHConnectionManager(
                     slaveData.getAddress(),
@@ -70,13 +79,17 @@ public class WorkloadGenerator {
     }
 
     @NotNull
-    private String buildDockerRunCommand(WorkLoadData workload, UUID campaignID, List<KeyValueData> env, DockerImageData image) {
+    private String buildDockerRunCommand(WorkLoadData workload, UUID campaignID, List<KeyValueData> env, DockerImageData image, Integer runNumber, RunStatus status) {
         final String IMAGE = " " + image.getUser() + "/" + image.getName() + ":" + image.getTag();
-        final String ENV_VARS = Utils.envVarsToString(env);
+        final String ENV_VARS = Utils.WorkloadGen.envVarsToString(env);
         final String COMMAND = " " + workload.getCmd();
-        final String DOCKER_NAME = " --name workload_gen_" + campaignID;
+        final String DOCKER_NAME = " --name workload_gen_" + campaignID + ".RUN_" + runNumber + "." + statusToString(status);
         final String OPTIONS = " -d -t -i" + DOCKER_NAME + ENV_VARS ;
 
         return "docker run" + OPTIONS + IMAGE + COMMAND;
+    }
+
+    private String statusToString(RunStatus runStatus) {
+        return runStatus == RunStatus.RUNNING_GOLDEN_RUN ? "GOLDEN_RUN" : "FAULT_INJECTION_RUN";
     }
 }

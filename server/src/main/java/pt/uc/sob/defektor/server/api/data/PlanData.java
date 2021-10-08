@@ -1,6 +1,5 @@
 package pt.uc.sob.defektor.server.api.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class PlanData implements Serializable {
   private UUID id;

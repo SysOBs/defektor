@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
-import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.Serializable;
@@ -29,7 +28,7 @@ public class CampaignData implements Serializable {
         this.id = id;
         this.totalRuns = totalRuns;
         this.currentRun = 0;
-        this.status = CampaignStatus.RUNNING;
+        this.status = CampaignStatus.WAITING_TO_START;
         this.startTimestamp = Utils.Time.getCurrentTimestamp();
         this.endTimestamp = "";
         this.runs = new ArrayList<>();

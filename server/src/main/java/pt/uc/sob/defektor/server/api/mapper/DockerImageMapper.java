@@ -10,7 +10,6 @@ public class DockerImageMapper {
         dockerImageData.setName(dockerImage.getName());
         dockerImageData.setTag(dockerImage.getTag());
         dockerImageData.setUser(dockerImage.getUser());
-
         return dockerImageData;
     }
 
@@ -19,7 +18,6 @@ public class DockerImageMapper {
         dockerImage.setName(dockerImageData.getName());
         dockerImage.setTag(dockerImageData.getTag());
         dockerImage.setUser(dockerImageData.getUser());
-
         return dockerImage;
     }
 }

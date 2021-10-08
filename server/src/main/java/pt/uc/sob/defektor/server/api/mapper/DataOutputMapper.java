@@ -9,7 +9,6 @@ public class DataOutputMapper {
         DataOutputURIData dataOutputURIData = new DataOutputURIData();
         dataOutputURIData.setGoldenRunURI(dataOutputURI.getGoldenRunURI());
         dataOutputURIData.setFaultInjectionURI(dataOutputURI.getFaultInjectionURI());
-
         return dataOutputURIData;
     }
 

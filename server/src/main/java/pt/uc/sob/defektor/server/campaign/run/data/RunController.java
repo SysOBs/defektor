@@ -2,24 +2,24 @@ package pt.uc.sob.defektor.server.campaign.run.data;
 
 import lombok.SneakyThrows;
 import org.json.JSONObject;
+import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 import pt.uc.sob.defektor.common.pluginterface.DataCollectorPlug;
 import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
 import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
-import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 import pt.uc.sob.defektor.server.api.data.CampaignData;
 import pt.uc.sob.defektor.server.api.data.InjektionData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.RunData;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.campaign.workloadgen.WorkloadGenerator;
+import pt.uc.sob.defektor.server.model.Plan;
 import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
 import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
 import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
@@ -45,14 +45,11 @@ public class RunController {
         this.systemConnectorPlugs = systemConnectorPlugs;
     }
 
-    public RunData getRunData() {
-        return runData;
-    }
-
     public void performRun() {
         handleRunStart();
         try {
             performGoldenRun();
+            sleep(30);
             performFaultInjectionRun();
             handleRunFinish();
         } catch (CampaignException e) {
@@ -77,7 +74,6 @@ public class RunController {
                 RunStatus.RUNNING_GOLDEN_RUN,
                 Strings.Run.RUNNING_GOLDEN_RUN
         );
-
         applyWorkload();
         stopWorkload();
         collectData();
@@ -119,20 +115,38 @@ public class RunController {
 
     private void applyWorkload() throws CampaignException {
         System.out.println(new Date() + " - STARTING WORKLOAD");
-        workloadGenerator.performWorkloadGen(injektionData.getWorkLoad(), campaignData.getId());
+        workloadGenerator.performWorkloadGen(injektionData.getWorkLoad(), campaignData.getId(), runData);
         sleep(injektionData.getWorkLoad().getDuration());
     }
 
     private void stopWorkload() throws CampaignException {
         System.out.println(new Date() + " - STOPPING WORKLOAD");
-        workloadGenerator.stopWorkloadGen(campaignData.getId());
+//        workloadGenerator.stopWorkloadGen(campaignData.getId(), runData);
+
+        String faultOccurrence = injektionData.getIjk().getParams().get(4).getValue();
+        Integer duration = injektionData.getWorkLoad().getDuration() / 60;
+
+        workloadGenerator.stopWorkloadGen(
+                campaignData.getId(),
+                runData,
+                faultOccurrence,
+                duration
+        );
         sleep(30);
     }
 
     private void collectData() throws CampaignException {
         System.out.println(new Date() + " - COLLECTING DATA");
 
-        DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory.getInstance().getPluginInstance(injektionData.getDataCollector().getName(), buildDataCollectorParams(injektionData.getDataCollector().getParams()));
+        DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory
+                .getInstance()
+                .getPluginInstance(
+                        injektionData.getDataCollector().getName(),
+                        buildDataCollectorParams(
+                                injektionData.getDataCollector().getParams()
+                        )
+                );
+
         byte[] byteArray = dataCollectorPlug.getData();
 
         String fileName = Utils.DataCollector.getFileName(
