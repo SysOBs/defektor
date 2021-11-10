@@ -5,7 +5,7 @@ import pt.uc.sob.defektor.common.com.exception.CampaignException;
 
 public abstract class DataCollectorPlug {
 
-    protected DataCollectorParams params;
+    protected final DataCollectorParams params;
 
     public DataCollectorPlug(DataCollectorParams params) {this.params = params;}
 

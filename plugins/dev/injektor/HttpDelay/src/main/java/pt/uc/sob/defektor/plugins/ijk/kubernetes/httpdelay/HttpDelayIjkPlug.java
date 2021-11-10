@@ -64,7 +64,11 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
     @Override
     public void stopInjection() throws CampaignException {
-        this.system.deleteCustomResource(Utils.buildCustomResourceDefinitionContext(), params.getNamespace(), params.getService() + "-http-delay");
+        this.system.deleteCustomResource(
+                Utils.buildCustomResourceDefinitionContext(),
+                params.getNamespace(),
+                params.getService() + "-http-delay")
+        ;
     }
 
     @Override

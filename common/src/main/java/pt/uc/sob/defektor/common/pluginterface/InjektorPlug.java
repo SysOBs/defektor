@@ -1,17 +1,15 @@
 package pt.uc.sob.defektor.common.pluginterface;
 
-import pt.uc.sob.defektor.common.com.data.InjectionStatus;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
 
 import java.util.List;
 
 public abstract class InjektorPlug <S extends SystemConnectorPlug>{
 
-    protected S system;
-    protected volatile InjectionStatus injectionStatus = InjectionStatus.STOPPED;
+    protected final S system;
 
     public InjektorPlug(SystemConnectorPlug system) {
         this.system = (S) system;
@@ -26,7 +24,5 @@ public abstract class InjektorPlug <S extends SystemConnectorPlug>{
     public abstract List<TargetType> getTargetTypes();
 
     public abstract List<Target> getTargetInstancesByType(TargetType targetType);
-
-    public InjectionStatus getInjectionStatus() { return injectionStatus; }
 
 }

@@ -1,4 +1,4 @@
-package pt.uc.sob.defektor.server.api.bootsrap;
+package pt.uc.sob.defektor.server.api.bootstrap;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

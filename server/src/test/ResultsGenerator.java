@@ -15,24 +15,24 @@ public class ResultsGenerator {
     @Test
     public void generateDataHttpAbort() throws IOException {
 
-//        extracted(5, 1);
-//        extracted(5, 1);
-//        extracted(5, 1);
-
+        extracted(5, 1);
+        extracted(5, 1);
+        extracted(5, 1);
+        extracted(5, 1);
+        extracted(5, 1);
+        extracted(5, 1);
+//
 //        extracted(10, 1);
 //        extracted(10, 1);
 //        extracted(10, 1);
-
+//
 //        extracted(15, 1);
 //        extracted(15, 1);
-        String filePath = "/home/goncalo/Desktop/defektor/locustResults/plans/" + 1 + " client/manifest_";
-        getHttpURLConnection(filePath + "75p", 15);
-        getHttpURLConnection(filePath + "100p", 15);
-        extracted(15, 1);
+//        extracted(15, 1);
     }
 
     private void extracted(int duration, int numClients) throws IOException {
-        String filePath = "/home/goncalo/Desktop/defektor/locustResults/plans/" + numClients + " client/manifest_";
+        String filePath = "/home/goncalo/Desktop/defektor/locust/plans/http-abort/manifest_";
         getHttpURLConnection(filePath + "25p", duration);
         getHttpURLConnection(filePath + "50p", duration);
         getHttpURLConnection(filePath + "75p", duration);

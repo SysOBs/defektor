@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class WorkloadGenerator {
 
-    private static final boolean IS_TEST = true;
+    private static final boolean IS_TEST = false;
     private final SlaveService slaveService;
 
     public void performWorkloadGen(WorkLoadData workload, UUID campaignID, RunData runData) throws CampaignException {
@@ -30,7 +30,7 @@ public class WorkloadGenerator {
                 .limit(desiredNumberOfSlaves)
                 .collect(Collectors.toList());
 
-        if(slaveMachineReplicas.size() != desiredNumberOfSlaves)
+        if (slaveMachineReplicas.size() != desiredNumberOfSlaves)
             throw new CampaignException("not enough slave machines available");
 
         for (SlaveData slaveData : slaveMachineReplicas) {
@@ -58,13 +58,6 @@ public class WorkloadGenerator {
         String resultsFolderName = campaignID + ".RUN_" + runData.getRunNumber() + "." + statusToString(runData.getStatus());
         String containerName = "workload_gen_" + resultsFolderName;
         for (SlaveData slaveData : slavesList) {
-
-            //TODO TO REMOVE
-            if(IS_TEST) {
-                commands.add("docker cp " + containerName + ":/load " + resultsFolderName);
-                commands.add("scp -r ~/" + resultsFolderName + " goncalo@192.168.1.1:/home/goncalo/Desktop/defektor/locustResults/" + duration + "_MIN/" + faultOccurrence + "_FO");
-                commands.add("rm -rf " + resultsFolderName);
-            }
             commands.add("docker stop " + containerName);
             commands.add("docker rm " + containerName);
 
@@ -84,7 +77,7 @@ public class WorkloadGenerator {
         final String ENV_VARS = Utils.WorkloadGen.envVarsToString(env);
         final String COMMAND = " " + workload.getCmd();
         final String DOCKER_NAME = " --name workload_gen_" + campaignID + ".RUN_" + runNumber + "." + statusToString(status);
-        final String OPTIONS = " -d -t -i" + DOCKER_NAME + ENV_VARS ;
+        final String OPTIONS = " -d -t -i" + DOCKER_NAME + ENV_VARS;
 
         return "docker run" + OPTIONS + IMAGE + COMMAND;
     }
