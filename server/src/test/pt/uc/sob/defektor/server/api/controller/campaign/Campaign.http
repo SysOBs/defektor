@@ -1,0 +1,2 @@
+// LIST CAMPAIGNS
+GET http://localhost:8080/defektor-api/1.0.0/campaign
