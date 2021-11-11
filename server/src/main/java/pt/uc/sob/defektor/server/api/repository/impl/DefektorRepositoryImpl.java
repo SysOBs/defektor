@@ -7,6 +7,10 @@ import org.mapdb.Serializer;
 import org.springframework.stereotype.Repository;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +22,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public void save(T t, String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
+
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
 
@@ -28,6 +34,7 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public void update(T t, String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
 
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
@@ -45,6 +52,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public T findById(UUID id, String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
+
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         T returnableT = null;
@@ -60,6 +69,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public void delete(T plan, String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
+
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         tList.remove(plan);
@@ -69,6 +80,8 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public void deleteAll(String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
+
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         tList.clear();
@@ -78,11 +91,16 @@ public class DefektorRepositoryImpl<T> implements DefektorRepository<T> {
 
     @Override
     public List<T> findAll(String dbFilePath) {
+        createDirIfNotExists(dbFilePath);
         DB db = DBMaker.fileDB(dbFilePath).make();
         List<T> tList = (List<T>) db.indexTreeList("list", Serializer.JAVA).createOrOpen();
         List<T> returnablePlanList = new ArrayList<>(tList);
 
         db.close();
         return returnablePlanList;
+    }
+
+    private void createDirIfNotExists(String dbFilePath) {
+        new File(dbFilePath).getParentFile().mkdirs();
     }
 }
