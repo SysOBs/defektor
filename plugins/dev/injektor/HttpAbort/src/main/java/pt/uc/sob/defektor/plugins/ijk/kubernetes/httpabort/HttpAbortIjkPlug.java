@@ -33,10 +33,10 @@ public class HttpAbortIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
         this.params = Utils.JSON.jsonToObject(ijkParam.getJsonIjkParams().toString());
         try {
 
-            JSONObject virtualServiceList = this.system.listCustomResource(
-                            Utils.buildCustomResourceDefinitionContext(),
-                            this.params.getNamespace()
-            );
+//            JSONObject virtualServiceList = this.system.listCustomResource(
+//                            Utils.buildCustomResourceDefinitionContext(),
+//                            this.params.getNamespace()
+//            );
 
 //            if (virtualServiceList != null && doesVirtualServiceExists(virtualServiceList)) {
 //                addVirtualServiceToVSList(virtualServiceList);
