@@ -1,0 +1,15 @@
+//ADD NEW KUBERNETES SYS CONFIG
+POST http://localhost:8080/defektor-api/1.0.0/system/config
+Content-Type: application/json
+
+{
+  "configs": [],
+  "systemType": {
+    "name": "kubernetes"
+  }
+}
+
+###
+
+// LIST SYS CONFIGS
+GET http://localhost:8080/defektor-api/1.0.0/system/config
