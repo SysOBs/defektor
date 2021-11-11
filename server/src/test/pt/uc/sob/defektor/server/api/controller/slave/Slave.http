@@ -1,0 +1,17 @@
+// Slave list
+GET http://localhost:8080/defektor-api/1.0.0/slave/
+
+###
+
+// Add slave
+POST http://localhost:8080/defektor-api/1.0.0/slave
+Content-Type: application/json
+
+{
+  "address": "192.168.171.128",
+  "port": 22,
+  "credentials": {
+    "username": "goncalo",
+    "key": "~/.ssh/id_rsa"
+  }
+}
