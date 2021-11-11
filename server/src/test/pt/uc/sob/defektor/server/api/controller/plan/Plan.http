@@ -1,0 +1,16 @@
+// Get a plan
+GET http://localhost:8080/defektor-api/1.0.0/plan/d290f1ee-6c54-4b01-90e6-d701748f0851
+
+###
+
+// List plans
+GET http://localhost:8080/defektor-api/1.0.0/plan
+
+###
+
+// Plan Add (
+POST http://localhost:8080/defektor-api/1.0.0/plan
+Content-Type: application/json
+
+< httpAbortPlan.json
+
