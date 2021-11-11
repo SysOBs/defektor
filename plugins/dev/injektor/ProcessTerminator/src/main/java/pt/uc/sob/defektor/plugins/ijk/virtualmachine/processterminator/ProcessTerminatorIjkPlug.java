@@ -32,16 +32,10 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
                     String command = getCommand(params);
                     if (command == null)
                         throw new RuntimeException("NO INSTRUCTION TO WHAT PROCESS THE INJEKTOR SHOULD TARGET");//TODO PROPER EXCEPTION
-                    injectionStatus = InjectionStatus.RUNNING;
                     while (true) {
-                        if (injectionStatus == InjectionStatus.STOPPING) {
-                            injectionStatus = InjectionStatus.STOPPED;
-                            break;
-                        }
                         system.sendSSHCommand(command);
                         sleep(params.getInterval());
                     }
-                    injectionStatus = InjectionStatus.STOPPING;
                 }
         ).start();
 
@@ -63,7 +57,6 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
 
     @Override
     public void stopInjection() {
-        injectionStatus = InjectionStatus.STOPPING;
     }
 
     @Override
