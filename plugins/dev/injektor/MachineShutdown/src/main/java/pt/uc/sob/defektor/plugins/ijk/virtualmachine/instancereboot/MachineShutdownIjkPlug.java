@@ -1,7 +1,6 @@
 package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
 import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.com.data.InjectionStatus;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
@@ -31,12 +30,7 @@ public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
         Param param = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
         new Thread(
                 () -> {
-                    injectionStatus = InjectionStatus.RUNNING;
                     while (true) {
-                        if (injectionStatus == InjectionStatus.STOPPING) {
-                            injectionStatus = InjectionStatus.STOPPED;
-                            break;
-                        }
                         system.sendSSHCommand(REBOOT_COMMAND);
                         sleep(param.getInterval());
                     }
@@ -51,7 +45,6 @@ public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
 
     @Override
     public void stopInjection() {
-        injectionStatus = InjectionStatus.STOPPING;
     }
 
     @Override
