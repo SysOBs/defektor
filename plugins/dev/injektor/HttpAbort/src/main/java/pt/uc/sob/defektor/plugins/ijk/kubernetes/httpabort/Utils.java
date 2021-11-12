@@ -1,7 +1,7 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
 import com.google.gson.Gson;
-import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext;
+import io.fabric8.kubernetes.client.dsl.base.ResourceDefinitionContext;
 
 import java.io.*;
 
@@ -44,16 +44,5 @@ public class Utils {
             e.printStackTrace();
         }
         return stringBuilder;
-    }
-
-    public static CustomResourceDefinitionContext buildCustomResourceDefinitionContext() {
-        return new CustomResourceDefinitionContext
-                .Builder()
-                .withGroup("networking.istio.io")
-                .withKind("VirtualService")
-                .withVersion("v1beta1")
-                .withScope("Namespaced")
-                .withPlural("virtualservices")
-                .build();
     }
 }

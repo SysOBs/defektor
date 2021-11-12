@@ -45,15 +45,4 @@ public class Utils {
         }
         return stringBuilder;
     }
-
-    public static CustomResourceDefinitionContext buildCustomResourceDefinitionContext() {
-        return new CustomResourceDefinitionContext
-                .Builder()
-                .withGroup("networking.istio.io")
-                .withKind("VirtualService")
-                .withVersion("v1beta1")
-                .withScope("Namespaced")
-                .withPlural("virtualservices")
-                .build();
-    }
 }
