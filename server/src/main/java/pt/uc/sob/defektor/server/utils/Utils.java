@@ -1,9 +1,11 @@
 package pt.uc.sob.defektor.server.utils;
 
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.server.api.data.CampaignData;
+import pt.uc.sob.defektor.server.api.data.InjectionData;
 import pt.uc.sob.defektor.server.api.data.KeyValueData;
 import pt.uc.sob.defektor.server.api.data.RunData;
-import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -67,10 +69,59 @@ public class Utils {
     public static class WorkloadGen {
         public static String envVarsToString(List<KeyValueData> env) {
             StringBuilder returnedString = new StringBuilder();
-            for(KeyValueData keyValue : env) {
+            for (KeyValueData keyValue : env) {
                 returnedString.append(" -e ").append(keyValue.getKey()).append("=").append(keyValue.getValue());
             }
             return returnedString.toString();
+        }
+    }
+
+    public static class Logging {
+
+        public static class Campaign {
+            public static String startLogMessage(CampaignData campaignData) {
+                return new StringBuilder()
+                        .append(campaignData.getId())
+                        .append(" (")
+                        .append(campaignData.getName())
+                        .append(" ) - ")
+                        .append("started campaign")
+                        .toString();
+            }
+
+            public static String finishLogMessage(CampaignData campaignData) {
+                return new StringBuilder()
+                        .append(campaignData.getId())
+                        .append(" (")
+                        .append(campaignData.getName())
+                        .append(" ) - ")
+                        .append("finished campaign")
+                        .toString();
+            }
+        }
+
+        public static class Injection {
+            public static String startLogMessage(CampaignData campaignData, InjectionData injectionData) {
+                return new StringBuilder()
+                        .append(campaignData.getId())
+                        .append(" (")
+                        .append(campaignData.getName())
+                        .append(" ) - ")
+                        .append("starting injection number ")
+                        .append(injectionData.getInjectionNumber())
+                        .toString();
+            }
+
+            public static String finishLogMessage(CampaignData campaignData, InjectionData injectionData) {
+                return new StringBuilder()
+                        .append(campaignData.getId())
+                        .append(" (")
+                        .append(campaignData.getName())
+                        .append(" ) - ")
+                        .append("finished injection number ")
+                        .append(injectionData.getInjectionNumber())
+                        .toString();
+            }
         }
     }
 }
