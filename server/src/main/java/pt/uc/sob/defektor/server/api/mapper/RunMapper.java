@@ -1,7 +1,7 @@
 package pt.uc.sob.defektor.server.api.mapper;
 
 import pt.uc.sob.defektor.server.api.data.RunData;
-import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 import pt.uc.sob.defektor.server.model.Run;
 
 public class RunMapper {
