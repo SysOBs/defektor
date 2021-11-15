@@ -20,30 +20,36 @@ import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class RunController {
+public class RunManager {
 
     private final WorkloadGenerator workloadGenerator;
     private final CampaignService campaignService;
 
-    private List<SystemConnectorPlug> systemConnectorPlugs;
+    private final Integer COOLDOWN_TIME = 30;
+
     private CampaignData campaignData;
+    private List<SystemConnectorPlug> systemConnectorPlugs;
+    private InjectionData injectionData;
+    private RunData runData;
+    private InjektorPlug injektorPlug;
     private IjkData ijk;
     private WorkLoadData workLoad;
     private DataCollectorData dataCollector;
-    private RunData runData;
-    private InjektorPlug injektorPlug;
 
-    public void configure(CampaignData campaignData, InjektionData injektionData, List<SystemConnectorPlug> systemConnectorPlugs, RunData run) {
+    public void configure(CampaignData campaignData, InjektionData injektion, List<SystemConnectorPlug> systemConnectorPlugs, InjectionData injectionData, RunData run) {
         this.campaignData = campaignData;
         this.systemConnectorPlugs = systemConnectorPlugs;
+        this.injectionData = injectionData;
         this.runData = run;
+        this.ijk = injektion.getIjk();
+        this.workLoad = injektion.getWorkLoad();
+        this.dataCollector = injektion.getDataCollector();
     }
 
     public void performRun() {
@@ -60,10 +66,13 @@ public class RunController {
     }
 
     private void handleRunStart() {
+        log.info(Utils.Logging.Run.startRun(campaignData, injectionData, runData));
         runData.setStartTimestamp(Utils.Time.getCurrentTimestamp());
+
     }
 
     private void handleRunFinish() {
+        log.info(Utils.Logging.Run.finishRun(campaignData, injectionData, runData));
         runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
         updateRunState(
                 RunStatus.FINISHED,
@@ -95,6 +104,7 @@ public class RunController {
     }
 
     private void handleAbnormallyInterruptedRun(CampaignException e) {
+        log.error(Utils.Logging.Run.abnormallyInterrupted(campaignData, injectionData, runData, e.getMessage()));
         runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
         updateRunState(
                 RunStatus.ABNORMALLY_INTERRUPTED,
@@ -103,8 +113,7 @@ public class RunController {
     }
 
     public void performInjektion() throws CampaignException {
-//        System.out.println(new Date() + " - PERFORMING INJEKTION");
-        log.info(campaignData.getId() + ".Run_" + runData.getRunNumber() + " - performing injektion");
+        log.info(Utils.Logging.Run.performInjektion(campaignData, injectionData, runData, ijk.getName()));
         for(SystemConnectorPlug plug : systemConnectorPlugs) {
             injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(ijk.getName(), plug);
             injektorPlug.performInjection(buildIjkParams(ijk.getParams()));
@@ -112,36 +121,32 @@ public class RunController {
     }
 
     public void stopInjektion() throws CampaignException {
-        System.out.println(new Date() + " - STOPPING INJEKTION");
+        log.info(Utils.Logging.Run.stopInjektion(campaignData, injectionData, runData));
         injektorPlug.stopInjection();
     }
 
     private void applyWorkload() throws CampaignException {
-//        System.out.println(new Date() + " - STARTING WORKLOAD");
-        log.info("starting workload");
+        log.info(Utils.Logging.Run.applyWorkload(campaignData, injectionData, runData, workLoad.getDuration()));
         workloadGenerator.performWorkloadGen(workLoad, campaignData.getId(), runData);
         sleep(workLoad.getDuration());
     }
 
     private void stopWorkload() throws CampaignException {
-        System.out.println(new Date() + " - STOPPING WORKLOAD");
-//        workloadGenerator.stopWorkloadGen(campaignData.getId(), runData);
+        log.info(Utils.Logging.Run.stopWorkload(campaignData, injectionData, runData));
 
         String faultOccurrence = ijk.getParams().get(4).getValue();
         Integer duration = workLoad.getDuration() / 60;
-
         workloadGenerator.stopWorkloadGen(
                 campaignData.getId(),
                 runData,
                 faultOccurrence,
                 duration
         );
-        sleep(30);
     }
 
     private void collectData() throws CampaignException {
-        System.out.println(new Date() + " - COLLECTING DATA");
-
+        sleep(COOLDOWN_TIME);
+        log.info(Utils.Logging.Run.collectData(campaignData, injectionData, runData));
         DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory
                 .getInstance()
                 .getPluginInstance(
@@ -159,10 +164,6 @@ public class RunController {
                 runData
         );
         Utils.DataCollector.writeStringToFile(fileName, new String(byteArray, StandardCharsets.UTF_8));
-
-
-        //TODO JAEGER COMMAND PF -> kubectl -n jaeger port-forward jaeger-query-5f9f96c564-6lxkq 16686:16686
-        sleep(5);
     }
 
 
@@ -187,8 +188,6 @@ public class RunController {
         runData.setMessage(message);
         campaignService.campaignUpdate(campaignData);
     }
-
-    //TODO Utils
 
     private IjkParams buildIjkParams(List<KeyValueData> params) {
         JSONObject jsonObject = new JSONObject();

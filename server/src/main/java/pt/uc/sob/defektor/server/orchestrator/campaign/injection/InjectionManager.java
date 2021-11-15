@@ -9,7 +9,7 @@ import pt.uc.sob.defektor.server.api.data.InjectionData;
 import pt.uc.sob.defektor.server.api.data.InjektionData;
 import pt.uc.sob.defektor.server.api.data.RunData;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
-import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunController;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunManager;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class InjectionController {
+public class InjectionManager {
 
     private final CampaignService campaignService;
-    private final RunController runController;
+    private final RunManager runManager;
 
     private List < SystemConnectorPlug > systemConnectorPlugs;
     private InjektionData injektionData;
@@ -48,8 +48,8 @@ public class InjectionController {
 
     private void setupRunEnvironment(RunData run) {
         injectionData.incrementCurrentRun();
-        runController.configure(campaignData, injektionData, systemConnectorPlugs, run);
-        runController.performRun();
+        runManager.configure(campaignData, injektionData, systemConnectorPlugs, injectionData, run);
+        runManager.performRun();
         campaignService.campaignUpdate(campaignData);
     }
 
