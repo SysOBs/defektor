@@ -10,7 +10,7 @@ import org.apache.commons.io.IOUtil;
 public class Utils {
 
     public static File inputStreamToTempFile(InputStream yamlFileStream) throws IOException {
-        final String PREFIX = "stream2file";
+        final String PREFIX = "k8Manifest";
         final String SUFFIX = ".tmp";
 
         final File tempFile = File.createTempFile(PREFIX, SUFFIX);

@@ -10,6 +10,11 @@
     <packaging>pom</packaging>
     <name>defektor</name>
 
+    <modules>
+        <module>server</module>
+        <module>common</module>
+    </modules>
+
     <properties>
         <maven.compiler.targetData>11</maven.compiler.targetData>
         <maven.compiler.source>11</maven.compiler.source>
@@ -28,7 +33,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
     <build>
         <resources>
             <resource>
@@ -44,6 +48,10 @@
         </resources>
         <plugins>
             <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
@@ -54,18 +62,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <modules>
-        <module>server</module>
-        <module>common</module>
-    </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.18</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>

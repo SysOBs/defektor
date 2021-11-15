@@ -11,6 +11,7 @@ import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,8 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
     public void createOrReplaceResource(InputStream yamlFileStream, String namespace) throws CampaignException {
         try {
             yamlFile = Utils.inputStreamToTempFile(yamlFileStream);
-            Runtime.getRuntime().exec("kubectl apply -f " + yamlFile.getAbsolutePath() + "--namespace=" + namespace);
+            String applyCommand = "kubectl apply -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace;
+            Runtime.getRuntime().exec(applyCommand);
         } catch (IOException ex) {
             throw new CampaignException(ex.getMessage());
         }
@@ -57,7 +59,7 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
     public void deleteResource(InputStream yamlFileStream, String namespace) throws CampaignException {
         try {
 //            yamlFile = Utils.inputStreamToTempFile(yamlFileStream);
-            Runtime.getRuntime().exec("kubectl delete -f " + yamlFile.getAbsolutePath() + "--namespace=" + namespace);
+            Runtime.getRuntime().exec("kubectl delete -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace);
         } catch (IOException ex) {
             throw new CampaignException(ex.getMessage());
         }
