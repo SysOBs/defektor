@@ -155,13 +155,32 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/defektorOpenAPISpec/defektorOpenAPISpec.json</inputSpec>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/defektorOpenAPISpec/defektorOpenAPISpec.json
+                            </inputSpec>
                             <generatorName>spring</generatorName>
-                            <configurationFile>${project.basedir}/src/main/resources/serverConfig.yaml</configurationFile>
-                            <ignoreFileOverride>${project.basedir}/src/main/resources/.openapi-generator-ignore</ignoreFileOverride>
+                            <configurationFile>${project.basedir}/src/main/resources/serverConfig.yaml
+                            </configurationFile>
+                            <ignoreFileOverride>${project.basedir}/src/main/resources/.openapi-generator-ignore
+                            </ignoreFileOverride>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>pt.uc.sob.defektor.server.Defektor</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
