@@ -2,7 +2,6 @@ package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 
 
 import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.com.data.InjectionStatus;
 import pt.uc.sob.defektor.common.com.data.Target;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
