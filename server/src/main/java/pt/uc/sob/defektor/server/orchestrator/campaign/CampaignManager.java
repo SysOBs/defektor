@@ -9,11 +9,12 @@ import pt.uc.sob.defektor.server.api.data.InjectionData;
 import pt.uc.sob.defektor.server.api.data.InjektionData;
 import pt.uc.sob.defektor.server.api.data.RunData;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
-import pt.uc.sob.defektor.server.orchestrator.campaign.injection.InjectionController;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.InjectionManager;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 @Log4j2
@@ -21,24 +22,24 @@ import java.util.List;
 public class CampaignManager {
 
     private final CampaignService campaignService;
-    private final InjectionController injectionController;
+    private final InjectionManager injectionManager;
 
-    private List < SystemConnectorPlug > compatibleSystemList;
-    private List < InjektionData > injektionDataList;
+    private List<SystemConnectorPlug> compatibleSystemList;
+    private List<InjektionData> injektionList;
     private CampaignData campaignData;
 
-    public void configure(List < SystemConnectorPlug > compatibleSystemList, CampaignData campaign, List < InjektionData > injektionData) {
+    public void configure(List<SystemConnectorPlug> compatibleSystemList, CampaignData campaign, List<InjektionData> injektionData) {
         this.compatibleSystemList = compatibleSystemList;
         this.campaignData = campaign;
-        this.injektionDataList = injektionData;
+        this.injektionList = injektionData;
     }
 
     public void performCampaign() {
         handleCampaignStart();
 
-        for (int i = 0; i < injektionDataList.size(); i++) {
+        for (int i = 0; i < injektionList.size(); i++) {
             this.setupInjectionEnvironment(
-                    injektionDataList.get(i),
+                    injektionList.get(i),
                     campaignData.getInjections().get(i)
             );
         }
@@ -54,17 +55,20 @@ public class CampaignManager {
     }
 
     private void allocateMemoryToAllInjectionsAndRuns() {
-        List < InjectionData > injectionList = new ArrayList < > ();
+        List<InjectionData> injectionList = new ArrayList<>();
 
-        for (int i = 1; i <= campaignData.getTotalInjections(); i++) {
-            InjectionData injectionData = new InjectionData(i);
+        for (InjektionData injektion : injektionList) {
+            Integer injectionNumber = injektionList.indexOf(injektion);
+            Integer totalRuns = injektion.getTotalRuns();
+            InjectionData injection = new InjectionData(injectionNumber, totalRuns);
 
-            for (int j = 1; j <= injectionData.getTotalRuns(); j++) {
-                List < RunData > runDataList = new ArrayList < > ();
-                runDataList.add(new RunData(j));
-                injectionData.setRuns(runDataList);
-            }
-            injectionList.add(new InjectionData(i));
+            IntStream.range(0, injection.getTotalRuns()).forEach(value -> {
+                List<RunData> runDataList = new ArrayList<>();
+                runDataList.add(new RunData(value));
+                injection.setRuns(runDataList);
+            });
+
+            injectionList.add(injection);
         }
 
         this.campaignData.setInjections(injectionList);
@@ -72,8 +76,8 @@ public class CampaignManager {
 
     private void setupInjectionEnvironment(InjektionData injektionData, InjectionData injectionData) {
         campaignData.incrementCurrentInjection();
-        injectionController.configure(compatibleSystemList, injektionData, injectionData, campaignData);
-        injectionController.performInjection();
+        injectionManager.configure(compatibleSystemList, injektionData, injectionData, campaignData);
+        injectionManager.performInjection();
         campaignService.campaignUpdate(campaignData);
     }
 

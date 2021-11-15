@@ -27,8 +27,8 @@ public class Orchestrator {
     public void startInjectionCampaign(PlanData plan) throws InvalidSystemException {
 
         List<SystemConnectorPlug> compatibleSystemList = getCompatibleSystemList(plan.getSystem().getName());
-        CampaignData campaign = new CampaignData(plan.getId(), plan.getName());
         List<InjektionData> injektionList = plan.getInjektions();
+        CampaignData campaign = new CampaignData(plan.getId(), plan.getName(), injektionList.size());
 
         campaignManager.configure(compatibleSystemList, campaign, injektionList);
         campaignManager.performCampaign();

@@ -7,7 +7,7 @@ import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.api.repository.DefektorRepository;
 import pt.uc.sob.defektor.server.api.service.PlanService;
-import pt.uc.sob.defektor.server.campaign.control.Orchestrator;
+import pt.uc.sob.defektor.server.orchestrator.Orchestrator;
 import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
@@ -26,7 +26,7 @@ public class PlanServiceImpl implements PlanService {
     public PlanData planAdd(PlanData plan) throws InvalidSystemException {
         plan.setId(Utils.generateUUID());
         defektorRepository.save(plan, Strings.DB.PLAN_DB_PATH);
-        orchestrator.conductProcess(plan);
+        orchestrator.startInjectionCampaign(plan);
         return plan;
     }
 
