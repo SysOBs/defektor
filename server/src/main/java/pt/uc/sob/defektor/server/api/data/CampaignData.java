@@ -1,9 +1,8 @@
 package pt.uc.sob.defektor.server.api.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pt.uc.sob.defektor.server.campaign.data.CampaignStatus;
+import pt.uc.sob.defektor.server.orchestrator.campaign.CampaignStatus;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.io.Serializable;
@@ -14,28 +13,29 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CampaignData implements Serializable {
     private UUID id;
-    private Integer currentRun;
-    private Integer totalRuns;
+    private String name;
     private CampaignStatus status;
     private String startTimestamp;
     private String endTimestamp;
-    private List<RunData> runs;
+    private Integer currentInjection;
+    private Integer totalInjections;
+    private List<InjectionData> injections;
 
-    public CampaignData(UUID id, Integer totalRuns) {
+    public CampaignData(UUID id, String name, Integer totalInjections) {
         this.id = id;
-        this.totalRuns = totalRuns;
-        this.currentRun = 0;
+        this.name = name;
         this.status = CampaignStatus.WAITING_TO_START;
         this.startTimestamp = Utils.Time.getCurrentTimestamp();
         this.endTimestamp = "";
-        this.runs = new ArrayList<>();
+        this.currentInjection = 0;
+        this.totalInjections = totalInjections;
+        this.injections = new ArrayList<>();
     }
 
-    public void incrementCurrentRun() {
-        this.currentRun += 1;
+    public void incrementCurrentInjection() {
+        this.currentInjection += 1;
     }
 
     @Override

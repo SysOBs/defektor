@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.api.data;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pt.uc.sob.defektor.server.campaign.run.data.RunStatus;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 import pt.uc.sob.defektor.server.utils.Strings;
 
 import java.io.Serializable;
