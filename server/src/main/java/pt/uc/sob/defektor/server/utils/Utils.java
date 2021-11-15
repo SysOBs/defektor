@@ -80,46 +80,95 @@ public class Utils {
 
         public static class Campaign {
             public static String startLogMessage(CampaignData campaignData) {
-                return new StringBuilder()
-                        .append(campaignData.getId())
-                        .append(" (")
-                        .append(campaignData.getName())
-                        .append(" ) - ")
-                        .append("started campaign")
-                        .toString();
+                return campaignLogBuilder(campaignData, "started campaign");
+
             }
 
             public static String finishLogMessage(CampaignData campaignData) {
+                return campaignLogBuilder(campaignData, "finished campaign");
+            }
+
+            private static String campaignLogBuilder(CampaignData campaignData, String message) {
                 return new StringBuilder()
-                        .append(campaignData.getId())
-                        .append(" (")
+                        .append("(")
                         .append(campaignData.getName())
-                        .append(" ) - ")
-                        .append("finished campaign")
+                        .append(") ")
+                        .append(campaignData.getId())
+                        .append(" - ")
+                        .append(message)
                         .toString();
             }
         }
 
         public static class Injection {
             public static String startLogMessage(CampaignData campaignData, InjectionData injectionData) {
-                return new StringBuilder()
-                        .append(campaignData.getId())
-                        .append(" (")
-                        .append(campaignData.getName())
-                        .append(" ) - ")
-                        .append("starting injection number ")
-                        .append(injectionData.getInjectionNumber())
-                        .toString();
+                return injectionLogBuilder(campaignData, injectionData, "started injection");
             }
 
             public static String finishLogMessage(CampaignData campaignData, InjectionData injectionData) {
+                return injectionLogBuilder(campaignData, injectionData, "finished injection");
+            }
+
+            private static String injectionLogBuilder(CampaignData campaignData, InjectionData injectionData, String message) {
                 return new StringBuilder()
-                        .append(campaignData.getId())
-                        .append(" (")
+                        .append("(")
                         .append(campaignData.getName())
-                        .append(" ) - ")
-                        .append("finished injection number ")
+                        .append(") ")
+                        .append(campaignData.getId())
+                        .append("/injection:")
                         .append(injectionData.getInjectionNumber())
+                        .append(" - ")
+                        .append(message)
+                        .toString();
+            }
+        }
+
+        public static class Run {
+
+            public static String startRun(CampaignData campaignData, InjectionData injectionData, RunData runData) {
+                return runLogBuilder(campaignData, injectionData, runData, "started run");
+            }
+
+            public static String finishRun(CampaignData campaignData, InjectionData injectionData, RunData runData) {
+                return runLogBuilder(campaignData, injectionData, runData, "finished run");
+            }
+
+            public static String applyWorkload(CampaignData campaignData, InjectionData injectionData, RunData runData, Integer workloadDuration) {
+                return runLogBuilder(campaignData, injectionData, runData, "applying workload for " + workloadDuration + "s");
+            }
+
+            public static String stopWorkload(CampaignData campaignData, InjectionData injectionData, RunData runData) {
+                return runLogBuilder(campaignData, injectionData, runData, "stopped workload");
+            }
+
+            public static String performInjektion(CampaignData campaignData, InjectionData injectionData, RunData runData, String ijkName) {
+                return runLogBuilder(campaignData, injectionData, runData, "performing injektion (" + ijkName + ")");
+            }
+
+            public static String stopInjektion(CampaignData campaignData, InjectionData injectionData, RunData runData) {
+                return runLogBuilder(campaignData, injectionData, runData, "removed injektion");
+            }
+
+            public static String collectData(CampaignData campaignData, InjectionData injectionData, RunData runData) {
+                return runLogBuilder(campaignData, injectionData, runData, "collecting data");
+            }
+
+            public static String abnormallyInterrupted(CampaignData campaignData, InjectionData injectionData, RunData runData, String message) {
+                return runLogBuilder(campaignData, injectionData, runData, message);
+            }
+
+            private static String runLogBuilder(CampaignData campaignData, InjectionData injectionData, RunData runData, String message) {
+                return new StringBuilder()
+                        .append("(")
+                        .append(campaignData.getName())
+                        .append(") ")
+                        .append(campaignData.getId())
+                        .append("/injection:")
+                        .append(injectionData.getInjectionNumber())
+                        .append("/run:")
+                        .append(runData.getRunNumber())
+                        .append(" - ")
+                        .append(message)
                         .toString();
             }
         }
