@@ -12,8 +12,7 @@ target/
 #User
 TODO.md
 plugins/libs
-/ToDiscuss.txt
-state/
-/results/*
+/state/
+/results/
 /locustResults/
 /logs/
