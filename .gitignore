@@ -16,3 +16,4 @@ plugins/libs
 state/
 /results/*
 /locustResults/
+/logs/
