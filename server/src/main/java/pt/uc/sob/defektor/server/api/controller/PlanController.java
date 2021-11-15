@@ -10,11 +10,12 @@ import pt.uc.sob.defektor.server.api.PlanApi;
 import pt.uc.sob.defektor.server.api.data.PlanData;
 import pt.uc.sob.defektor.server.api.expection.EntityNotFoundException;
 import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
-import pt.uc.sob.defektor.server.api.mapper.PlanMapper;
+import pt.uc.sob.defektor.server.api.mapper.Mapper;
 import pt.uc.sob.defektor.server.api.service.PlanService;
 import pt.uc.sob.defektor.server.model.Plan;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,20 +29,20 @@ public class PlanController implements PlanApi {
 
     @Override
     public ResponseEntity<List<Plan>> planList() {
-        return new ResponseEntity<>(
-                planService.plansList().stream()
-                        .map(PlanMapper::convertToDTO)
-                        .collect(Collectors.toList()),
-                HttpStatus.OK);
+        List<Plan> planList = new ArrayList<>();
+        for(PlanData planData : planService.plansList())
+            planList.add(Mapper.convertToDTO(planData));
+
+        return new ResponseEntity<>(planList, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
-        PlanData planData = PlanMapper.convertToDAO(plan);
+        PlanData planData = Mapper.convertToDAO(plan);
         try {
-//            planService.planValidate(planData);
             planData = planService.planAdd(planData);
-            return new ResponseEntity<>(PlanMapper.convertToDTO(planData), HttpStatus.CREATED);
+            Plan returnablePlan = Mapper.convertToDTO(planData);
+            return new ResponseEntity<>(returnablePlan, HttpStatus.CREATED);
         } catch (InvalidSystemException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
@@ -50,9 +51,8 @@ public class PlanController implements PlanApi {
     @Override
     public ResponseEntity<Plan> planGet(UUID id) {
         try {
-            return new ResponseEntity<>(
-                    PlanMapper.convertToDTO(planService.planGet(id)),
-                    HttpStatus.OK);
+            Plan returnablePlan = Mapper.convertToDTO(planService.planGet(id));
+            return new ResponseEntity<>(returnablePlan, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
