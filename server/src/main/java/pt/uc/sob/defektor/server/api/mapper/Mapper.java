@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 
 public class Mapper {
 
-    public static  <S, T> T convertToDTO(S source) {
+    public static <S, T> T convertToDTO(S source) {
         String sourceClassName = source.getClass().getSimpleName();
         String targetClassName = sourceClassName.substring(0, sourceClassName.length() - 4);
         String packageName = "pt.uc.sob.defektor.server.model";
@@ -35,7 +35,7 @@ public class Mapper {
         return null;
     }
 
-    private static <S, T> T mapList(S source,Class<T> targetClass) {
+    private static <S, T> T mapList(S source, Class<T> targetClass) {
         return new ModelMapper().map(source, targetClass);
     }
 }
