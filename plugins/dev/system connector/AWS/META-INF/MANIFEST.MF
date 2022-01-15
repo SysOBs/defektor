@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+PluginName: aws
+PluginClass: pt.uc.sob.defektor.plugins.system.aws.AWSSystemPlug
