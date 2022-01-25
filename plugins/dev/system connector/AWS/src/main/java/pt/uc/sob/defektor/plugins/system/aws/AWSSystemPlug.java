@@ -2,8 +2,10 @@ package pt.uc.sob.defektor.plugins.system.aws;
 
 import com.amazonaws.services.fis.AWSFIS;
 import com.amazonaws.services.fis.AWSFISClientBuilder;
+import com.amazonaws.services.fis.model.ExperimentTemplate;
 import com.amazonaws.services.fis.model.ListActionsRequest;
 import com.amazonaws.services.fis.model.ListActionsResult;
+import com.amazonaws.services.fis.model.StartExperimentRequest;
 import org.json.JSONObject;
 import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
@@ -11,6 +13,7 @@ import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AWSSystemPlug extends SystemConnectorPlug {
 
@@ -18,18 +21,11 @@ public class AWSSystemPlug extends SystemConnectorPlug {
 
     public AWSSystemPlug(SystemConfigs configs) {
         super(configs);
-
         client = AWSFISClientBuilder.defaultClient();
-        configure();
     }
 
     @Override
     public void help() {
-        ListActionsResult actionsList = client.listActions(new ListActionsRequest());
-
-        System.out.println(actionsList);
-        JSONObject json = new JSONObject(actionsList); // Convert text to object
-        System.out.println(json.toString(4));
     }
 
     @Override
@@ -40,16 +36,17 @@ public class AWSSystemPlug extends SystemConnectorPlug {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(TargetType.POD);
-                add(TargetType.NODE);
             }
         };
     }
 
+    public void startExperiment(String experimentTemplateId, Map<String, String> tags) {
 
+        StartExperimentRequest experimentRequest = new StartExperimentRequest()
+                .withExperimentTemplateId(experimentTemplateId)
+                .withTags(tags);
 
-    public static void main(String[] args) {
-        new AWSSystemPlug(null).help();
+        client.startExperiment(experimentRequest);
     }
 }
 
