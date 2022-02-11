@@ -50,7 +50,7 @@ public class WorkloadGenerator {
         }
     }
 
-    public void stopWorkloadGen(UUID campaignID, RunData runData, String faultOccurrence, Integer duration) throws CampaignException {
+    public void stopWorkloadGen(UUID campaignID, RunData runData) throws CampaignException {
         List<String> commands = new ArrayList<>();
         List<SlaveData> slavesList = slaveService.slavesList();
 

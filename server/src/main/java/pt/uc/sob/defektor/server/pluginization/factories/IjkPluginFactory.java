@@ -1,6 +1,6 @@
 package pt.uc.sob.defektor.server.pluginization.factories;
 
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
 import pt.uc.sob.defektor.server.pluginization.AbstractPluginFactory;
 import pt.uc.sob.defektor.server.utils.Utils;
 

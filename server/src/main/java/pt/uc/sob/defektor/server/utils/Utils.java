@@ -1,10 +1,7 @@
 package pt.uc.sob.defektor.server.utils;
 
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.server.api.data.CampaignData;
-import pt.uc.sob.defektor.server.api.data.InjectionData;
-import pt.uc.sob.defektor.server.api.data.KeyValueData;
-import pt.uc.sob.defektor.server.api.data.RunData;
+import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 
 import java.io.File;
@@ -13,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Utils {
@@ -23,6 +21,24 @@ public class Utils {
 
     public static UUID generateUUID() {
         return UUID.randomUUID();
+    }
+
+    public static <T> String getIjkName(Map<String, T> map) {
+        return getFirstKey(map);
+    }
+
+    public static <T> T getIjkData(Map<String, T> map) {
+        return getFirstValue(map);
+    }
+
+    private static <T> String getFirstKey(Map<String, T> map) {
+        Map.Entry<String,T> entry = map.entrySet().iterator().next();
+        return entry.getKey();
+    }
+
+    private static <T> T getFirstValue(Map<String, T> map) {
+        Map.Entry<String,T> entry = map.entrySet().iterator().next();
+        return entry.getValue();
     }
 
     public static class Time {

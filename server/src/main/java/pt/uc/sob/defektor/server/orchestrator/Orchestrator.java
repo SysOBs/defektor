@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.expection.InvalidSystemException;
 import pt.uc.sob.defektor.server.api.service.SystemService;
@@ -15,6 +14,7 @@ import pt.uc.sob.defektor.server.utils.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -35,37 +35,40 @@ public class Orchestrator {
     }
 
     private List<SystemConnectorPlug> getCompatibleSystemList(String systemName) throws InvalidSystemException {
-        List<SystemConfigs> sysConfigList = buildSysConfigList(systemName);
-
-        if (sysConfigList.size() == 0)
-            throw new InvalidSystemException(Strings.Errors.NO_SYSTEMS_CONFIGURED);
-
-
-        List<SystemConnectorPlug> systemConnectorPlugs = new ArrayList<>();
-
-        for (SystemConfigs sysConfig : sysConfigList) {
-            systemConnectorPlugs.add(
-                    (SystemConnectorPlug) SystemConnectorPluginFactory
-                            .getInstance()
-                            .getPluginInstance(systemName, sysConfig)
-            );
-        }
-
-        return systemConnectorPlugs;
+//        List<SystemConfigs> sysConfigList = buildSysConfigList(systemName);
+//
+//        if (sysConfigList.size() == 0)
+//            throw new InvalidSystemException(Strings.Errors.NO_SYSTEMS_CONFIGURED);
+//
+//
+//        List<SystemConnectorPlug> systemConnectorPlugs = new ArrayList<>();
+//
+//        for (SystemConfigs sysConfig : sysConfigList) {
+//            systemConnectorPlugs.add(
+//                    (SystemConnectorPlug) SystemConnectorPluginFactory
+//                            .getInstance()
+//                            .getPluginInstance(systemName, sysConfig)
+//            );
+//        }
+//
+//        return systemConnectorPlugs;
+        return null;
     }
 
 
-    private List<SystemConfigs> buildSysConfigList(String systemName) {
-        List<SystemConfigs> systemConfigs = new ArrayList<>();
-        for (SystemConfigData systemConfigData : systemService.sysConfigList()) {
-            if (systemConfigData.getSystemType().getName().equals(systemName)) {
-                JSONObject jsonObject = new JSONObject();
-                for (KeyValueData keyData : systemConfigData.getConfigs()) {
-                    jsonObject.put(keyData.getKey(), keyData.getValue());
-                }
-                systemConfigs.add(new SystemConfigs(jsonObject));
-            }
-        }
-        return systemConfigs;
+    private Map<String, String> buildSysConfigList(String systemName) {
+//        List<SystemConfigs> systemConfigs = new ArrayList<>();
+//        for (SystemConfigData systemConfigData : systemService.sysConfigList()) {
+//            if (systemConfigData.getSystemType().getName().equals(systemName)) {
+//                JSONObject jsonObject = new JSONObject();
+//                for (KeyValueData keyData : systemConfigData.getConfigs()) {
+//                    jsonObject.put(keyData.getKey(), keyData.getValue());
+//                }
+//                systemConfigs.add(new SystemConfigs(jsonObject));
+//            }
+//        }
+//        return systemConfigs;
+        return null;
+
     }
 }

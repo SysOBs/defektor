@@ -1,7 +1,18 @@
 package pt.uc.sob.defektor.common.com.data.target_types;
 
 public enum KubernetesTargetType implements TargetType {
-    POD,
-    NODE,
-    SERVICE,
+    POD("kubernetes:pod"),
+    NODE("kubernetes:node"),
+    SERVICE("kubernetes:service");
+
+    private final String text;
+
+    KubernetesTargetType(final String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return text;
+    }
 }

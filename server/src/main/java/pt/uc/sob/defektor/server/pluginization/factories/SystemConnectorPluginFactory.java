@@ -1,9 +1,9 @@
 package pt.uc.sob.defektor.server.pluginization.factories;
 
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
 import pt.uc.sob.defektor.server.pluginization.AbstractPluginFactory;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 public class SystemConnectorPluginFactory extends AbstractPluginFactory {
 
@@ -19,6 +19,6 @@ public class SystemConnectorPluginFactory extends AbstractPluginFactory {
 
     @Override
     protected Object instantiate(Class<?> clazz, Object... objects) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        return clazz.getConstructor(SystemConfigs.class).newInstance(objects);
+        return clazz.getConstructor(Map.class).newInstance(objects);
     }
 }

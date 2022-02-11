@@ -2,19 +2,20 @@ package pt.uc.sob.defektor.plugins.ijk.virtualmachine.instancereboot;
 
 import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.com.data.Target;
-import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
-import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.plugin_interface.InjektorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
 
-    private final String REBOOT_COMMAND = "sudo shutdown";
+    private final String SHUTDOWN_COMMAND = "sudo shutdown";
 
     public MachineShutdownIjkPlug(SystemConnectorPlug system) {
         super(system);
@@ -26,16 +27,16 @@ public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParams ijkParams) {
-        Param param = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
-        new Thread(
-                () -> {
-                    while (true) {
-                        system.sendSSHCommand(REBOOT_COMMAND);
-                        sleep(param.getInterval());
-                    }
-                }
-        ).start();
+    public void performInjection(Map<String, String> parameters) throws CampaignException {
+//        Param param = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
+//        new Thread(
+//                () -> {
+//                    while (true) {
+//                        system.sendSSHCommand(SHUTDOWN_COMMAND);
+//                        sleep(param.getInterval());
+//                    }
+//                }
+//        ).start();
     }
 
     @SneakyThrows
@@ -51,7 +52,7 @@ public class MachineShutdownIjkPlug extends InjektorPlug<VMSystemPlug> {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(TargetType.INSTANCE);
+                add(TargetType.);
             }
         };
     }

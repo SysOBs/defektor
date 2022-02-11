@@ -12,11 +12,11 @@
     <artifactId>server</artifactId>
 
     <properties>
-        <swagger-annotations-version>1.6.3</swagger-annotations-version>
+        <swagger-annotations-version>1.6.4</swagger-annotations-version>
         <spring-boot-starter-web.version>2.2.1.RELEASE</spring-boot-starter-web.version>
         <springfox-version>3.0.0</springfox-version>
         <mapdb-version>3.0.8</mapdb-version>
-        <modelmapper-version>2.4.4</modelmapper-version>
+        <modelmapper-version>2.4.5</modelmapper-version>
         <jsch-version>0.1.55</jsch-version>
     </properties>
 
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.1</version>
+            <version>0.2.2</version>
         </dependency>
         <!-- Bean Validation API support -->
         <dependency>
@@ -79,6 +79,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
         </dependency>
         <dependency>
             <groupId>org.mapdb</groupId>

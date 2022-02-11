@@ -3,13 +3,11 @@ package pt.uc.sob.defektor.server.orchestrator.campaign.injection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
-import pt.uc.sob.defektor.server.api.data.CampaignData;
-import pt.uc.sob.defektor.server.api.data.InjectionData;
-import pt.uc.sob.defektor.server.api.data.InjektionData;
-import pt.uc.sob.defektor.server.api.data.RunData;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
-import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunManager;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.FaultInjectionRunManager;
+import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.GoldenRunManger;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.util.List;
@@ -20,15 +18,16 @@ import java.util.List;
 public class InjectionManager {
 
     private final CampaignService campaignService;
-    private final RunManager runManager;
+    private final GoldenRunManger goldenRunManager;
+    private final FaultInjectionRunManager faultInjectionRunManager;
 
-    private List < SystemConnectorPlug > systemConnectorPlugs;
+    private List<SystemConnectorPlug> systemConnectorPlugs;
     private InjektionData injektionData;
     private InjectionData injectionData;
     private CampaignData campaignData;
 
-    public void configure(List < SystemConnectorPlug > compatibleSystemList, InjektionData injektionData, InjectionData injectionData, CampaignData campaignData) {
-        this.systemConnectorPlugs = compatibleSystemList;
+    public void configure(List<SystemConnectorPlug> systemConnectorPlugs, InjektionData injektionData, InjectionData injectionData, CampaignData campaignData) {
+        this.systemConnectorPlugs = systemConnectorPlugs;
         this.injektionData = injektionData;
         this.injectionData = injectionData;
         this.campaignData = campaignData;
@@ -48,8 +47,22 @@ public class InjectionManager {
 
     private void setupRunEnvironment(RunData run) {
         injectionData.incrementCurrentRun();
-        runManager.configure(campaignData, injektionData, systemConnectorPlugs, injectionData, run);
-        runManager.performRun();
+
+        goldenRunManager.configure(campaignData, injectionData, run, injektionData.getWorkLoad(), injektionData.getDataCollector());
+        goldenRunManager.performRun();
+
+        faultInjectionRunManager.configure(
+                campaignData,
+                injectionData,
+                run,
+                Utils.getIjkName(injektionData.getIjk()),
+                Utils.getIjkData(injektionData.getIjk()),
+                systemConnectorPlugs,
+                injektionData.getWorkLoad(),
+                injektionData.getDataCollector()
+        );
+        faultInjectionRunManager.performRun();
+
         campaignService.campaignUpdate(campaignData);
     }
 

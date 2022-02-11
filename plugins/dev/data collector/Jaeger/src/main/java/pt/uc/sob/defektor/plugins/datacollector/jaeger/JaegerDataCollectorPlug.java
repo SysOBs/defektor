@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.plugins.datacollector.jaeger;
 
 import org.json.JSONObject;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.pluginterface.DataCollectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.DataCollectorPlug;
 import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 
 import java.io.IOException;

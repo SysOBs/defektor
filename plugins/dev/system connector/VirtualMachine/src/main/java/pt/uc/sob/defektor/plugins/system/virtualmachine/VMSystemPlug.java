@@ -4,9 +4,10 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import pt.uc.sob.defektor.common.com.data.TargetType;
+import pt.uc.sob.defektor.common.com.data.target_types.SshEnabledTargetType;
+import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
 import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,7 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     @Override
     public List<TargetType> getTargetTypes() {
-        return new ArrayList<>() {
-            {
-                add(TargetType.PROCESS);
-                add(TargetType.INSTANCE);
-            }
-        };
+        return List.of(SshEnabledTargetType.values());
     }
 
     @Override

@@ -1,11 +1,9 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay;
 
 import pt.uc.sob.defektor.common.com.data.Target;
-import pt.uc.sob.defektor.common.com.data.TargetType;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
-import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.InjektorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.kubernetes.KubernetesSystemPlug;
 
 import java.io.File;

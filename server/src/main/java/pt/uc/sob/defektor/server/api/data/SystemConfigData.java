@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SystemConfigData implements Serializable {
-    private List<KeyValueData> configs = null;
+    private Map<String, String> configuration = null;
     private SystemTypeData systemType;
 }

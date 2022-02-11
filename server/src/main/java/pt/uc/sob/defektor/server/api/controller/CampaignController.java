@@ -15,7 +15,6 @@ import pt.uc.sob.defektor.server.model.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("${openapi.server.base-path:/defektor-api/1.0.0}")

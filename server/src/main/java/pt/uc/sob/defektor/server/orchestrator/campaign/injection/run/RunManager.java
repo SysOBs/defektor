@@ -3,157 +3,70 @@ package pt.uc.sob.defektor.server.orchestrator.campaign.injection.run;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
-import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.collectorparams.DataCollectorParams;
 import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
-import pt.uc.sob.defektor.common.pluginterface.DataCollectorPlug;
-import pt.uc.sob.defektor.common.pluginterface.InjektorPlug;
-import pt.uc.sob.defektor.common.pluginterface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin_interface.DataCollectorPlug;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.orchestrator.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.pluginization.factories.DataCollectorPluginFactory;
-import pt.uc.sob.defektor.server.pluginization.factories.IjkPluginFactory;
-import pt.uc.sob.defektor.server.utils.Strings;
 import pt.uc.sob.defektor.server.utils.Utils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Service
 @Log4j2
 @RequiredArgsConstructor
-public class RunManager {
+public abstract class RunManager {
 
-    private final WorkloadGenerator workloadGenerator;
-    private final CampaignService campaignService;
-
+    protected final WorkloadGenerator workloadGenerator;
+    protected final CampaignService campaignService;
     private final Integer COOLDOWN_TIME = 30;
+    protected CampaignData campaignData;
+    protected InjectionData injectionData;
+    protected RunData runData;
+    protected WorkLoadData workLoad;
+    protected DataCollectorData dataCollector;
 
-    private CampaignData campaignData;
-    private List<SystemConnectorPlug> systemConnectorPlugs;
-    private InjectionData injectionData;
-    private RunData runData;
-    private InjektorPlug injektorPlug;
-    private IjkData ijk;
-    private WorkLoadData workLoad;
-    private DataCollectorData dataCollector;
-
-    public void configure(CampaignData campaignData, InjektionData injektion, List<SystemConnectorPlug> systemConnectorPlugs, InjectionData injectionData, RunData run) {
+    public void configure(CampaignData campaignData, InjectionData injectionData, RunData runData, WorkLoadData workLoadData, DataCollectorData dataCollector) {
         this.campaignData = campaignData;
-        this.systemConnectorPlugs = systemConnectorPlugs;
         this.injectionData = injectionData;
-        this.runData = run;
-        this.ijk = injektion.getIjk();
-        this.workLoad = injektion.getWorkLoad();
-        this.dataCollector = injektion.getDataCollector();
+        this.runData = runData;
+        this.workLoad = workLoadData;
+        this.dataCollector = dataCollector;
     }
 
-    public void performRun() {
-        handleRunStart();
+    public abstract void performRun() throws CampaignException;
 
-        try {
-            performGoldenRun();
-            sleep(30);
-            performFaultInjectionRun();
-            handleRunFinish();
-        } catch (CampaignException e) {
-            handleAbnormallyInterruptedRun(e);
-        }
-    }
+    protected abstract void handleRunStart();
 
-    private void handleRunStart() {
-        log.info(Utils.Logging.Run.startRun(campaignData, injectionData, runData));
-        runData.setStartTimestamp(Utils.Time.getCurrentTimestamp());
+    protected abstract void handleRunFinish();
 
-    }
 
-    private void handleRunFinish() {
-        log.info(Utils.Logging.Run.finishRun(campaignData, injectionData, runData));
-        runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
-        updateRunState(
-                RunStatus.FINISHED,
-                Strings.Run.FINISHED
-        );
-    }
-
-    public void performGoldenRun() throws CampaignException {
-        updateRunState(
-                RunStatus.RUNNING_GOLDEN_RUN,
-                Strings.Run.RUNNING_GOLDEN_RUN
-        );
-        applyWorkload();
-        stopWorkload();
-        collectData();
-    }
-
-    public void performFaultInjectionRun() throws CampaignException {
-        updateRunState(
-                RunStatus.RUNNING_FAULT_INJECTION_RUN,
-                Strings.Run.RUNNING_FAULT_INJECTION_RUN
-        );
-
-        performInjektion();
-        applyWorkload();
-        stopWorkload();
-        stopInjektion();
-        collectData();
-    }
-
-    private void handleAbnormallyInterruptedRun(CampaignException e) {
+    protected void handleAbnormallyInterruptedRun(CampaignException e) {
         log.error(Utils.Logging.Run.abnormallyInterrupted(campaignData, injectionData, runData, e.getMessage()));
         runData.setEndTimestamp(Utils.Time.getCurrentTimestamp());
-        updateRunState(
-                RunStatus.ABNORMALLY_INTERRUPTED,
-                e.getMessage()
-        );
+        updateRunState(RunStatus.ABNORMALLY_INTERRUPTED, e.getMessage());
     }
 
-    public void performInjektion() throws CampaignException {
-        log.info(Utils.Logging.Run.performInjektion(campaignData, injectionData, runData, ijk.getName()));
-        for(SystemConnectorPlug plug : systemConnectorPlugs) {
-            injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(ijk.getName(), plug);
-            injektorPlug.performInjection(buildIjkParams(ijk.getParams()));
-        }
-    }
-
-    public void stopInjektion() throws CampaignException {
-        log.info(Utils.Logging.Run.stopInjektion(campaignData, injectionData, runData));
-        injektorPlug.stopInjection();
-    }
-
-    private void applyWorkload() throws CampaignException {
+    protected void applyWorkload() throws CampaignException {
         log.info(Utils.Logging.Run.applyWorkload(campaignData, injectionData, runData, workLoad.getDuration()));
         workloadGenerator.performWorkloadGen(workLoad, campaignData.getId(), runData);
         sleep(workLoad.getDuration());
     }
 
-    private void stopWorkload() throws CampaignException {
+    protected void stopWorkload() throws CampaignException {
         log.info(Utils.Logging.Run.stopWorkload(campaignData, injectionData, runData));
-
-        String faultOccurrence = ijk.getParams().get(4).getValue();
-        Integer duration = workLoad.getDuration() / 60;
-        workloadGenerator.stopWorkloadGen(
-                campaignData.getId(),
-                runData,
-                faultOccurrence,
-                duration
-        );
+        workloadGenerator.stopWorkloadGen(campaignData.getId(), runData);
     }
 
-    private void collectData() throws CampaignException {
+    protected void collectData() throws CampaignException {
         sleep(COOLDOWN_TIME);
         log.info(Utils.Logging.Run.collectData(campaignData, injectionData, runData));
         DataCollectorPlug dataCollectorPlug = (DataCollectorPlug) DataCollectorPluginFactory
                 .getInstance()
                 .getPluginInstance(
                         dataCollector.getName(),
-                        buildDataCollectorParams(
-                                dataCollector.getParams()
-                        )
+                        dataCollector.getParameters()
                 );
 
         byte[] byteArray = dataCollectorPlug.getData();
@@ -166,34 +79,14 @@ public class RunManager {
         Utils.DataCollector.writeStringToFile(fileName, new String(byteArray, StandardCharsets.UTF_8));
     }
 
-
-
-    private Object buildDataCollectorParams(List<KeyValueData> params) {
-        JSONObject jsonObject = new JSONObject();
-        for (KeyValueData keyData : params) {
-            jsonObject.put(keyData.getKey(), keyData.getValue());
-        }
-        jsonObject.put("startTimestamp", runData.getStartTimestamp());
-        jsonObject.put("endTimestamp", Utils.Time.getCurrentTimestamp());
-        return new DataCollectorParams(jsonObject);
-    }
-
-    @SneakyThrows
-    private void sleep(int seconds) {
-        TimeUnit.SECONDS.sleep(seconds);
-    }
-
-    private void updateRunState(RunStatus runStatus, String message) {
+    protected void updateRunState(RunStatus runStatus, String message) {
         runData.setStatus(runStatus);
         runData.setMessage(message);
         campaignService.campaignUpdate(campaignData);
     }
 
-    private IjkParams buildIjkParams(List<KeyValueData> params) {
-        JSONObject jsonObject = new JSONObject();
-        for (KeyValueData keyValue : params)
-            jsonObject.put(keyValue.getKey(), keyValue.getValue());
-
-        return new IjkParams(jsonObject);
+    @SneakyThrows
+    private void sleep(int seconds) {
+        TimeUnit.SECONDS.sleep(seconds);
     }
 }
