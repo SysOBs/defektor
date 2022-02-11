@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+PluginName: stopec2instance
+PluginClass: pt.uc.sob.defektor.plugins.ijk.aws.stopec2instance.StopEc2InstanceIjkPlug
