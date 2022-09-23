@@ -1,13 +1,12 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpabort;
 
 import com.google.gson.Gson;
-import io.fabric8.kubernetes.client.dsl.base.ResourceDefinitionContext;
 
 import java.io.*;
 
 public class Utils {
 
-    public class Strings {
+    public static class Strings {
         public static final String PREFIX = "http-abort";
         public static final String SUFFIX = ".yaml";
         public static final String MANIFEST_NAME = "virtual-service-http-abort.yaml";
@@ -22,12 +21,8 @@ public class Utils {
     public static File stringBuilderToTempFile(StringBuilder stringBuilder, String prefix, String suffix) throws IOException {
         final File tempFile = File.createTempFile(prefix, suffix);
         tempFile.deleteOnExit();
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(tempFile));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
             writer.write(stringBuilder.toString());
-        } finally {
-            if (writer != null) writer.close();
         }
         return tempFile;
     }
@@ -38,7 +33,9 @@ public class Utils {
             MyReader myReader = new MyReader(new InputStreamReader(inputStream), param);
             String buffer;
             while ((buffer = myReader.readLine()) != null) {
-                stringBuilder.append(buffer + System.lineSeparator());
+                stringBuilder
+                        .append(buffer)
+                        .append(System.lineSeparator());
             }
         } catch (IOException e) {
             e.printStackTrace();
