@@ -4,12 +4,11 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import pt.uc.sob.defektor.common.com.data.target_types.SshEnabledTargetType;
-import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.config.SystemConfig;
+import pt.uc.sob.defektor.common.data.target_types.SshEnabledTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,7 +17,7 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     protected Session session = null;
 
-    public VMSystemPlug(SystemConfigs configuration) {
+    public VMSystemPlug(SystemConfig configuration) {
         super(configuration);
     }
 
@@ -34,7 +33,7 @@ public class VMSystemPlug extends SystemConnectorPlug {
 
     @Override
     public void configure() {
-        Configs configs = Utils.jsonToObject(configuration.getJsonSysConfigs().toString());
+        Configs configs = Utils.jsonToObject(configuration.toString());
         JSch jSch = new JSch();
 
         try {
