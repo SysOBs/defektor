@@ -1,17 +1,17 @@
 package pt.uc.sob.defektor.plugins.ijk.aws.stopec2instance;
 
-import pt.uc.sob.defektor.common.com.data.Target;
-import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.plugin_interface.InjektorPlug;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
-import pt.uc.sob.defektor.plugins.system.aws.AWSSystemPlug;
-
+import pt.uc.sob.defektor.common.config.InjektorParams;
+import pt.uc.sob.defektor.common.data.Target;
+import pt.uc.sob.defektor.common.data.target_types.AwsTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.exception.CampaignException;
+import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
+import pt.uc.sob.defektor.plugins.system.aws.AwsSystemPlug;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class StopEc2InstanceIjkPlug extends InjektorPlug<AWSSystemPlug> {
+public class StopEc2InstanceIjkPlug extends InjektorPlug<AwsSystemPlug> {
 
     public StopEc2InstanceIjkPlug(SystemConnectorPlug system) {
         super(system);
@@ -23,8 +23,8 @@ public class StopEc2InstanceIjkPlug extends InjektorPlug<AWSSystemPlug> {
     }
 
     @Override
-    public void performInjection(Map<String, String> parameters) throws CampaignException {
-        Parameters params = Utils.mapToObject(parameters);
+    public void performInjection(InjektorParams parameters) throws CampaignException {
+        Parameters params = Utils.jsonToObject(parameters.toString());
     }
 
     @Override
@@ -34,8 +34,11 @@ public class StopEc2InstanceIjkPlug extends InjektorPlug<AWSSystemPlug> {
     @Override
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
-
+            {
+                add(AwsTargetType.EC2_INSTANCE);
+            }
         };
+
     }
 
     @Override
