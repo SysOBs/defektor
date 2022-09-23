@@ -3,19 +3,21 @@ package pt.uc.sob.defektor.plugins.system.aws;
 import com.amazonaws.services.fis.AWSFIS;
 import com.amazonaws.services.fis.AWSFISClientBuilder;
 import com.amazonaws.services.fis.model.StartExperimentRequest;
-import pt.uc.sob.defektor.common.com.data.target_types.AwsTargetType;
-import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.config.SystemConfig;
+import pt.uc.sob.defektor.common.data.target_types.AwsTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 
 import java.util.List;
 import java.util.Map;
 
+// This class wasn't tested at all. I was trying to build just the abstraction layer to communicate to AWS.
+// Feel free to throw it away and start from scratch.
+public class AwsSystemPlug extends SystemConnectorPlug {
 
-public class AWSSystemPlug extends SystemConnectorPlug {
+    private final AWSFIS client;
 
-    AWSFIS client;
-
-    public AWSSystemPlug(Map<String, String> configuration) {
+    public AwsSystemPlug(SystemConfig configuration) {
         super(configuration);
         client = AWSFISClientBuilder.defaultClient();
     }
@@ -41,10 +43,6 @@ public class AWSSystemPlug extends SystemConnectorPlug {
 
         client.startExperiment(experimentRequest);
     }
-
-//    public static void main(String[] args) {
-//        System.out.println(new AWSSystemPlug(null).getTargetTypes());
-//    }
 }
 
 
