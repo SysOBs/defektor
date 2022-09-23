@@ -33,12 +33,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20211205</version>
+            <version>1.18.24</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -52,7 +47,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <configuration>
                     <finalName>${artifactId}</finalName>
                     <outputDirectory>${project.basedir}/../../../libs/injektor</outputDirectory>

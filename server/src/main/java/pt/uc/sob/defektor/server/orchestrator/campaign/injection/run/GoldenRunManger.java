@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.server.orchestrator.campaign.injection.run;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.orchestrator.workloadgen.WorkloadGenerator;
 import pt.uc.sob.defektor.server.utils.Strings;

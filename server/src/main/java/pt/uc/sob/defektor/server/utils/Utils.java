@@ -1,6 +1,6 @@
 package pt.uc.sob.defektor.server.utils;
 
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 

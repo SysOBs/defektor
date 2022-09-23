@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.orchestrator.workloadgen;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
+import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.SlaveService;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;

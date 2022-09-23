@@ -3,7 +3,7 @@ package pt.uc.sob.defektor.server.orchestrator.campaign.injection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 import pt.uc.sob.defektor.server.api.data.*;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.FaultInjectionRunManager;
