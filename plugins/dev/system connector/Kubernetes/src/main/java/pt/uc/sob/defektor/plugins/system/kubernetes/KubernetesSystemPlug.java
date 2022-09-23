@@ -1,10 +1,10 @@
 package pt.uc.sob.defektor.plugins.system.kubernetes;
 
-import pt.uc.sob.defektor.common.com.data.target_types.KubernetesTargetType;
-import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.com.sysconfigs.SystemConfigs;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.config.SystemConfig;
+import pt.uc.sob.defektor.common.data.target_types.KubernetesTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.exception.CampaignException;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,19 +15,20 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
 
     private File yamlFile;
 
-    public KubernetesSystemPlug(SystemConfigs configs) {
-        super(configs);
-        configure();
+    public KubernetesSystemPlug(SystemConfig config) {
+        super(config);
     }
 
     @Override
     public void help() {
+        // TODO: implement help
 
     }
 
     @Override
     public void configure() {
-
+        // Nothing to configure for Kubernetes.
+        // We assume that the user has already configured the cluster in their local machine.
     }
 
     @Override
@@ -36,25 +37,22 @@ public class KubernetesSystemPlug extends SystemConnectorPlug {
     }
 
     public void createOrReplaceResource(InputStream yamlFileStream, String namespace) throws CampaignException {
-        try {
-            yamlFile = Utils.inputStreamToTempFile(yamlFileStream);
-            String applyCommand = "kubectl apply -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace;
-            Runtime.getRuntime().exec(applyCommand);
-        } catch (IOException ex) {
-            throw new CampaignException(ex.getMessage());
-        }
+        yamlFile = Utils.inputStreamToTempFile(yamlFileStream);
+        String applyCommand = "kubectl apply -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace;
+        execCommand(applyCommand);
     }
 
     public void deleteResource(InputStream yamlFileStream, String namespace) throws CampaignException {
+        String deleteCommand = "kubectl delete -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace;
+        execCommand(deleteCommand);
+    }
+
+    private void execCommand(String command) throws CampaignException {
         try {
-            Runtime.getRuntime().exec("kubectl delete -f " + yamlFile.getAbsolutePath() + " --namespace=" + namespace);
+            Runtime.getRuntime().exec(command);
         } catch (IOException ex) {
             throw new CampaignException(ex.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new KubernetesSystemPlug(null).getTargetTypes());
     }
 }
 
