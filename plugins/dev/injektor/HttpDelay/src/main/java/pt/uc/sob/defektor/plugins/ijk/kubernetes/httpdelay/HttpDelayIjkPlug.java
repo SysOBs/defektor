@@ -1,18 +1,18 @@
 package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay;
 
-import pt.uc.sob.defektor.common.com.data.Target;
-import pt.uc.sob.defektor.common.com.exception.CampaignException;
-import pt.uc.sob.defektor.common.plugin_interface.InjektorPlug;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.config.InjektorParams;
+import pt.uc.sob.defektor.common.data.Target;
+import pt.uc.sob.defektor.common.data.target_types.KubernetesTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.exception.CampaignException;
+import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.kubernetes.KubernetesSystemPlug;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
 
@@ -29,8 +29,8 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParams ijkParam) throws CampaignException {
-        this.params = Utils.JSON.jsonToObject(ijkParam.getJsonIjkParams().toString());
+    public void performInjection(InjektorParams ijkParam) throws CampaignException {
+        this.params = Utils.JSON.jsonToObject(ijkParam.toString());
 
         InputStream in = HttpDelayIjkPlug.class
                 .getClassLoader()
@@ -65,7 +65,7 @@ public class HttpDelayIjkPlug extends InjektorPlug<KubernetesSystemPlug> {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(TargetType.SERVICE);
+                add(KubernetesTargetType.SERVICE);
             }
         };
     }
