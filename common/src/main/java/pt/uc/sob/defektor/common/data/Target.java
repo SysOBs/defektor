@@ -1,6 +1,6 @@
-package pt.uc.sob.defektor.common.com.data;
+package pt.uc.sob.defektor.common.data;
 
-import pt.uc.sob.defektor.common.com.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
 
 public abstract class Target {
 	private TargetType type;
