@@ -2,13 +2,13 @@ package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 
 
 import lombok.SneakyThrows;
-import pt.uc.sob.defektor.common.com.data.Target;
-import pt.uc.sob.defektor.common.com.data.TargetType;
-import pt.uc.sob.defektor.common.com.ijkparams.IjkParams;
-import pt.uc.sob.defektor.common.plugin_interface.InjektorPlug;
-import pt.uc.sob.defektor.common.plugin_interface.SystemConnectorPlug;
+import pt.uc.sob.defektor.common.config.InjektorParams;
+import pt.uc.sob.defektor.common.data.Target;
+import pt.uc.sob.defektor.common.data.target_types.SshEnabledTargetType;
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
+import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;
+import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 import pt.uc.sob.defektor.plugins.system.virtualmachine.VMSystemPlug;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +24,10 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
     }
 
     @Override
-    public void performInjection(IjkParams ijkParams) {
+    public void performInjection(InjektorParams ijkParams) {
         new Thread(
                 () -> {
-                    Params params = Utils.jsonToObject(ijkParams.getJsonIjkParams().toString());
+                    Params params = Utils.jsonToObject(ijkParams.toString());
                     String command = getCommand(params);
                     if (command == null)
                         throw new RuntimeException("NO INSTRUCTION TO WHAT PROCESS THE INJEKTOR SHOULD TARGET");//TODO PROPER EXCEPTION
@@ -62,7 +62,7 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(TargetType.PROCESS);
+                add(SshEnabledTargetType.PROCESS);
             }
         };
     }
