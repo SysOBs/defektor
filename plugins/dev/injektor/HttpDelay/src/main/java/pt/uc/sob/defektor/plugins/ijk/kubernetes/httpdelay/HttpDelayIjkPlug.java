@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.plugins.ijk.kubernetes.httpdelay;
 
 import pt.uc.sob.defektor.common.config.InjektorParams;
 import pt.uc.sob.defektor.common.data.Target;
-import pt.uc.sob.defektor.common.data.target_types.KubernetesTargetType;
+import KubernetesTargetType;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
 import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;

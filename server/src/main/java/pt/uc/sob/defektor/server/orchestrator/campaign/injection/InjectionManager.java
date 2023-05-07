@@ -5,11 +5,13 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.api.service.CampaignService;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.FaultInjectionRunManager;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.GoldenRunManger;
 import pt.uc.sob.defektor.server.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,12 +27,14 @@ public class InjectionManager {
     private InjektionData injektionData;
     private InjectionData injectionData;
     private CampaignData campaignData;
+    private List<IjkData> injektors;
 
-    public void configure(List<SystemConnectorPlug> systemConnectorPlugs, InjektionData injektionData, InjectionData injectionData, CampaignData campaignData) {
+    public void configure(List<SystemConnectorPlug> systemConnectorPlugs, InjektionData injektionData, InjectionData injectionData, CampaignData campaignData, List<IjkData> ijks) {
         this.systemConnectorPlugs = systemConnectorPlugs;
         this.injektionData = injektionData;
         this.injectionData = injectionData;
         this.campaignData = campaignData;
+        this.injektors = ijks;
     }
 
     public void performInjection() {
@@ -51,19 +55,23 @@ public class InjectionManager {
         goldenRunManager.configure(campaignData, injectionData, run, injektionData.getWorkLoad(), injektionData.getDataCollector());
         goldenRunManager.performRun();
 
-        faultInjectionRunManager.configure(
-                campaignData,
-                injectionData,
-                run,
-                Utils.getIjkName(injektionData.getIjk()),
-                Utils.getIjkData(injektionData.getIjk()),
-                systemConnectorPlugs,
-                injektionData.getWorkLoad(),
-                injektionData.getDataCollector()
-        );
-        faultInjectionRunManager.performRun();
+        try {
+            faultInjectionRunManager.configure(
+                    campaignData,
+                    injectionData,
+                    run,
+                    injektionData.getIjkName(),//Utils.getIjkName(injektionData.getIjk()),
+                    Utils.getIjkData(injektionData.getIjkName(), injektors),
+                    systemConnectorPlugs,
+                    injektionData.getWorkLoad(),
+                    injektionData.getDataCollector()
+            );
+            faultInjectionRunManager.performRun();
 
-        campaignService.campaignUpdate(campaignData);
+            campaignService.campaignUpdate(campaignData);
+        }catch(InvalidPlanException e){
+            log.error("Failed to perform injection");
+        }
     }
 
     private void handleCampaignFinish() {

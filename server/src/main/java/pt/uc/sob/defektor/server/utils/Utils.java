@@ -1,7 +1,9 @@
 package pt.uc.sob.defektor.server.utils;
 
+import pt.uc.sob.defektor.common.config.InjektorParams;
 import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.server.api.data.*;
+import pt.uc.sob.defektor.server.api.expection.InvalidPlanException;
 import pt.uc.sob.defektor.server.orchestrator.campaign.injection.run.RunStatus;
 
 import java.io.File;
@@ -39,6 +41,21 @@ public class Utils {
     private static <T> T getFirstValue(Map<String, T> map) {
         Map.Entry<String,T> entry = map.entrySet().iterator().next();
         return entry.getValue();
+    }
+
+    private static IjkData getIjkByName(String name, List<IjkData> ijks) throws InvalidPlanException {
+        if(name == null || name.isEmpty()) throw new InvalidPlanException("Injektor name is invalid");
+        var arr = ijks.stream().filter(e -> getIjkName(e.getParameters()).equals(name)).toArray();
+        if(arr.length < 1) throw new InvalidPlanException(String.format("%s is not a valid Injektor name", name));
+        return (IjkData)arr[0];
+    }
+
+    private static String getIjkName(InjektorParams e){
+        return e.getJsonConfig().getString("name");
+    }
+
+    public static IjkData getIjkData(String name, List<IjkData> ijks) throws InvalidPlanException {
+        return getIjkByName(name, ijks);
     }
 
     public static class Time {

@@ -2,7 +2,6 @@ package pt.uc.sob.defektor.plugins.ijk.aws.stopec2instance;
 
 import pt.uc.sob.defektor.common.config.InjektorParams;
 import pt.uc.sob.defektor.common.data.Target;
-import pt.uc.sob.defektor.common.data.target_types.AwsTargetType;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
 import pt.uc.sob.defektor.common.exception.CampaignException;
 import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;
@@ -35,7 +34,7 @@ public class StopEc2InstanceIjkPlug extends InjektorPlug<AwsSystemPlug> {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(AwsTargetType.EC2_INSTANCE);
+                add(new EC2Target());
             }
         };
 

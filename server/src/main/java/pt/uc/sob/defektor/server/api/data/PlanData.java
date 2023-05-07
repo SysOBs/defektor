@@ -15,6 +15,7 @@ public class PlanData implements Serializable {
   private UUID id;
   private String name;
   private SystemTypeData system;
+  private List<IjkData> injektors = new ArrayList<>();
   private List<InjektionData> injektions = new ArrayList<>();
 
   @Override

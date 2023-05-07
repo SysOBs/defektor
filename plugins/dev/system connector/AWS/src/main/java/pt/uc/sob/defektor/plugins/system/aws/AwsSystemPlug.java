@@ -4,7 +4,7 @@ import com.amazonaws.services.fis.AWSFIS;
 import com.amazonaws.services.fis.AWSFISClientBuilder;
 import com.amazonaws.services.fis.model.StartExperimentRequest;
 import pt.uc.sob.defektor.common.config.SystemConfig;
-import pt.uc.sob.defektor.common.data.target_types.AwsTargetType;
+import AwsTargetType;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
 import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
 

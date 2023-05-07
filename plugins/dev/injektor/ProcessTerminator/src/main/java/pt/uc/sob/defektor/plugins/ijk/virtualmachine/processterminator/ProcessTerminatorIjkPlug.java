@@ -4,7 +4,6 @@ package pt.uc.sob.defektor.plugins.ijk.virtualmachine.processterminator;
 import lombok.SneakyThrows;
 import pt.uc.sob.defektor.common.config.InjektorParams;
 import pt.uc.sob.defektor.common.data.Target;
-import pt.uc.sob.defektor.common.data.target_types.SshEnabledTargetType;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
 import pt.uc.sob.defektor.common.plugin.abstraction.InjektorPlug;
 import pt.uc.sob.defektor.common.plugin.abstraction.SystemConnectorPlug;
@@ -62,7 +61,7 @@ public class ProcessTerminatorIjkPlug extends InjektorPlug<VMSystemPlug> {
     public List<TargetType> getTargetTypes() {
         return new ArrayList<>() {
             {
-                add(SshEnabledTargetType.PROCESS);
+                add(new ProcessTarget());
             }
         };
     }

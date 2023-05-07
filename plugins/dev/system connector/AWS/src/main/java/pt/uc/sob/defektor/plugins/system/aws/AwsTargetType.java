@@ -1,4 +1,6 @@
-package pt.uc.sob.defektor.common.data.target_types;
+package pt.uc.sob.defektor.plugins.system.aws;
+
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
 
 public enum AwsTargetType implements TargetType{
     EC2_INSTANCE("aws:ec2:instance"),
@@ -15,7 +17,7 @@ public enum AwsTargetType implements TargetType{
         this.text = text;
     }
 
-    @Override
+    // @Override
     public String getName() {
         return text;
     }

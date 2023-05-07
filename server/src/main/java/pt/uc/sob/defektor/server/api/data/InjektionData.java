@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -12,7 +13,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class InjektionData implements Serializable {
   private Integer totalRuns;
-  private Map<String, IjkData> ijk;
+  private String ijkName;
   private WorkLoadData workLoad;
   private DataCollectorData dataCollector;
   private TargetData target;

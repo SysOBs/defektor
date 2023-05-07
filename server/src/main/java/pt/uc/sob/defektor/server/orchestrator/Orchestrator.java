@@ -21,12 +21,12 @@ public class Orchestrator {
     private final SystemService systemService;
 
     public void startInjectionCampaign(PlanData plan) throws InvalidSystemException {
-
         List<SystemConnectorPlug> compatibleSystemList = getCompatibleSystemList(plan.getSystem().getName());
         List<InjektionData> injektionList = plan.getInjektions();
+        var injektors = plan.getInjektors();
         CampaignData campaign = new CampaignData(plan.getId(), plan.getName(), injektionList.size());
 
-        campaignManager.configure(compatibleSystemList, campaign, injektionList);
+        campaignManager.configure(compatibleSystemList, campaign, injektionList, injektors);
         campaignManager.performCampaign();
     }
 

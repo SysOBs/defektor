@@ -1,4 +1,6 @@
-package pt.uc.sob.defektor.common.data.target_types;
+package pt.uc.sob.defektor.plugins.system.virtualmachine;
+
+import pt.uc.sob.defektor.common.data.target_types.TargetType;
 
 public enum SshEnabledTargetType implements TargetType {
     INSTANCE("ssh-enabled:linux:instance"),
