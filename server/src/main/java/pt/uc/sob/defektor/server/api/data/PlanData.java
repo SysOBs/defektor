@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PlanData implements Serializable {
   private UUID id;
+  private UUID secretsId;
   private String name;
   private SystemTypeData system;
   private List<IjkData> injektors = new ArrayList<>();

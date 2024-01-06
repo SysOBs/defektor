@@ -9,7 +9,7 @@ public class EC2Target implements TargetType {
         this.text = "aws:ec2:instance";
     }
 
-    // @Override TODO - rebuild commons
+    @Override // TODO - rebuild commons
     public String getName() {
         return text;
     }

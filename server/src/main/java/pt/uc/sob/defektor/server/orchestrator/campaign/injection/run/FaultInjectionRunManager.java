@@ -66,7 +66,7 @@ public class FaultInjectionRunManager extends RunManager {
         log.info(Utils.Logging.Run.performInjektion(campaignData, injectionData, runData, ijkName));
         for (SystemConnectorPlug plug : systemConnectorPlugs) {
             injektorPlug = (InjektorPlug) IjkPluginFactory.getInstance().getPluginInstance(ijkName, plug);
-            injektorPlug.performInjection(ijk.getParameters());
+            injektorPlug.performInjection();
         }
     }
 

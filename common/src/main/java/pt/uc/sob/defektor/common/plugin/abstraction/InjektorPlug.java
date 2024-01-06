@@ -1,6 +1,6 @@
 package pt.uc.sob.defektor.common.plugin.abstraction;
 
-import pt.uc.sob.defektor.common.config.InjektorParams;
+import pt.uc.sob.defektor.common.config.SystemConfig;
 import pt.uc.sob.defektor.common.data.FaultType;
 import pt.uc.sob.defektor.common.data.Target;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
@@ -10,15 +10,16 @@ import java.util.List;
 
 public abstract class InjektorPlug {
 
-    protected final SystemConnectorPlug system;
+    protected SystemConnectorPlug system;
+    protected SystemConfig config;
 
-    public InjektorPlug(SystemConnectorPlug system) {
-        this.system = system;
+    public InjektorPlug(SystemConfig config){
+        this.config = config;
     }
 
     public abstract void help();
 
-    public abstract void performInjection(InjektorParams parameters) throws CampaignException;
+    public abstract void performInjection() throws CampaignException;
 
     public abstract void stopInjection() throws CampaignException;
 

@@ -2,7 +2,7 @@ package pt.uc.sob.defektor.common.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 @Data
 @AllArgsConstructor

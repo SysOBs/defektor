@@ -3,6 +3,7 @@ package pt.uc.sob.defektor.plugins.system.aws;
 import com.amazonaws.services.fis.AWSFIS;
 import com.amazonaws.services.fis.AWSFISClientBuilder;
 import com.amazonaws.services.fis.model.StartExperimentRequest;
+import com.amazonaws.services.fis.model.StopExperimentRequest;
 import pt.uc.sob.defektor.common.config.SystemConfig;
 import AwsTargetType;
 import pt.uc.sob.defektor.common.data.target_types.TargetType;
@@ -35,13 +36,19 @@ public class AwsSystemPlug extends SystemConnectorPlug {
         return List.of(AwsTargetType.values());
     }
 
-    public void startExperiment(String experimentTemplateId, Map<String, String> tags) {
+    public int startExperiment(String experimentTemplateId, Map<String, String> tags) {
 
         StartExperimentRequest experimentRequest = new StartExperimentRequest()
                 .withExperimentTemplateId(experimentTemplateId)
                 .withTags(tags);
 
-        client.startExperiment(experimentRequest);
+        return client.startExperiment(experimentRequest).getExperiment().getId();
+    }
+
+    public void stopExperiment(String experimentId){
+        StopExperimentRequest request = new StopExperimentRequest();
+
+        client.stopExperiments(request.withId(experimentTemplateId));
     }
 }
 

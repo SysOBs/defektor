@@ -12,8 +12,13 @@ import java.util.List;
 
 public class StopEc2InstanceIjkPlug extends InjektorPlug<AwsSystemPlug> {
 
+
+    private AwsSystemPlug connector;
+    private int experimentId = "";
+
     public StopEc2InstanceIjkPlug(SystemConnectorPlug system) {
         super(system);
+        this.connector = (AwsSystemPlug) system;
     }
 
     @Override
@@ -24,10 +29,12 @@ public class StopEc2InstanceIjkPlug extends InjektorPlug<AwsSystemPlug> {
     @Override
     public void performInjection(InjektorParams parameters) throws CampaignException {
         Parameters params = Utils.jsonToObject(parameters.toString());
+        this.experimentId = this.connector.startExperiment();
     }
 
     @Override
     public void stopInjection() {
+        connector.stopInjection(this.experimentId);
     }
 
     @Override

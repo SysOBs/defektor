@@ -37,7 +37,7 @@ public class PlanController implements PlanApi {
     }
 
     @Override
-    public ResponseEntity<Plan> planAdd(@Valid Plan plan) {
+    public ResponseEntity<Plan> planAdd(@Valid Plan plan)  {
         PlanData planData = Mapper.convertToDAO(plan);
         try {
             planData = planService.planAdd(planData);
